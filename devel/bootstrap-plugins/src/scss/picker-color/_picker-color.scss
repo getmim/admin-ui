@@ -1,0 +1,8 @@
+.input-group-append {
+    input[type="color"]{
+        height: $input-height;
+        width: $input-height;
+        padding: 5px;
+        cursor: pointer;
+    }
+}

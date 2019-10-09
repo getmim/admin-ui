@@ -1,0 +1,9 @@
+docs/_site
+docs/.sass-cache
+docs/.jekyll-metadata
+
+devel/bootstrap/node_modules
+devel/bootstrap-plugins/node_modules
+devel/codemirror/node_modules
+devel/summernote/node_modules
+devel/summernote/src/icons/dist

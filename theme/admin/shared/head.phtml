@@ -1,0 +1,20 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php
+    $title = $this->config->name;
+    if(isset($_meta['title']))
+        $title = $_meta['title'] . ' - ' . $title;
+?>
+<title><?= $title ?></title>
+
+<?php $csses = \AdminUi\Library\Assets::getAssets('css', 'head'); ?>
+<?php foreach($csses as $file => $version): ?>
+    <link rel="stylesheet" href="<?= $file ?>?v=<?= $version ?>">
+<?php endforeach; ?>
+
+<?php $jses = \AdminUi\Library\Assets::getAssets('js', 'head'); ?>
+<?php foreach($jses as $file => $version): ?>
+    <script src="<?= $file ?>?v=<?= $version ?>"></script>
+<?php endforeach; ?>
+
+<script>window.AConf = <?= \AdminUi\Library\AConf::json() ?></script>

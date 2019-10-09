@@ -1,0 +1,106 @@
+---
+layout: default
+title: "Modules"
+subtitle: File Picker
+menu: module
+submenu: file-picker
+website: https://github.com/iqbalfn/bootstrap-file-picker
+---
+
+<script>window.Imb = 'b3c702efcee2c48599cccc059885f86f'</script>
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Modules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+    {% if page.website %}
+    <div class="form-inline">
+        <a class="btn btn-primary" href="{{ page.website }}" target="_blank">
+            Module
+        </a>
+    </div>
+    {% endif %}
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="inp-file">Your Image File</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Your Image" aria-label="Your Image" aria-describedby="btn-file" id="inp-file">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="btn-file">Browse</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', e => {
+                                    $('#btn-file').click(e => {
+                                        new FilePicker({
+                                            multiple    : false,
+                                            type        : 'image/*',
+                                            btnUpload   : '<i class="fas fa-upload"></i>',
+                                            thumbnails  : '/assets/icons/file.png',
+
+                                            search      : function(query, type, callback){
+                                                let data = {query, type}
+
+                                                $.get(AConf.libUpload.search, data, function(res){
+                                                    if(res.error)
+                                                        return callback([])
+                                                    callback(res.data)
+                                                })
+                                            },
+
+                                            upload      : function(file, progress, callback){
+                                                progress.style.width = '50%'
+                                                let uploader = new FileUploader({
+                                                    url     : AConf.libUpload.upload,
+                                                    files   : {file},
+                                                    onSuccess(up, xhr, res){
+                                                        if(!res.error){
+                                                            let resp = res.data
+                                                            resp.type  = resp.mime
+                                                            resp.thumb = resp.path
+                                                            callback(resp)
+                                                        }else{
+                                                            callback((res.message||'Unknow Error'));
+                                                        }
+                                                    },
+                                                    onError(up){
+                                                        callback('Unable to upload your file')
+                                                    }
+                                                })
+
+                                                uploader.send()
+                                            },
+
+                                            selected    : function(files){
+                                                files.forEach( file => $('#inp-file').val(file.path) );
+                                            }
+                                        })
+                                    })
+                                }, false);
+                            </script>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+---
+layout: default
+title: "Modules"
+subtitle: Toaster
+menu: module
+submenu: toaster
+website: https://github.com/iqbalfn/bootstrap-toaster
+---
+
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Modules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+    {% if page.website %}
+    <div class="form-inline">
+        <a class="btn btn-primary" href="{{ page.website }}" target="_blank">
+            Module
+        </a>
+    </div>
+    {% endif %}
+</nav>
+
+<div class="container"><div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <button type="button" class="btn btn-primary" onclick="op2()">
+                                Launch demo toast
+                            </button>
+
+                            <script>
+                                function op2(){
+                                    $.toaster('Hello, world! This is a toast message.', 'Bootstrap Toaster')
+                                }
+                            </script>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

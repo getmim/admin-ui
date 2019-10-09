@@ -1,0 +1,59 @@
+<div class="drawer drawer-left slide" tabindex="-1" role="dialog" aria-hidden="true" id="drawer-main">
+    <div class="drawer-content drawer-content-scrollable" role="document">
+        <div class="drawer-header">
+            <div class="form-group">
+                <input type="search" class="form-control" placeholder="Search" id="drawer-main-filter">
+            </div>
+        </div>
+        <div class="drawer-body p-0">
+            <div class="list-group list-group-flush list-group-no-border" id="drawer-main-search" style="display:none">
+                {% for item in site.data.menulist.docs %}
+                    {% if item.children %}
+                        {% for itm in item.children %}
+                            <a href="{{ itm.url | relative_url }}" class="list-group-item list-group-item-action" data-text="{{ itm.label }}">
+                                <div class="list-group-item-label">{{ itm.label }}</div>
+                                <small>Home / {{ item.label }}</small>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                    <a href="{{ item.url | relative_url }}" class="list-group-item list-group-item-action" data-text="{{ item.label }}">
+                        <div class="list-group-item-label">{{ item.label }}</div>
+                        <small>Home</small>
+                    </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="vertical-menu vertical-menu-light" id="drawer-main-menu">
+                <ul>
+                    {% for item in site.data.menulist.docs %}
+                        {% if item.children %}
+                        <li class="vertical-menu-parent{% if page.menu == item.id %} active show{% endif %}">
+                            <a href="#" data-toggle="vertical-menu">
+                                <i class="{{ item.icon }}" aria-hidden="true"></i>
+                                {{ item.label }}
+                            </a>
+                            <ul>
+                                {% for itm in item.children %}
+                                <li class="{% if page.submenu == itm.id %}active{% endif %}">
+                                    <a href="{{ itm.url | relative_url }}">
+                                        <i></i>
+                                        {{ itm.label }}
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% else %}
+                        <li class="{% if page.menu == item.id %}active{% endif %}">
+                            <a href="{{ item.url | relative_url }}">
+                                <i class="{{ item.icon }}" aria-hidden="true"></i>
+                                {{ item.label }}
+                            </a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

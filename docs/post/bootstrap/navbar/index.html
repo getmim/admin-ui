@@ -1,0 +1,125 @@
+---
+layout: default
+title: "Bootstrap"
+subtitle: Navbar
+menu: bootstrap
+submenu: navbar
+---
+
+<div class="navbar-main-spacer"></div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Bootstrap</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                              <a class="navbar-brand" href="#">Navbar</a>
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-1" aria-controls="nav-1" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+
+                              <div class="collapse navbar-collapse" id="nav-1">
+                                <ul class="navbar-nav mr-auto">
+                                  <li class="nav-item active">
+                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="#">Link</a>
+                                  </li>
+                                  <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Dropdown
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                      <a class="dropdown-item" href="#">Action</a>
+                                      <a class="dropdown-item" href="#">Another action</a>
+                                      <div class="dropdown-divider"></div>
+                                      <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </nav>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Shadow</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <nav class="navbar navbar-expand navbar-shadow navbar-dark bg-primary">
+                              <a class="navbar-brand" href="#">Navbar</a>
+                              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-1" aria-controls="nav-1" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                              </button>
+                            </nav>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Multiline</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <nav class="navbar navbar-expand navbar-light bg-light">
+                              <div class="navbar-multiline mr-auto">
+                                    <a class="navbar-brand" href="#">Navbar</a>
+                                    <small>Same informative text to ignore by most of user here.</small>
+                                </div>
+                            </nav>
+
+                            <nav class="navbar navbar-expand navbar-dark bg-primary mt-4">
+                              <div class="navbar-multiline mr-auto">
+                                    <a class="navbar-brand" href="#">Navbar</a>
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#0">Home</a></li>
+                                            <li class="breadcrumb-item"><a href="#0">Library</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Data</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

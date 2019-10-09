@@ -1,0 +1,31 @@
+.tag-input-items{
+    margin: 0 -2px;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+
+    > li{
+        margin: 0 2px;
+        margin-top: $tag-list-item-margin-top;
+        font-size: $tag-list-item-font-size;
+        color: $tag-list-item-color;
+        background-color: $tag-list-item-bg-color;
+        display: inline-block;
+        padding: $tag-list-item-padding-y $tag-list-item-padding-x;
+        border-radius: $tag-list-item-border-radius;
+
+        > .close{
+            font-size: $tag-list-item-font-size + .1;
+            padding-top: 3px;
+            margin-left: 4px;
+        }
+    }
+}
+
+.tag-input-item{
+    display: none;
+}
+
+.tag-input-value{
+    display: none;
+}

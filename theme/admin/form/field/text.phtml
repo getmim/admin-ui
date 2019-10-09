@@ -1,0 +1,83 @@
+<?php
+    $value = (string)$value;
+    $attrs = [
+        'type'        => $field->type,
+        'class'       => 'form-control',
+        'placeholder' => $field->label,
+        'id'          => $id,
+        'name'        => $field->name,
+        'value'       => ($value ?? '')
+    ];
+
+    if(isset($rules->required) && $rules->required)
+        $attrs['required'] = null;
+    if(isset($rules->empty) && !$rules->empty)
+        $attrs['required'] = null;
+
+    $opts = [];
+    if(isset($field->options))
+        $opts = (array)$field->options;
+    
+    if(isset($rules->enum))
+        $opts = (array)\Mim::$app->config->libEnum->enums->{$rules->enum};
+
+    $with_autocomplete = false;
+
+    // autocomplete datalist
+    if($opts){
+        $l_id = $id . '-list';
+        $attrs['list'] = $l_id;
+        $with_autocomplete = true;
+    }
+
+    // autocomplete prefetch
+    if(isset($field->{'ac-prefetch'})){
+        $ac_route = $field->{'ac-prefetch'};
+        $acr_name = $ac_route->route  ?? null;
+        $acr_parms= $ac_route->params ?? null;
+        $acr_qry  = $ac_route->query  ?? null;
+
+        if($acr_name){
+            $with_autocomplete = true;
+            $ac_route = $this->router->to($acr_name, (array)$acr_parms, (array)$acr_qry);
+            $attrs['data-prefetch'] = $ac_route;
+        }
+    }
+
+    // autocomplete data url
+    if(isset($field->{'ac-filter'})){
+        $ac_route = $field->{'ac-filter'};
+        $acr_name = $ac_route->route  ?? null;
+        $acr_parms= $ac_route->params ?? null;
+        $acr_qry  = $ac_route->query  ?? null;
+
+        if($acr_name){
+            $with_autocomplete = true;
+            $ac_route = $this->router->to($acr_name, (array)$acr_parms, (array)$acr_qry);
+            $attrs['data-filter'] = $ac_route;
+        }
+    }
+
+    if($with_autocomplete)
+        $attrs['class'].= ' form-autocomplete';
+
+    // slugify
+    if(isset($field->slugof)){
+        $attrs['class'].= ' slugify';
+        $attrs['data-source'] = '#' . $form->getName() . '-fld-' . $field->slugof;
+    }
+?>
+<div class="form-group<?= ($error ? ' is-invalid' : '' ) ?>">
+    <?php if($show_label): ?>
+        <label for="<?= $id ?>"><?= $field->label ?></label>
+    <?php endif; ?>
+    <input<?= to_attr($attrs) ?>>
+    <?php if($opts): ?>
+        <datalist id="<?= $l_id ?>">
+            <?php foreach($opts as $opt): ?>
+                <option><?= hs($opt) ?></option>
+            <?php endforeach; ?>
+        </datalist>
+    <?php endif; ?>
+    <div class="invalid-feedback"><?= ($error?$error->text:'') ?></div>
+</div>

@@ -1,0 +1,215 @@
+---
+layout: default
+title: "Forms"
+subtitle: Date
+menu: form
+submenu: date
+---
+
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Forms</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Date</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-date">Date</label>
+                                <div class='input-group date datetimepicker'>
+                                    <input type="date" class="form-control" id="input-date">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-calendar-day"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback">This field is required</div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'date' => [
+                                'label' => 'Date',
+                                'type' => 'date',
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('date');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Date Time</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-datetime-local">Date</label>
+                                <div class='input-group date datetimepicker'>
+                                    <input type="datetime-local" class="form-control" id="input-datetime-local" step="1">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'datetime' => [
+                                'label' => 'Date',
+                                'type' => 'datetime',
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('datetime');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Month</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-month">Month</label>
+                                <div class='input-group date datetimepicker'>
+                                    <input type="month" class="form-control" id="input-month">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-calendar"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'month' => [
+                                'label' => 'Month',
+                                'type' => 'month',
+                                'rules' => [
+                                    'required' => true,
+                                    'empty' => false
+                                ]
+                            ]
+
+                            // view
+                            $form->field('month');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Time</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-time">Time Start</label>
+                                <div class='input-group date datetimepicker'>
+                                    <input type="time" class="form-control" id="input-time" step="1">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            <i class="fas fa-clock"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'time' => [
+                                'label' => 'Time',
+                                'type' => 'time',
+                                'rules' => [
+                                    'required' => true,
+                                    'empty' => false
+                                ]
+                            ]
+
+                            // view
+                            $form->field('time');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Week</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-week">Week Of</label>
+                                <input type="week" class="form-control" id="input-week">
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'week' => [
+                                'label' => 'Week',
+                                'type' => 'week',
+                                'rules' => [
+                                    'required' => true,
+                                    'empty' => false
+                                ]
+                            ]
+
+                            // view
+                            $form->field('week');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+.form-group-password-meter{
+    position: relative;
+
+    &.is-invalid{
+        .progress{
+            right: $input-padding-x * 3;
+        }
+    }
+
+    .progress{
+        position: absolute;
+        right: $input-padding-x;
+        height: 1px;
+        width: 20%;
+        top: 1.188rem;
+    }
+
+    label + .progress{
+        top: 3.188rem;
+    }
+}
+
+.form-spinner{
+    position: relative;
+
+    &.form-spinner-hide{
+        .spinner-border{
+            display:none;
+        }
+    }
+
+    .spinner-border{
+        position: absolute;
+        right: $input-padding-x;
+        top: .7rem;
+    }
+
+    label + .spinner-border{
+        top: 2.7rem;
+    }
+}
+
+.hidden{
+    display: none;
+}

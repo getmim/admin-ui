@@ -1,0 +1,63 @@
+---
+layout: default
+title: "Forms"
+subtitle: Object List
+menu: form
+submenu: object-list
+---
+
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Forms</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="ff-1-add">Timezones</label>
+                                <textarea name="files" class="formfiles-model" id="input-attachment"></textarea>
+                                <div class="formfiles" data-model="#input-attachment" data-object="timezone" data-icon="fas fa-stream">
+                                    <ul class="formfiles-items"></ul>
+                                    <button class="formfiles-btn-add btn btn-light btn-block" id="ff-1-add" type="button">Add Author</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'timezone' => [
+                                'label' => 'Timezones',
+                                'type' => 'object-list',
+                                'object' => 'timezone',
+                                'itemIcon' => 'fas fa-stream',
+                                'button' => 'Add Author',
+                                'rules' => [
+                                    'required' => TRUE,
+                                    'empty' => FALSE
+                                ]
+                            ]
+
+                            // view
+                            $form->field('timezone');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

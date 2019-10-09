@@ -1,0 +1,6 @@
+name: "Admin UI"
+title: MIM Admin UI Module
+description: Admin UI module for admin module of MIM PHP Framework
+baseurl: ""
+url: ""
+markdown: kramdown

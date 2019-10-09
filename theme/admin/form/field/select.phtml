@@ -1,0 +1,43 @@
+<?php
+    $opts = [];
+    if(isset($field->options))
+        $opts = (array)$field->options;
+    
+    if(isset($rules->enum))
+        $opts = (array)\Mim::$app->config->libEnum->enums->{$rules->enum};
+
+    $attrs = [
+        'class'       => 'selectpicker',
+        'id'          => $id,
+        'name'        => $field->name,
+        'placeholder' => $field->label,
+    ];
+    if(isset($rules->required) && $rules->required)
+        $attrs['required'] = null;
+    if(isset($rules->empty) && !$rules->empty)
+        $attrs['required'] = null;
+
+    if(isset($field->{'sl-filter'})){
+        $ac_route = $field->{'sl-filter'};
+        $acr_name = $ac_route->route  ?? null;
+        $acr_parms= $ac_route->params ?? null;
+        $acr_qry  = $ac_route->query  ?? null;
+
+        if($acr_name){
+            $ac_route = $this->router->to($acr_name, (array)$acr_parms, (array)$acr_qry);
+            $attrs['data-ajax'] = $ac_route;
+        }
+    }
+?>
+<div class="form-group<?= ($error?' is-invalid':'') ?>">
+    <?php if($show_label): ?>
+        <label for="<?= $id ?>"><?= $field->label ?></label>
+    <?php endif; ?>
+
+    <select<?= to_attr($attrs) ?>>
+        <?php foreach($opts as $val => $label): ?>
+            <option value="<?= hs($val) ?>"<?= ($val==$value?' selected':'') ?>><?= hs($label) ?></option>
+        <?php endforeach; ?>
+    </select>
+    <div class="invalid-feedback"><?= ($error?$error->text:'') ?></div>
+</div>

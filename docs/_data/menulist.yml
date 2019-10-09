@@ -1,0 +1,378 @@
+docs:
+
+  - id: home
+    label: Home
+    url: /
+    icon: fa fa-home
+    
+  - id: bootstrap
+    label: Bootstrap
+    icon: fab fa-bootstrap
+    children:
+
+      - id: alert
+        label: Alerts
+        url: /post/bootstrap/alert
+
+      - id: badge
+        label: Badges
+        url: /post/bootstrap/badge
+
+      - id: breadcrumb
+        label: Breadcrumb
+        url: /post/bootstrap/breadcrumb
+
+      - id: button
+        label: Buttons
+        url: /post/bootstrap/button
+
+      - id: card
+        label: Cards
+        url: /post/bootstrap/card
+
+      - id: collapse
+        label: Collapse
+        url: /post/bootstrap/collapse
+
+      - id: dropdown
+        label: Dropdowns
+        url: /post/bootstrap/dropdown
+
+      - id: list-group
+        label: List group
+        url: /post/bootstrap/list-group
+
+      - id: modal
+        label: Modal
+        url: /post/bootstrap/modal
+
+      - id: navbar
+        label: Navbar
+        url: /post/bootstrap/navbar
+
+      - id: popover
+        label: Popovers
+        url: /post/bootstrap/popover
+
+  - id: form
+    label: Forms
+    icon: fab fa-wpforms
+    children:
+
+      - id: checkbox
+        label: Checkbox
+        url: /post/form/checkbox
+
+      - id: codemirror
+        label: CodeMirror
+        url: /post/form/codemirror
+
+      - id: date
+        label: Date
+        url: /post/form/date
+
+      - id: file-list
+        label: File List
+        url: /post/form/file-list
+
+      - id: gallery
+        label: Gallery
+        url: /post/form/gallery
+
+      - id: image
+        label: Image
+        url: /post/form/image
+
+      - id: object-list
+        label: Object List
+        url: /post/form/object-list
+
+      - id: range
+        label: Range
+        url: /post/form/range
+
+      - id: radio
+        label: Radio
+        url: /post/form/radio
+
+      - id: select
+        label: Select
+        url: /post/form/select
+
+      - id: summernote
+        label: Summernote
+        url: /post/form/summernote
+
+      - id: tag-input
+        label: Tag Input
+        url: /post/form/tag-input
+
+      - id: text
+        label: Text
+        url: /post/form/text
+
+      - id: textarea
+        label: Textarea
+        url: /post/form/textarea
+
+  - id: module
+    label: Modules
+    icon: fas fa-book-open
+    children:
+
+      - id: autocomplete
+        label: Autocomplete
+        url: /post/module/autocomplete
+
+      - id: chartjs
+        label: ChartJS
+        url: /post/module/chartjs
+
+      - id: confirm
+        label: Confirm
+        url: /post/module/confirm
+
+      - id: dialog
+        label: Dialog
+        url: /post/module/dialog
+
+      - id: form-validator
+        label: Form Validator
+        url: /post/module/form-validator
+
+      - id: file-picker
+        label: File Picker
+        url: /post/module/file-picker
+
+      - id: select-ajax
+        label: Select Ajax
+        url: /post/module/select-ajax
+
+      - id: slugify
+        label: Slugify
+        url: /post/module/slugify
+
+      - id: toaster
+        label: Toaster
+        url: /post/module/toaster
+
+      - id: viewer
+        label: Viewer
+        url: /post/module/viewer
+
+  - id: pages
+    label: Pages 
+    icon: fas fa-columns
+    children:
+
+      - id: error404
+        label: Error 404
+        url: /post/pages/404
+
+      - id: error500
+        label: Error 500
+        url: /post/pages/500
+
+      - id: login
+        label: Login
+        url: /post/pages/login
+    
+  - id: credit
+    label: Credits
+    url: /post/credit
+    icon: fa fa-info-circle
+
+
+credits:
+  
+  - name: Bootstrap
+    version: 4.3.1
+    license: MIT
+    author: Twitter, Inc. & The Bootstrap Authors
+    website: https://getbootstrap.com/docs/4.3/
+
+  - name: Bootstrap Autocomplete
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-autocomplete
+
+  - name: Bootstrap Confirm
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-confirm
+
+  - name: Bootstrap Dialog
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-dialog
+
+  - name: Bootstrap Drawer
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-drawer
+
+  - name: Bootstrap File Picker
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-file-picker
+
+  - name: Bootstrap Form Error
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-form-error
+
+  - name: Bootstrap Form Image
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-form-image
+
+  - name: Bootstrap Form Files
+    version: 0.0.2
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-form-files
+
+  - name: Bootstrap Form Gallery
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-form-gallery
+
+  - name: Bootstrap Form File URL
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-form-fileurl
+
+  - name: Bootstrap Image Checkbox
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-image-checkbox
+
+  - name: Bootstrap Password Strength
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://iqbalfn.github.io/bootstrap-password-strength/
+
+  - name: Bootstrap Picker Color
+    version: 0.0.2
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-picker-color
+
+  - name: Bootstrap Range Tips
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-range-tips
+
+  - name: Bootstrap Select
+    version: 1.13.9
+    license: MIT
+    author: SnapAppointments, LLC
+    website: https://github.com/snapappointments/bootstrap-select/
+
+  - name: Bootstrap Select Ajax
+    version: 0.0.2
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-select-ajax
+
+  - name: Bootstrap Slugify
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-slugify/
+
+  - name: Bootstrap Tag Input
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-tag-input
+
+  - name: Bootstrap Toaster
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-toaster
+
+  - name: Bootstrap Vertical Menu
+    version: 0.0.3
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-vertical-menu
+
+  - name: Bootstrap4 Datetimepicker
+    version: 4.17.50
+    license: MIT
+    author: Jonathan Peterson (@Eonasdan)
+    website: https://github.com/pingcheng/bootstrap4-datetimepicker
+
+  - name: ChartJS
+    version: 2.8.0
+    license: MIT
+    author: Chart.js Contributors
+    website: https://www.chartjs.org/
+
+  - name: CodeMirror
+    version: 5.48.0
+    license: MIT
+    author: Marijn Haverbeke and others
+    website: https://codemirror.net/
+
+  - name: FileUploader
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/filuploader
+
+  - name: FontAwesome
+    version: 5.9.0
+    license: Font Awesome Free License
+    author: Fonticons, Inc.
+    website: https://fontawesome.com/
+
+  - name: jQuery
+    version: 3.3.1
+    license: MIT
+    author: The jQuery Foundation
+    website: https://jquery.com/
+
+  - name: LinkFilter
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/link-filter
+
+  - name: MomentJS
+    version: 2.24.0
+    license: MIT
+    author: JS Foundation and other contributors
+    website: https://momentjs.com/
+
+  - name: PopperJS
+    version: "~"
+    license: MIT
+    author: Federico Zivolo and contributors
+    website: https://popper.js.org/
+
+  - name: Summernote
+    version: "0.8.12"
+    license: MIT
+    author: Summernote Team
+    website: https://summernote.org/
+
+  - name: ViewerJS
+    version: "1.3.4"
+    license: MIT
+    author: Chen Fengyuan
+    website: https://fengyuanchen.github.io/viewerjs/

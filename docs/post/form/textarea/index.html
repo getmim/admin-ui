@@ -1,0 +1,59 @@
+---
+layout: default
+title: "Forms"
+subtitle: Textarea
+menu: form
+submenu: textarea
+---
+
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Forms</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Please tell me about you"></textarea>
+                            </div>
+                            <hr>
+                            <div class="form-group is-invalid">
+                                <label for="area1">About you</label>
+                                <textarea class="form-control" id="area1" placeholder="Please tell me about you"></textarea>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'about' => [
+                                'label' => 'About you',
+                                'type' => 'textarea',
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('about');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

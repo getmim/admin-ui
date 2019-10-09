@@ -1,0 +1,51 @@
+/*!
+ * Bootstrap v4.3.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 The Bootstrap Authors
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+@import "../../../bootstrap/src/scss/functions";
+@import "../../../bootstrap/src/scss/variables";
+@import "../../../bootstrap/src/scss/mixins";
+
+@import "bootstrap-select/variables";
+@import "bootstrap-select/bootstrap-select";
+
+@import "datetimepicker/bootstrap-datetimepicker-build";
+
+@import "drawer/variables";
+@import "drawer/drawer";
+
+@import "fontawesome/fontawesome";
+@import "fontawesome/regular";
+@import "fontawesome/solid";
+@import "fontawesome/brands";
+
+@import "file-picker/file-picker";
+
+@import "form-files/variables";
+@import "form-files/form-files";
+
+@import "form-gallery/variables";
+@import "form-gallery/form-gallery";
+
+@import "form-image/variables";
+@import "form-image/form-image";
+
+@import "picker-color/picker-color";
+
+@import "tag-input/variables";
+@import "tag-input/tag-input";
+
+@import "vertical-menu/variables";
+@import "vertical-menu/vertical-menu";
+
+@import "viewer/viewer";
+
+@import "image-checkbox/variables";
+@import "image-checkbox/image-checkbox";
+
+@import "pages/login";
+
+@import "admin";

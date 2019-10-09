@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand fixed-top navbar-dark bg-primary" id="navbar-main">
+    <button class="navbar-btn mr-4" type="button" data-toggle="drawer" data-target="#drawer-main" accesskey="m">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a href="{{ '/' | relative_url }}" class="navbar-brand">{{ page.title }}</a>
+
+    <div class="collapse navbar-collapse" id="navbar-main">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbar-main-external" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-main-external">
+                    <a class="dropdown-item" href="https://github.com/getmim/admin-ui">
+                        <i class="fab fa-github-alt"></i> Github
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-book"></i> Dokumentasi MIM
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">
+                        <i class="fas fa-download"></i> Instalasi
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

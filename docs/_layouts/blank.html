@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% if page.subtitle %}{{ page.subtitle }} - {% endif %}{{ page.title }}</title>
+
+    <link rel="stylesheet" href="{{ 'assets/css/bootstrap.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'assets/css/codemirror.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'assets/css/bootstrap-plugins.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'assets/css/Chart.min.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ 'assets/css/summernote.css' | relative_url }}">
+
+    <link rel="stylesheet" href="{{ 'assets/css/prism.css' | relative_url }}">
+    <script>
+        window.AConf = {
+            libUpload: {
+                search: 'http://localhost/server/upload/filter/',
+                upload: 'http://localhost/server/upload/',
+                thumbs: '/assets/icons/file.png'
+            },
+            objFilter: {
+                search: 'http://localhost/server/object/',
+                thumbs: '/assets/icons/file.png'
+            }
+        }
+    </script>
+</head>
+<body>
+
+    {{ content }}
+    
+    <script src="{{ '/assets/js/jquery-3.3.1.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/popper.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/moment.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/Chart.min.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/summernote.js' | relative_url }}"></script>
+
+    <script src="{{ '/assets/js/codemirror.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/codemirror/javascript.js' | relative_url }}"></script>
+
+    <script src="{{ '/assets/js/bootstrap.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/bootstrap-plugins.js' | relative_url }}"></script>
+</body>
+</html>

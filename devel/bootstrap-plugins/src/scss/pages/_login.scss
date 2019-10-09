@@ -1,0 +1,11 @@
+.page-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 5rem;
+    height: 100vh;
+
+    > .card{
+        width: 25rem;
+    }
+}
