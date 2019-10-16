@@ -82,6 +82,11 @@
     @include border-radius($card-inner-border-radius $card-inner-border-radius 0 0);
   }
 
+  .btn{
+    margin-top: -.6rem;
+    margin-bottom: -.6rem;
+  }
+
   + .list-group {
     .list-group-item:first-child {
       border-top: 0;
@@ -290,5 +295,17 @@
     .card-header {
       margin-bottom: -$card-border-width;
     }
+  }
+}
+
+.card-left-icon{
+  flex-direction: row;
+
+  .card-icon{
+    width: 10rem;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

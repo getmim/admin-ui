@@ -131,6 +131,35 @@ class Menu
         if($navbar_menu)
             SSort::usort($navbar_menu, function($a,$b){ return $b->priority - $a->priority; });
 
-        return $navbar_menu;
+        $result = [];
+
+        // let filter the separator
+        foreach($navbar_menu as $menus){
+            if(isset($menus->children)){
+                
+                $last_menu = null;
+                $separator = null;
+
+                $final_children = [];
+                foreach($menus->children as $menu){
+                    if($menu->label !== '---'){
+                        if($separator && $last_menu){
+                            $final_children[] = $separator;
+                            $separator = null;
+                        }
+                        $last_menu = $menu;
+                        $final_children[] = $menu;
+                    }else{
+                        $separator = $menu;
+                    }
+                }
+
+                $menus->children = $final_children;
+            }
+
+            $result[] = $menus;
+        }
+
+        return $result;
     }
 }

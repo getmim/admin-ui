@@ -144,6 +144,10 @@ docs:
         label: File Picker
         url: /post/module/file-picker
 
+      - id: linkfilter
+        label: Link Filter
+        url: /post/module/linkfilter
+
       - id: select-ajax
         label: Select Ajax
         url: /post/module/select-ajax

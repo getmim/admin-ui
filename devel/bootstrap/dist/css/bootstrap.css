@@ -4418,6 +4418,11 @@ input[type="button"].btn-block {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
 
+.card-header .btn {
+  margin-top: -.6rem;
+  margin-bottom: -.6rem;
+}
+
 .card-header + .list-group .list-group-item:first-child {
   border-top: 0;
 }
@@ -4586,6 +4591,18 @@ input[type="button"].btn-block {
 
 .accordion > .card .card-header {
   margin-bottom: -1px;
+}
+
+.card-left-icon {
+  flex-direction: row;
+}
+
+.card-left-icon .card-icon {
+  width: 10rem;
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .breadcrumb {

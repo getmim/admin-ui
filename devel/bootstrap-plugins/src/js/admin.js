@@ -88,6 +88,7 @@ class Admin {
         $('.custom-range').rangetips()          // input range
         $('.tag-input-filter').taginput()       // tag input
         $('.slugify').slugify()                 // input slugify
+        $('.linkfilter').linkfilter()           // input link filter
 
         this._formMainAutofocus()               // autofocus form element
     }
@@ -138,6 +139,10 @@ class Admin {
         let fElement = null;
         for(let i=0; i<form.elements.length; i++){
             let element = form.elements[i];
+
+            if(!element.classList.contains('form-control'))
+                continue;
+
             if(!fElement)
                 fElement = element
             let formGroup = $(element).closest('.form-group')

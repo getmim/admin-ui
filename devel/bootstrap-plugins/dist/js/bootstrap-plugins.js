@@ -13334,6 +13334,8 @@
 
       $('.slugify').slugify(); // input slugify
 
+      $('.linkfilter').linkfilter(); // input link filter
+
       this._formMainAutofocus(); // autofocus form element
 
     } // Private 
@@ -13383,6 +13385,7 @@
 
       for (var i = 0; i < form.elements.length; i++) {
         var element = form.elements[i];
+        if (!element.classList.contains('form-control')) continue;
         if (!fElement) fElement = element;
         var formGroup = $(element).closest('.form-group');
         if (!formGroup) continue;

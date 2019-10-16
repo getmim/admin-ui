@@ -9,11 +9,31 @@
         'value'       => ($value ?? '')
     ];
 
+    // required
     if(isset($rules->required) && $rules->required)
         $attrs['required'] = null;
     if(isset($rules->empty) && !$rules->empty)
         $attrs['required'] = null;
 
+    // pattern by rule text
+    if(isset($rules->text)){
+        switch($rules->text){
+            case 'slug':
+                $attrs['pattern'] = '^[a-z0-9-]+$';
+                break;
+            case 'alnumdash':
+                $attrs['pattern'] = '^[a-zA-Z0-9-]+$';
+                break;
+            case 'alpha':
+                $attrs['pattern'] = '^[a-zA-Z]+$';
+                break;
+            case 'alnum':
+                $attrs['pattern'] = '^[a-zA-Z0-9]+$';
+                break;
+        }
+    }
+
+    // autocomplete
     $opts = [];
     if(isset($field->options))
         $opts = (array)$field->options;

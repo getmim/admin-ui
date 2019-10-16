@@ -1,0 +1,56 @@
+---
+layout: default
+title: "Modules"
+subtitle: Link Filter
+menu: module
+submenu: linkfilter
+website: https://github.com/iqbalfn/link-filter
+---
+
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Modules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+    {% if page.website %}
+    <div class="form-inline">
+        <a class="btn btn-primary" href="{{ page.website }}" target="_blank">
+            Module
+        </a>
+    </div>
+    {% endif %}
+</nav>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Link</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <input type="search" id="linkfilter" class="form-control" placeholder="Find">
+                            </div>
+                            <div class="list-group linkfilter" data-input="#linkfilter">
+                                <a href="#" class="list-group-item list-group-item-action">Apple</a>
+                                <a href="#" class="list-group-item list-group-item-action">Facebook</a> 
+                                <a href="#" class="list-group-item list-group-item-action">Google</a> 
+                                <a href="#" class="list-group-item list-group-item-action">Microsoft</a>
+                                <a href="#" class="list-group-item list-group-item-action">Yahoo</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
