@@ -38,6 +38,10 @@ docs:
         label: Dropdowns
         url: /post/bootstrap/dropdown
 
+      - id: jumbotron
+        label: Jumbotron
+        url: /post/bootstrap/jumbotron
+
       - id: list-group
         label: List group
         url: /post/bootstrap/list-group

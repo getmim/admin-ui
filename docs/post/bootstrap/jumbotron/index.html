@@ -1,0 +1,46 @@
+---
+layout: default
+title: "Jumbotron"
+subtitle: Dropdowns
+menu: bootstrap
+submenu: jumbotron
+---
+
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Bootstrap</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="jumbotron">
+                                <div class="jumbotron-icon bg-primary">
+                                    <i class="fas fa-bullhorn"></i>
+                                </div>
+                                <h4>Hello, world!</h4>
+                                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                                <a class="btn btn-primary" href="#" role="button">Learn more</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

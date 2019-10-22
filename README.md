@@ -125,7 +125,7 @@ return [
         'sidebarMenu' => [
             'handlers' => [
                 '/parent-id/' => [
-                    '/Class/',
+                    '/menu-id/' => '/Class/',
                     // ...
                 ]
             ]
