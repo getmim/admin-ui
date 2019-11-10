@@ -265,6 +265,12 @@ credits:
     author: Iqbal Fauzi
     website: https://github.com/iqbalfn/bootstrap-image-checkbox
 
+  - name: Bootstrap List Group Form
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-list-group-form
+
   - name: Bootstrap Password Strength
     version: 0.0.1
     license: MIT

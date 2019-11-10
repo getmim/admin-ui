@@ -1,3 +1,7 @@
+<?php $sidebar_flat = \AdminUi\Library\Menu::getFlatSidebar($_meta); ?>
+<?php $sidebar_tree = \AdminUi\Library\Menu::getTreeSidebar($_meta); ?>
+
+<?php if($sidebar_flat || $sidebar_tree): ?>
 <div class="drawer drawer-left slide" tabindex="-1" role="dialog" aria-hidden="true" id="drawer-main">
     <div class="drawer-content drawer-content-scrollable" role="document">
         <div class="drawer-header">
@@ -6,7 +10,7 @@
             </div>
         </div>
         <div class="drawer-body p-0">
-            <?php $sidebar_flat = \AdminUi\Library\Menu::getFlatSidebar($_meta); ?>
+            
             <div class="list-group list-group-flush list-group-no-border" id="drawer-main-search" style="display:none">
                 <?php if($sidebar_flat): ?>
                     <?php foreach($sidebar_flat as $menu): ?>
@@ -20,9 +24,9 @@
                 <?php endif; ?>
             </div>
             <div class="vertical-menu vertical-menu-light" id="drawer-main-menu">
-                <?php $sidebar_tree = \AdminUi\Library\Menu::getTreeSidebar($_meta); ?>
                 <?= $this->partial('shared/sidebar-menu__tree', ['menus'=>$sidebar_tree, 'index'=>0]) ?>
             </div>
         </div>
     </div>
 </div>
+<?php endif; ?>

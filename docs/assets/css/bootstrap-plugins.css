@@ -6869,6 +6869,7 @@ readers do not read off random characters that represent icons */
 }
 
 .formgallery {
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -7611,6 +7612,30 @@ readers do not read off random characters that represent icons */
 
 .custom-control.image-checkbox label img {
   border-radius: 2.5px;
+}
+
+.list-group-item:first-child, .list-group-form .list-group-item-action:nth-child(2) {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.list-group-item.active, .list-group-form input:checked + .list-group-item {
+  z-index: 2;
+  color: #fff;
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+
+.list-group-form input {
+  display: none;
+}
+
+.list-group-form input:checked + .list-group-item {
+  border-color: #51adf6;
+}
+
+.list-group-form .list-group-item-action {
+  cursor: pointer;
 }
 
 .page-login {

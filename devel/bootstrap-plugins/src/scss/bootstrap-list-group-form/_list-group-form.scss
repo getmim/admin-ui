@@ -1,0 +1,18 @@
+.list-group-form{
+    input{
+        display: none;
+        &:checked{
+            + .list-group-item{
+                @extend .list-group-item.active;
+                border-color: lighten($list-group-active-border-color, 10%);
+            }
+        }
+    }
+    .list-group-item-action{
+        cursor: pointer;
+
+        &:nth-child(2){
+            @extend .list-group-item:first-child;
+        }
+    }
+}
