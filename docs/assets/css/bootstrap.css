@@ -2048,6 +2048,10 @@ textarea.form-control {
   border-color: #f44336;
 }
 
+.form-group.is-invalid .list-group-form .list-group-item {
+  border-color: #f44336;
+}
+
 .form-group.is-invalid .radio-group,
 .form-group.is-invalid .checkbox-group {
   border-color: #f44336;

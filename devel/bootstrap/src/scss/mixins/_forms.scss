@@ -204,6 +204,12 @@
       border-color: $color;
     }
 
+    .list-group-form{
+      .list-group-item{
+        border-color: $color;
+      }
+    }
+
     .radio-group,
     .checkbox-group{
       border-color: $color;
