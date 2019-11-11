@@ -34,12 +34,7 @@ class Menu
                     continue;
             }
             if(isset($menu->route)){
-                $params = [
-                    $menu->route[0],
-                    (array)$menu->route[1] ?? [],
-                    (array)$menu->route[2] ?? []
-                ];
-                $menu->link = \Mim::$app->router->to($params[0], $params[1], $params[2]);
+                $menu->link = to_route($menu->route);
                 unset($menu->route);
             }
 
