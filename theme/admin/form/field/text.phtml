@@ -49,6 +49,9 @@
     if(isset($rules->enum))
         $opts = (array)\Mim::$app->config->libEnum->enums->{$rules->enum};
 
+    if(isset($options))
+        $opts = $options;
+
     $with_autocomplete = false;
 
     // autocomplete datalist

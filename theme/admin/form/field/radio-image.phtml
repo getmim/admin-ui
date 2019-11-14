@@ -6,6 +6,9 @@
     if(isset($rules->enum))
         $opts = (array)\Mim::$app->config->libEnum->enums->{$rules->enum};
 
+    if(isset($options))
+        $opts = $options;
+
     $colcount = $field->column ?? 3;
     $column   = ceil( 12 / $colcount );
     $colcount = 12 / $column;

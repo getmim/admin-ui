@@ -2,6 +2,8 @@
     $opts = [];
     if(isset($field->options))
         $opts = (array)$field->options;
+    if(isset($options))
+        $opts = $options;
 
     $opts = group_by_prop($opts, 'parent');
     $fid  = $id . '-';

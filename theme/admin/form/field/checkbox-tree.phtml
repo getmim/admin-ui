@@ -2,6 +2,8 @@
     $opts = [];
     if(isset($field->options))
         $opts = (array)$field->options;
+    if(isset($options))
+        $opts = $options;
 
     $value = (array)$value;
 
