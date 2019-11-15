@@ -76,11 +76,6 @@ select.selectpicker {
   box-shadow: 0 0 0 0.2rem rgba(244, 67, 54, 0.25);
 }
 
-.bootstrap-select.is-valid .dropdown-toggle,
-.was-validated .bootstrap-select .selectpicker:valid + .dropdown-toggle {
-  border-color: #28a745;
-}
-
 .bootstrap-select.fit-width {
   width: auto !important;
 }

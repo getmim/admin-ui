@@ -112,10 +112,10 @@ select.selectpicker {
     box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, .25);
   }
 
-  &.is-valid .dropdown-toggle,
-  .was-validated & .selectpicker:valid + .dropdown-toggle {
-    border-color: $color-green-success;
-  }
+  // &.is-valid .dropdown-toggle,
+  // .was-validated & .selectpicker:valid + .dropdown-toggle {
+  //   border-color: $color-green-success;
+  // }
 
   &.fit-width {
     width: auto !important;
