@@ -565,6 +565,8 @@
         this._relations[name] = $(selector).get(0);
         $(this._relations[name]).change(function (e) {
           _this5._element.value = '';
+          $(_this5._element).change(); // we need to trigger this manually
+
           _this5._items = [];
         });
       }
