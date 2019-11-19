@@ -106,9 +106,7 @@ website: https://github.com/iqbalfn/bootstrap-autocomplete
                                 'label' => 'Timezones',
                                 'type' => 'text',
                                 'ac-prefetch' => [
-                                    'route'  => 'adminObjectFilter',
-                                    'params' => [],
-                                    'query'  => ['what'=> 'ASIA','type'=>'timezone']
+                                    'route'  => ['adminObjectFilter', [], ['what'=> 'ASIA','type'=>'timezone']]
                                 ],
                                 'rules' => [
                                     'required' => TRUE,
@@ -144,9 +142,53 @@ website: https://github.com/iqbalfn/bootstrap-autocomplete
                                 'label' => 'Timezones',
                                 'type' => 'text',
                                 'ac-filter' => [
-                                    'route'  => 'adminObjectFilter',
-                                    'params' => [],
-                                    'query'  => ['what'=> 'ASIA','type'=>'timezone','query'=>'#QUERY#']
+                                    'route'  => ['adminObjectFilter', [], ['what'=> 'ASIA','type'=>'timezone','query'=>'#QUERY#']]
+                                ],
+                                'rules' => [
+                                    'required' => TRUE,
+                                    'empty' => FALSE
+                                ]
+                            ]
+
+                            // view
+                            $form->field('timezone');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Source URL With Relation</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                        	<div class="form-group">
+                                <label for="select-continent">Continent</label>
+                                <select name="continent" id="select-continent" class="form-control">
+                                	<option value="Asia">Asia</option>
+                                	<option value="Africa">Africa</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-url2">Timezone</label>
+                                <input type="text" class="form-control form-autocomplete" placeholder="Timezone" id="input-url2" data-filter="http://localhost/server/timezone/?q=#QUERY#" data-filter-relation="{&quot;parent&quot;:&quot;#select-continent&quot;}">
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'timezone' => [
+                                'label' => 'Timezones',
+                                'type' => 'text',
+                                'ac-filter' => [
+                                    'route'  => ['adminObjectFilter', [], ['what'=> 'ASIA','type'=>'timezone','query'=>'#QUERY#']],
+                                    'relation' => [
+                                    	'parent' => '#select-continent'
+                                    ]
                                 ],
                                 'rules' => [
                                     'required' => TRUE,
