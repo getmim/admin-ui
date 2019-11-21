@@ -30,6 +30,16 @@
       @include border-bottom-radius($card-border-radius);
     }
   }
+
+  > .table{
+    > thead{
+      > tr{
+        > th{
+          border-top: 0 none;
+        }
+      }
+    }
+  }
 }
 
 .card-body {
