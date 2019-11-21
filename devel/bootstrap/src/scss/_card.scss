@@ -85,6 +85,7 @@
   .btn{
     margin-top: -.6rem;
     margin-bottom: -.6rem;
+    text-transform: none;
   }
 
   + .list-group {
@@ -111,7 +112,7 @@
 
 .card-header-tabs {
   margin-right: -$card-spacer-x / 2;
-  margin-bottom: -$card-spacer-y;
+  margin-bottom: -1rem;
   margin-left: -$card-spacer-x / 2;
   border-bottom: 0;
 }

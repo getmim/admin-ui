@@ -200,7 +200,7 @@ credits:
     website: https://getbootstrap.com/docs/4.3/
 
   - name: Bootstrap Autocomplete
-    version: 0.1.0
+    version: 0.1.1
     license: MIT
     author: Iqbal Fauzi
     website: https://github.com/iqbalfn/bootstrap-autocomplete
