@@ -156,6 +156,10 @@ docs:
         label: Select Ajax
         url: /post/module/select-ajax
 
+      - id: smartwizard
+        label: Smart Wizard
+        url: /post/module/smartwizard
+
       - id: slugify
         label: Slugify
         url: /post/module/slugify
@@ -378,6 +382,12 @@ credits:
     license: MIT
     author: Federico Zivolo and contributors
     website: https://popper.js.org/
+
+  - name: SmartWizard
+    version: "4.3.x"
+    license: MIT
+    author: Dipu Raj
+    website: http://www.techlaboratory.net/smartwizard/
 
   - name: Summernote
     version: "0.8.12"
