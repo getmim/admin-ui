@@ -1,3 +1,5 @@
+@import "../../../../bootstrap/src/scss/mixins/box-shadow";
+
 .sw-main {
     position: relative;
     display: block;
@@ -25,7 +27,11 @@
 
 /* SmartWizard Theme: White */
 .sw-theme-default {
-    box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+    @include box-shadow(0 0.46875rem 2.1875rem rgba(4,9,20,0.03),0 0.9375rem 1.40625rem rgba(4,9,20,0.03),0 0.25rem 0.53125rem rgba(4,9,20,0.05),0 0.125rem 0.1875rem rgba(4,9,20,0.03));
+
+    .card > &{
+        box-shadow: none;
+    }
 
     .sw-container {
         min-height: 250px;
