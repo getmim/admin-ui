@@ -27,7 +27,17 @@ class Menu
     private static function parseSidebarRecursive(array $meta, array $handlers, array $items, string $parent, string $bcumb): array{
         $result = [];
 
+        $def_props = [
+            'priority'   => 0,
+            'filterable' => true,
+            'visible'    => true,
+            'route'      => ['adminHome']
+        ];
+
         foreach($items as $id => $menu){
+            foreach($def_props as $prop => $def)
+                $menu->$prop = $menu->$prop ?? $def;
+            
             $menu->id = $id;
             if(isset($menu->perms)){
                 if(!\Mim::$app->can_i->{$menu->perms})
@@ -63,7 +73,7 @@ class Menu
                 continue;
 
             $next_bcumb = $bcumb . ' / ' . $menu->label;
-            $children = self::parseSidebarRecursive($meta, $handlers, ($menu->children??[]), $menu->id, $next_bcumb);
+            $children = self::parseSidebarRecursive($meta, $handlers, (array)($menu->children??[]), $menu->id, $next_bcumb);
             if($children)
                 $menu->children = $children;
         }
