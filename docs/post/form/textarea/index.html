@@ -56,4 +56,36 @@ submenu: textarea
             </div>
         </div>
     </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Monospace Font</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <textarea class="form-control textarea-monospace" placeholder="Please put the code"></textarea>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'about' => [
+                                'label' => 'About you',
+                                'type' => 'textarea',
+                                'monospace' => true,
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('about');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
