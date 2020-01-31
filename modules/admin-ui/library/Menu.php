@@ -62,7 +62,11 @@ class Menu
         }
 
         // find the children
-        SSort::usort($result, function($a,$b){ return $b->priority - $a->priority; });
+        SSort::usort($result, function($a,$b){
+            if($b->priority != $a->priority)
+                return $b->priority - $a->priority;
+            return strcmp($a->label, $b->label);
+        });
 
         foreach($result as &$menu){
             $menu->bcumb = $bcumb;
@@ -126,15 +130,25 @@ class Menu
                             $main_menu->children[] = $sub_menu;
                     }
 
-                    if($main_menu->children)
-                        SSort::usort($main_menu->children, function($a,$b){ return $b->priority - $a->priority; });
+                    if($main_menu->children){
+                        SSort::usort($main_menu->children, function($a,$b){
+                            if($b->priority == $a->priority)
+                                return $b->priority - $a->priority;
+                            return strcmp($a->label, $b->label);
+                        });
+                    }
                 }
                 $navbar_menu[] = $main_menu;
             }
         }
 
-        if($navbar_menu)
-            SSort::usort($navbar_menu, function($a,$b){ return $b->priority - $a->priority; });
+        if($navbar_menu){
+            SSort::usort($navbar_menu, function($a,$b){
+                if($b->priority == $a->priority)
+                    return $b->priority - $a->priority;
+                return strcmp($a->label, $b->label);
+            });
+        }
 
         $result = [];
 
