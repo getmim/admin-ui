@@ -7,6 +7,9 @@
         'name'        => $field->name
     ];
 
+    if(isset($field->monospace) && $field->monospace)
+        $attrs['class'].= ' textarea-monospace';
+
     // required
     if(isset($rules->required) && $rules->required)
         $attrs['required'] = null;
