@@ -98,7 +98,12 @@
     // slugify
     if(isset($field->slugof)){
         $attrs['class'].= ' slugify';
-        $attrs['data-source'] = '#' . $form->getName() . '-fld-' . $field->slugof;
+        
+        $data_source = $form->getName() . '-fld-' . $field->slugof;
+        $data_source = preg_replace('![^a-zA-Z0-9-]!', '-', $data_source);
+        $data_source = preg_replace('!-+!', '-', $data_source);
+
+        $attrs['data-source'] = '#' . $data_source;
     }
 ?>
 <div class="form-group<?= ($error ? ' is-invalid' : '' ) ?>">
