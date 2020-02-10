@@ -68,7 +68,8 @@ class Menu
             return strcmp($a->label, $b->label);
         });
 
-        foreach($result as &$menu){
+        $rem_menu = [];
+        foreach($result as $index => &$menu){
             $menu->bcumb = $bcumb;
 
             self::$sidebar_flat[] = $menu;
@@ -80,8 +81,16 @@ class Menu
             $children = self::parseSidebarRecursive($meta, $handlers, (array)($menu->children??[]), $menu->id, $next_bcumb);
             if($children)
                 $menu->children = $children;
+            else
+                $rem_menu[] = $index;
         }
+        unset($menu);
 
+        if($rem_menu){
+            foreach($rem_menu as $idx)
+                unset($result[$idx]);
+        }
+        
         return $result;
     }
 
