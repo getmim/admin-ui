@@ -45,7 +45,7 @@ class ListEditor {
             let fInput = null
             for(let i=0; i<this._el.editor.elements.length; i++){
                 let input = this._el.editor.elements[i]
-                if(input.type === 'button')
+                if(input.nodeName === 'BUTTON' || !input.name)
                     continue
                 value[ input.name ] = input.value
                 input.value = ''

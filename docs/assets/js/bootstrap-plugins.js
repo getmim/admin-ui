@@ -8967,7 +8967,7 @@
 
         for (var i = 0; i < _this._el.editor.elements.length; i++) {
           var input = _this._el.editor.elements[i];
-          if (input.type === 'button') continue;
+          if (input.nodeName === 'BUTTON' || !input.name) continue;
           value[input.name] = input.value;
           input.value = '';
           if (!fInput) fInput = input;
