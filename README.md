@@ -10,6 +10,10 @@ mim app install admin-ui
 
 ## TODO
 
+Perbaikan komponen
+
+1. Uncheck radio group
+
 Beberapa komponen yang mungkin perlu ditambahkan:
 
 1. Location Picker

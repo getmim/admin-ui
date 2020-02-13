@@ -15,6 +15,7 @@ import FormGallery from './form-gallery'
 import FormImage from './form-image'
 import FormFileURL from './form-fileurl'
 import LinkFilter from './link-filter'
+import ListEditor from './list-editor'
 import PasswordStrength from './password-strength'
 import PickerColor from './picker-color'
 import RangeTips from './range-tips'
@@ -48,6 +49,7 @@ export {
     FormGallery,
     FormImage,
     LinkFilter,
+    ListEditor,
     PasswordStrength,
     PickerColor,
     RangeTips,

@@ -1,0 +1,113 @@
+---
+layout: default
+title: "Modules"
+subtitle: List Editor
+menu: module
+submenu: list-editor
+website: https://github.com/iqbalfn/bootstrap-list-editor
+---
+
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">{{ page.subtitle }}</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Modules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ page.subtitle }}</li>
+            </ol>
+        </nav>
+    </div>
+    {% if page.website %}
+    <div class="form-inline">
+        <a class="btn btn-primary" href="{{ page.website }}" target="_blank">
+            Module
+        </a>
+    </div>
+    {% endif %}
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <!-- editor -->
+                            <form class="card" id="editor">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="inp-name">Fullname</label>
+                                                <input type="text" class="form-control" placeholder="Fullname" name="name" id="inp-name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="inp-email">Email</label>
+                                                <input type="email" class="form-control" placeholder="Email" name="email" id="inp-email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="inp-phone">Phone</label>
+                                                <input type="tel" class="form-control" placeholder="Phone" name="phone" id="inp-phone">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- model -->
+                            <textarea id="model" name="model" class="form-control hidden"></textarea>
+                            <!-- list container -->
+                            <ul class="list-group list-group-flush card" id="list"></ul>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function(){
+                                    new ListEditor({
+                                        editor : '#editor',
+                                        list   : '#list',
+                                        model  : '#model',
+                                        items  : {
+                                            title : 'name',
+                                            info  : [
+                                                {
+                                                    field: 'email',
+                                                    icon : '<i class="fas fa-envelope-square"></i>',
+                                                    title: 'Email'
+                                                },
+                                                {
+                                                    field: 'phone',
+                                                    icon : '<i class="fas fa-phone-square"></i>',
+                                                    title: 'Phone'
+                                                }
+                                            ],
+                                            action: {
+                                                edit : {
+                                                    icon  : '<i class="fas fa-pen-square"></i>',
+                                                    title : 'Edit'
+                                                },
+                                                remove : {
+                                                    icon  : '<i class="fas fa-minus-square"></i>',
+                                                    title : 'Remove'
+                                                }
+                                            }
+                                        }
+                                    })
+                                })
+                            </script>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

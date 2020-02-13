@@ -1,13 +1,13 @@
 /*!
   * Admin UI v0.0.1 (https://github.com/getmim/admin-ui)
-  * Copyright 2011-2019 MIM Dev
+  * Copyright 2011-2020 MIM Dev
   * Licensed under MIT (https://github.com/getmim/admin-ui/blob/master/LICENSE)
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
   (global = global || self, factory(global['bootstrap-plugins'] = {}, global.jQuery));
-}(this, function (exports, $) { 'use strict';
+}(this, (function (exports, $) { 'use strict';
 
   $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
 
@@ -44,7 +44,7 @@
 
   function _objectSpread(target) {
     for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
+      var source = arguments[i] != null ? Object(arguments[i]) : {};
       var ownKeys = Object.keys(source);
 
       if (typeof Object.getOwnPropertySymbols === 'function') {
@@ -716,13 +716,13 @@
       strong: [],
       u: [],
       ul: []
-      /**
-       * A pattern that recognizes a commonly useful subset of URLs that are safe.
-       *
-       * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
-       */
-
     };
+    /**
+     * A pattern that recognizes a commonly useful subset of URLs that are safe.
+     *
+     * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+     */
+
     var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi;
     /**
      * A pattern that matches safe data URLs. Only matches image, video and audio types.
@@ -3673,13 +3673,12 @@
   var Selector = {
     DATA_TOGGLE: '[data-toggle="confirm"]',
     MODAL_ACCEPTER: '[data-accept="confirm"]'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var Confirm =
   /*#__PURE__*/
@@ -6582,13 +6581,12 @@
       dismiss: false,
       focus: false
     }
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var Dialog =
   /*#__PURE__*/
@@ -6834,13 +6832,12 @@
     DATA_DISMISS: '[data-dismiss="drawer"]',
     FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
     STICKY_CONTENT: '.sticky-top'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var Drawer =
   /*#__PURE__*/
@@ -7891,13 +7888,12 @@
     ITEMS: "." + ClassName$1.ITEMS,
     ADDER: "." + ClassName$1.ADDER,
     REMOVER: "." + ClassName$1.REMOVER
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var FormFiles =
   /*#__PURE__*/
@@ -8125,13 +8121,12 @@
     IMAGE: "." + ClassName$2.IMAGE,
     LIST: "." + ClassName$2.LIST,
     REMOVER: "." + ClassName$2.REMOVER
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var FormGallery =
   /*#__PURE__*/
@@ -8373,13 +8368,12 @@
     CONTAINER: "." + ClassName$3.CONTAINER,
     PREVIEW: "." + ClassName$3.PREVIEW,
     REMOVER: "." + ClassName$3.REMOVER
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var FormImage =
   /*#__PURE__*/
@@ -8561,13 +8555,12 @@
   };
   var Selector$5 = {
     DATA_TOGGLE: '[data-toggle="fileurl"]'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var FileURL =
   /*#__PURE__*/
@@ -8707,13 +8700,12 @@
   };
   var ClassName$4 = {
     NOT_MATCH: 'linkfilter-not-match'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var LinkFilter =
   /*#__PURE__*/
@@ -8923,6 +8915,209 @@
   };
 
   /**
+   * --------------------------------------------------------------------------
+   * Bootstrap List Editor (v0.0.1): list-editor.js
+   * --------------------------------------------------------------------------
+   */
+  var Default$b = {
+    editor: null,
+    list: null,
+    model: null,
+    items: {
+      title: 'title',
+      info: [],
+      // [{field,icon,title},...],
+      action: [] // { edit: {icon,title}, remove: {icon,title}}
+
+    }
+  };
+
+  var ListEditor =
+  /*#__PURE__*/
+  function () {
+    function ListEditor(config) {
+      this._config = this._getConfig(config);
+      this._value = '[]';
+      this._el = {
+        editor: document.querySelector(this._config.editor),
+        list: document.querySelector(this._config.list),
+        model: document.querySelector(this._config.model)
+      };
+      this._activeIndex = null;
+
+      this._addElementsListener();
+
+      this._redrawItems();
+    } // private
+
+
+    var _proto = ListEditor.prototype;
+
+    _proto._addElementsListener = function _addElementsListener() {
+      var _this = this;
+
+      this._el.model.addEventListener('change', function (e) {
+        return _this._redrawItems();
+      });
+
+      this._el.editor.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var value = {};
+        var fInput = null;
+
+        for (var i = 0; i < _this._el.editor.elements.length; i++) {
+          var input = _this._el.editor.elements[i];
+          if (input.type === 'button') continue;
+          value[input.name] = input.value;
+          input.value = '';
+          if (!fInput) fInput = input;
+        }
+
+        if (_this._activeIndex) {
+          _this._value[_this._activeIndex] = value;
+          _this._el.model.value = JSON.stringify(_this._value);
+
+          _this._redrawItems();
+        } else {
+          _this._drawItem(value, _this._value.length);
+
+          _this._updateModel();
+        }
+
+        _this._activeIndex = null;
+        if (fInput) fInput.focus();
+      });
+
+      $(this._el.list).on('click', '.btn-remove', function (e) {
+        e.preventDefault();
+        var list = e.target.closest('.list-editor-item');
+        $(list).slideUp(function (f) {
+          $(list).remove();
+
+          _this._updateModel();
+        });
+      }).on('click', '.btn-edit', function (e) {
+        e.preventDefault();
+        var list = e.target.closest('.list-editor-item');
+        var item = JSON.parse(list.dataset.object);
+        _this._activeIndex = list.dataset.index;
+        var fInput = null;
+
+        for (var i = 0; i < _this._el.editor.elements.length; i++) {
+          var input = _this._el.editor.elements[i];
+          if (input.type === 'button') continue;
+          input.value = item[input.name] || '';
+          if (!fInput) fInput = input;
+        }
+
+        fInput.select();
+        $('html, body').animate({
+          scrollTop: $(_this._el.editor).offset().top
+        });
+      });
+    };
+
+    _proto._drawItem = function _drawItem(item, index) {
+      var _this2 = this;
+
+      var safe = {
+        object: this._hs(JSON.stringify(item)),
+        title: item[this._config.items.title]
+      };
+      var infos = [];
+
+      this._config.items.info.forEach(function (info) {
+        if (!item[info.field]) return;
+        var safe = {
+          title: _this2._hs(info.title),
+          text: _this2._hs(item[info.field]),
+          icon: info.icon || ''
+        };
+        var tmpl = "\n                <span title=\"" + safe.title + "\">\n                    " + safe.icon + "\n                    " + safe.text + "\n                </span>";
+        infos.push(tmpl);
+      });
+
+      infos = infos.join('&middot;');
+      var actions = [];
+
+      for (var k in this._config.items.action) {
+        var action = this._config.items.action[k];
+        var _safe = {
+          "class": 'btn-' + k,
+          icon: action.icon || '',
+          title: this._hs(action.title || '')
+        };
+
+        var _tmpl = "\n                <a href=\"#0\" class=\"btn btn-secondary " + _safe["class"] + "\" title=\"" + _safe.title + "\">\n                    " + _safe.icon + "\n                </a>";
+
+        actions.push(_tmpl);
+      }
+
+      actions = actions.join('');
+      var tmpl = "\n            <li class=\"list-group-item list-editor-item\" data-object=\"" + safe.object + "\" data-index=\"" + index + "\">\n                <div class=\"d-flex w-100 justify-content-between\">\n                    <h5 class=\"mb-1\">" + safe.title + "</h5>\n                    <div>\n                        <div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Action\">\n                            " + actions + "\n                        </div>\n                    </div>\n                </div>\n                <small>" + infos + "</small>\n            </li>";
+      $(this._el.list).append(tmpl);
+    };
+
+    _proto._getConfig = function _getConfig(config) {
+      var conf = {};
+
+      for (var k in Default$b) {
+        if ('items' === k) {
+          conf[k] = {};
+
+          if (config[k]) {
+            for (var j in config[k]) {
+              conf[k][j] = typeof config[k][j] === 'undefined' ? Default$b[k][j] : config[k][j];
+            }
+          }
+        } else {
+          conf[k] = typeof config[k] === 'undefined' ? Default$b[k] : config[k];
+        }
+      }
+
+      return conf;
+    };
+
+    _proto._hs = function _hs(text) {
+      return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    };
+
+    _proto._redrawItems = function _redrawItems() {
+      var _this3 = this;
+
+      this._value = this._el.model.value;
+
+      try {
+        this._value = JSON.parse(this._value);
+      } catch (e) {
+        this._value = [];
+      }
+
+      this._el.list.innerHTML = '';
+
+      this._value.forEach(function (item, index) {
+        return _this3._drawItem(item, index);
+      });
+    };
+
+    _proto._updateModel = function _updateModel() {
+      var value = [];
+
+      for (var i = 0; i < this._el.list.children.length; i++) {
+        var item = this._el.list.children[i];
+        value.push(JSON.parse(item.dataset.object));
+      }
+
+      this._value = value;
+      this._el.model.value = JSON.stringify(value);
+    };
+
+    return ListEditor;
+  }();
+
+  window.ListEditor = ListEditor;
+
+  /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
@@ -8934,7 +9129,7 @@
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$6 = '.data-api';
   var JQUERY_NO_CONFLICT$9 = $.fn[NAME$a];
-  var Default$b = {
+  var Default$c = {
     progress: null,
     tester: function tester(cb, pass, input) {
       var score = 0;
@@ -9047,7 +9242,7 @@
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread({}, Default$b, config);
+      config = _objectSpread({}, Default$c, config);
       Util.typeCheckConfig(NAME$a, config, DefaultType$8);
       return config;
     } // Static
@@ -9057,7 +9252,7 @@
       return this.each(function () {
         var data = $(this).data(DATA_KEY$9);
 
-        var _config = _objectSpread({}, Default$b, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$c, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new PasswordStrength(this, _config);
@@ -9074,7 +9269,7 @@
     }, {
       key: "Default",
       get: function get() {
-        return Default$b;
+        return Default$c;
       }
     }]);
 
@@ -9107,7 +9302,7 @@
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var DATA_API_KEY$7 = '.data-api';
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$b];
-  var Default$c = {
+  var Default$d = {
     input: null
   };
   var DefaultType$9 = {
@@ -9145,7 +9340,7 @@
 
     // Private
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread({}, Default$c, config);
+      config = _objectSpread({}, Default$d, config);
       Util.typeCheckConfig(NAME$b, config, DefaultType$9);
       return config;
     };
@@ -9186,7 +9381,7 @@
       return this.each(function () {
         var data = $(this).data(DATA_KEY$a);
 
-        var _config = _objectSpread({}, Default$c, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$d, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new PickerColor(this, _config);
@@ -9203,7 +9398,7 @@
     }, {
       key: "Default",
       get: function get() {
-        return Default$c;
+        return Default$d;
       }
     }]);
 
@@ -9239,7 +9434,7 @@
   var DefaultType$a = {
     template: 'string'
   };
-  var Default$d = {
+  var Default$e = {
     template: '<div class="tooltip" role="tooltip">' + '<div class="arrow"></div>' + '<div class="tooltip-inner"></div></div>'
   };
   var ClassName$5 = {
@@ -9251,13 +9446,12 @@
     INPUT: "input" + EVENT_KEY$b,
     MOUSEENTER: "mouseenter" + EVENT_KEY$b,
     MOUSELEAVE: "mouseleave" + EVENT_KEY$b
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var RangeTips =
   /*#__PURE__*/
@@ -9298,7 +9492,7 @@
     };
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread({}, Default$d, config);
+      config = _objectSpread({}, Default$e, config);
       Util.typeCheckConfig(NAME$c, config, DefaultType$a);
       return config;
     };
@@ -9362,7 +9556,7 @@
       return this.each(function () {
         var data = $(this).data(DATA_KEY$b);
 
-        var _config = _objectSpread({}, Default$d, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$e, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new RangeTips(this, _config);
@@ -9379,7 +9573,7 @@
     }, {
       key: "Default",
       get: function get() {
-        return Default$d;
+        return Default$e;
       }
     }]);
 
@@ -9412,7 +9606,7 @@
   var EVENT_KEY$c = "." + DATA_KEY$c;
   var DATA_API_KEY$8 = '.data-api';
   var JQUERY_NO_CONFLICT$c = $.fn[NAME$d];
-  var Default$e = {};
+  var Default$f = {};
   var Event$d = {
     INPUT_DATA_API: "input" + EVENT_KEY$c + DATA_API_KEY$8,
     FOCUS_DATA_API: "focus" + EVENT_KEY$c + DATA_API_KEY$8
@@ -9462,7 +9656,7 @@
       return this.each(function () {
         var data = $(this).data(DATA_KEY$c);
 
-        var _config = _objectSpread({}, Default$e, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$f, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Slugify(this, _config);
@@ -9479,7 +9673,7 @@
     }, {
       key: "Default",
       get: function get() {
-        return Default$e;
+        return Default$f;
       }
     }]);
 
@@ -9515,7 +9709,7 @@
   // const COMMA_KEYCODE      = 188 // KeyboardEvent.which value for Comma (,) key
 
   var COMMA_KEY = ',';
-  var Default$f = {};
+  var Default$g = {};
   var DefaultType$b = {};
   var Event$e = {
     CLICK_ITEM_DISMISS: "click.dismiss" + EVENT_KEY$d,
@@ -9532,13 +9726,12 @@
     ITEMS: "." + ClassName$6.ITEMS,
     VALUE: "." + ClassName$6.VALUE,
     DISMISS_ITEM: ".close"
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var TagInput =
   /*#__PURE__*/
@@ -9564,7 +9757,7 @@
 
     // Private
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread({}, Default$f, config);
+      config = _objectSpread({}, Default$g, config);
       Util.typeCheckConfig(NAME$e, config, DefaultType$b);
       return config;
     };
@@ -9669,7 +9862,7 @@
       return this.each(function () {
         var data = $(this).data(DATA_KEY$d);
 
-        var _config = _objectSpread({}, Default$f, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$g, $(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new TagInput(this, _config);
@@ -9686,7 +9879,7 @@
     }, {
       key: "Default",
       get: function get() {
-        return Default$f;
+        return Default$g;
       }
     }]);
 
@@ -9715,7 +9908,7 @@
 
   var NAME$f = 'toaster';
   var VERSION$f = '0.0.1';
-  var Default$g = {
+  var Default$h = {
     title: false,
     content: '<em>No content</em>',
     delay: 3000,
@@ -9806,7 +9999,7 @@
         if (undefined !== title) opt.title = title;
       }
 
-      var config = _objectSpread({}, Default$g, opt);
+      var config = _objectSpread({}, Default$h, opt);
 
       var html = this._makeHtml(config);
 
@@ -9823,7 +10016,7 @@
     // Static
     Toaster.setDefault = function setDefault(opts) {
       for (var k in opts) {
-        Default$g[k] = opts[k];
+        Default$h[k] = opts[k];
       }
     };
 
@@ -9835,7 +10028,7 @@
     }, {
       key: "Default",
       get: function get() {
-        return Default$g;
+        return Default$h;
       }
     }]);
 
@@ -9870,7 +10063,7 @@
 
   var ARROW_DOWN_KEYCODE = 40; // KeyboardEvent.which value for down arrow key
 
-  var Default$h = {
+  var Default$i = {
     toggle: false
   };
   var DefaultType$c = {
@@ -9895,13 +10088,12 @@
   var Selector$7 = {
     DATA_TOGGLE: '[data-toggle="vertical-menu"]',
     MENU: "." + ClassName$7.MENU
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
   var VerticalMenu =
   /*#__PURE__*/
@@ -9983,7 +10175,7 @@
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread({}, Default$h, config);
+      config = _objectSpread({}, Default$i, config);
       config.toggle = Boolean(config.toggle); // Coerce string values
 
       Util.typeCheckConfig(NAME$g, config, DefaultType$c);
@@ -10157,7 +10349,7 @@
         var $this = $(this);
         var data = $this.data(DATA_KEY$e);
 
-        var _config = _objectSpread({}, Default$h, $this.data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$i, $this.data(), typeof config === 'object' && config ? config : {});
 
         if (_config.toggle && _config.toggle === 'vertical-menu') _config.toggle = false;
         if (!data && _config.toggle && /show|hide/.test(config)) _config.toggle = false;
@@ -10182,7 +10374,7 @@
     }, {
       key: "Default",
       get: function get() {
-        return Default$h;
+        return Default$i;
       }
     }]);
 
@@ -11660,8 +11852,6 @@
           }
 
           break;
-
-        default:
       }
     },
     dragstart: function dragstart(event) {
@@ -12922,8 +13112,6 @@
 
             break;
           }
-
-        default:
       } // Override
 
 
@@ -13866,6 +14054,7 @@
   exports.FormGallery = FormGallery;
   exports.FormImage = FormImage;
   exports.LinkFilter = LinkFilter;
+  exports.ListEditor = ListEditor;
   exports.PasswordStrength = PasswordStrength;
   exports.PickerColor = PickerColor;
   exports.RangeTips = RangeTips;
@@ -13877,5 +14066,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=bootstrap-plugins.js.map

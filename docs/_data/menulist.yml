@@ -152,6 +152,10 @@ docs:
         label: Link Filter
         url: /post/module/linkfilter
 
+      - id: list-editor
+        label: List Editor
+        url: /post/module/list-editor
+
       - id: select-ajax
         label: Select Ajax
         url: /post/module/select-ajax
@@ -268,6 +272,12 @@ credits:
     license: MIT
     author: Iqbal Fauzi
     website: https://github.com/iqbalfn/bootstrap-image-checkbox
+
+  - name: Bootstrap List Editor
+    version: 0.0.1
+    license: MIT
+    author: Iqbal Fauzi
+    website: https://github.com/iqbalfn/bootstrap-list-editor
 
   - name: Bootstrap List Group Form
     version: 0.0.1
