@@ -16,8 +16,8 @@
         'data-model' => '#' . $id,
         'data-object'=> $field->object
     ];
-    if(isset($field->icon))
-        $f_attr['data-icon'] = $field->icon;
+    if(isset($field->itemIcon))
+        $f_attr['data-icon'] = $field->itemIcon;
 
     if($value && ( is_object($value) || is_array($value)))
         $value = json_encode($value);

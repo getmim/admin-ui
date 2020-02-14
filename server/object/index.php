@@ -1,6 +1,6 @@
 <?php
 
-$timezones = include '../timezone/timezones.php';
+$timezones = timezone_identifiers_list();
 
 $result = [
     'error' => false,
