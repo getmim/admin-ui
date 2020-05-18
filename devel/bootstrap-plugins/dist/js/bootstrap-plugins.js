@@ -3501,7 +3501,7 @@
   /**
    * Bootstrap select ajax
    * @package bootstrap-select-ajax
-   * @version 0.0.2
+   * @version 0.1.0
    */
   +function ($) {
 
@@ -3529,9 +3529,17 @@
       callAjax: function callAjax(qValue, callback, el, ajaxURL, qName, qData) {
         ajaxURL += /\?/.test(ajaxURL) ? '&' : '?';
         ajaxURL += qName + '=' + encodeURI(qValue);
+        var tmpData = {};
+
+        for (var k in qData) {
+          var val = qData[k];
+          var f0 = val[0];
+          tmpData[k] = f0 === '#' || f0 === '.' ? $(val).val() : val;
+        }
+
         $.ajax({
           url: ajaxURL,
-          data: qData,
+          data: tmpData,
           success: callback
         });
       },
@@ -3631,8 +3639,8 @@
         Plugin.applyAjaxIdentity($(this), options);
       });
     };
-  }($);
-  var bootstrapSelectAjax = 'bootstrapSelectAjax';
+  }(jQuery);
+  var bootstrapSelectAjax = 'BootstrapSelectAjax';
 
   /**
    * ------------------------------------------------------------------------

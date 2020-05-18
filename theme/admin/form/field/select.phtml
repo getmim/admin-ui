@@ -27,8 +27,21 @@
         $acr_qry  = $ac_route->query  ?? null;
 
         if($acr_name){
-            $ac_route = $this->router->to($acr_name, (array)$acr_parms, (array)$acr_qry);
+            $ac_route = $this->router->to($acr_name, (array)$acr_parms);
             $attrs['data-ajax'] = $ac_route;
+            if($acr_qry){
+                foreach($acr_qry as $fkey => $fval){
+                    if(substr($fval, 0, 1) !== '#')
+                        continue;
+                    
+                    $fval = $form->getName() . '-fld-' . substr($fval,1);
+                    $fval = preg_replace('![^a-zA-Z0-9-]!', '-', $fval);
+                    $fval = preg_replace('!-+!', '-', $fval);
+
+                    $acr_qry->$fkey = '#' . $fval;
+                }
+                $attrs['data-data'] = json_encode($acr_qry);
+            }
         }
     }
 ?>

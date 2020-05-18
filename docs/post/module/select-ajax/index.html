@@ -49,7 +49,10 @@ website: https://github.com/iqbalfn/bootstrap-select-ajax
                                 'sl-filter' => [
                                     'route'  => 'adminObjectFilter',
                                     'params' => [],
-                                    'query'  => ['type'=>'timezone']
+                                    'query'  => [
+                                        'type' => 'timezone',
+                                        'other' => '#selector'
+                                    ]
                                 ],
                                 'rules' => [
                                     'required' => TRUE,

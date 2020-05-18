@@ -1,10 +1,8 @@
 /**
  * Bootstrap select ajax
  * @package bootstrap-select-ajax
- * @version 0.0.2
+ * @version 0.1.0
  */
-
-import $ from 'jquery'
 
 +function($){
     'use strict';
@@ -49,9 +47,18 @@ import $ from 'jquery'
         callAjax: function(qValue, callback, el, ajaxURL, qName, qData){
             ajaxURL+= /\?/.test(ajaxURL) ? '&' : '?';
             ajaxURL+= qName + '=' + encodeURI(qValue);
+            
+            let tmpData = {}
+
+            for(let k in qData){
+                let val = qData[k]
+                let f0  = val[0]
+                tmpData[k] = (f0 === '#' || f0 === '.') ? $(val).val() : val
+            }
+
             $.ajax({
                 url: ajaxURL,
-                data: qData,
+                data: tmpData,
                 success: callback
             });
         },
@@ -172,6 +179,7 @@ import $ from 'jquery'
             Plugin.applyAjaxIdentity($(this), options);
         });
     }
-}($);
+}(jQuery);
 
-export default 'bootstrapSelectAjax'
+
+export default 'BootstrapSelectAjax'
