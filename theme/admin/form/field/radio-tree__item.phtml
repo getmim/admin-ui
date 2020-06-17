@@ -20,7 +20,7 @@
         <input<?= to_attr($attrs) ?>>
         <label class="custom-control-label" for="<?= $oid ?>"><?= $opt->label ?></label>
     </div>
-    <?php if(isset($opts[$opt->value])): ?>
+    <?php if($opt->parent != $opt->value && isset($opts[$opt->value])): ?>
         <div class="ml-3">
         <?php
             $item_param = [
