@@ -235,6 +235,83 @@ submenu: checkbox
         </div>
     </div>
 
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Big Size</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <div class="checkbox-group size-big">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="check4a">
+                                        <label class="custom-control-label" for="check4a">DKI Jakarta</label>
+                                    </div>
+                                    <div class="ml-3">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="check4a1">
+                                            <label class="custom-control-label" for="check4a1">Jakarta Pusat</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="check4a2">
+                                            <label class="custom-control-label" for="check4a2">Jakarta Utara</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="check4a2a">
+                                                <label class="custom-control-label" for="check4a2a">Kelapa Gading</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="check4a3">
+                                            <label class="custom-control-label" for="check4a3">Jakarta Timur</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="check4a3a">
+                                                <label class="custom-control-label" for="check4a3a">Duren Sawit</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="check4a3b">
+                                                <label class="custom-control-label" for="check4a3b">Cawang</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'location' => [
+                                'label' => 'Location',
+                                'type' => 'checkbox-tree',
+                                'size' => 'big',
+                                'options' => [
+                                    ['value'=>1, 'label'=>'DKI Jakarta',   'parent'=>0],
+                                    ['value'=>2, 'label'=>'Jakarta Pusat', 'parent'=>1],
+                                    ['value'=>3, 'label'=>'Jakarta Utara', 'parent'=>1],
+                                    ['value'=>4, 'label'=>'Kelapa Gading', 'parent'=>3],
+                                    ['value'=>5, 'label'=>'Jakarta Timur', 'parent'=>1],
+                                    ['value'=>6, 'label'=>'Duren Sawit',   'parent'=>5],
+                                    ['value'=>7, 'label'=>'Cawang',        'parent'=>5]
+                                ],
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('location');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row mt-4 mb-4">
         <div class="col-md-12">
             <div class="card">

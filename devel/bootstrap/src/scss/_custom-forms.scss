@@ -514,4 +514,8 @@
   overflow: auto;
   @include border-radius($input-border-radius, 0);
   height: 7.75rem;
+
+  &.size-big{
+    height:18.5rem;
+  }
 }

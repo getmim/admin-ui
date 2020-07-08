@@ -16,12 +16,18 @@
         $fid.= $opt;
         break;
     }
+
+    $big_class = '';
+
+    // big size
+    if(isset($field->size))
+        $big_class = ' size-' . $field->size;
 ?>
 <div class="form-group<?= ($error ? ' is-invalid' : '' ) ?>">
     <?php if($show_label): ?>
         <label for="<?= $fid ?>"><?= $field->label ?></label>
     <?php endif; ?>
-    <div class="checkbox-group">
+    <div class="checkbox-group<?= $big_class ?>">
         <?php foreach($opts as $opt => $label): ?>
             <?php
                 $oid = $id . '-' . $opt;

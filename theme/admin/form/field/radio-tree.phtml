@@ -21,12 +21,18 @@
         if(isset($field->rules->empty) && !$field->rules->empty)
             $is_required = true;
     }
+
+    $big_class = '';
+
+    // big size
+    if(isset($field->size))
+        $big_class = ' size-' . $field->size;
 ?>
 <div class="form-group<?= ($error?' is-invalid':'') ?>">
     <?php if($show_label): ?>
         <label for="<?= $fid ?>"><?= $field->label ?></label>
     <?php endif; ?>
-    <div class="radio-group">
+    <div class="radio-group<?= $big_class ?>">
         <?php if(isset($opts[0])): ?>
             <?php
                 $item_param = [
