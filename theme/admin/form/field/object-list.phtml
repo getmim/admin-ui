@@ -19,7 +19,7 @@
     if(isset($field->itemIcon))
         $f_attr['data-icon'] = $field->itemIcon;
 
-    if($value && ( is_object($value) || is_array($value)))
+    if(!is_string($value) && !is_null($value))
         $value = json_encode($value);
 
     $b_label = $field->button ?? 'Add Object';
