@@ -18,8 +18,8 @@
     $upload_form = null;
     if(isset($field->form))
         $upload_form = $field->form;
-    elseif(isset($rules->upload) && is_string($rules->upload))
-        $upload_form = $rules->upload;
+    elseif(isset($rules->{'upload-list'}) && is_string($rules->{'upload-list'}))
+        $upload_form = $rules->{'upload-list'};
 
     if($upload_form){
         $f_attr['data-form'] = $upload_form;
