@@ -158,3 +158,12 @@ $result = [
     // ...
 ]
 ```
+
+## Formatter
+
+Module ini mendaftarkan beberapa formatter sebagai berikut:
+
+### aui-std-file-list
+
+Mengubah standar nilai yang dihasilkan oleh form field type `file-list`
+menjadi media.

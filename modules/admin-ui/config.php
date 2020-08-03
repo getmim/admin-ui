@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'admin-ui',
-    '__version' => '0.12.2',
+    '__version' => '0.13.2',
     '__git' => 'git@github.com:getmim/admin-ui.git',
     '__license' => 'MIT',
     '__author' => [
@@ -63,6 +63,33 @@ return [
                     'js/bootstrap.min.js' => 1,
                     'js/bootstrap-plugins.min.js' => 1
                 ]
+            ]
+        ]
+    ],
+    'libFormatter' => [
+        'formats' => [
+            'aui-std-file-list' => [
+                'url' => [
+                    'type' => 'media'
+                ],
+                'path' => [
+                    'type' => 'text'
+                ],
+                'name' => [
+                    'type' => 'text'
+                ],
+                'type' => [
+                    'type' => 'text'
+                ],
+                'size' => [
+                    'type' => 'number'
+                ]
+            ]
+        ],
+        'handlers' => [
+            'aui-std-file-list' => [
+                'handler' => 'AdminUi\\Library\\Format::fileList',
+                'collective' => false
             ]
         ]
     ]
