@@ -141,7 +141,7 @@ class Menu
 
                     if($main_menu->children){
                         SSort::usort($main_menu->children, function($a,$b){
-                            if($b->priority == $a->priority)
+                            if($b->priority != $a->priority)
                                 return $b->priority - $a->priority;
                             return strcmp($a->label, $b->label);
                         });
@@ -153,12 +153,12 @@ class Menu
 
         if($navbar_menu){
             SSort::usort($navbar_menu, function($a,$b){
-                if($b->priority == $a->priority)
+                if($b->priority != $a->priority)
                     return $b->priority - $a->priority;
                 return strcmp($a->label, $b->label);
             });
         }
-
+        
         $result = [];
 
         // let filter the separator
