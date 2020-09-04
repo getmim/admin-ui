@@ -55,7 +55,7 @@ class Admin {
         this._inputFormCodeMirror()         // codemirror
         this._inputFormFiles()              // multiple files & multiple object
         this._inputFormGallery()            // multiple image
-        this._inputFormFileURL()            // ipnut file url
+        this._inputFormFileURL()            // input file url
         this._inputFormImage()              // image picker
         this._inputPasswordStrength()       // password strength
         this._inputSummernote()             // summernote
@@ -473,34 +473,76 @@ class Admin {
 
             if(window.AConf.libUpload.upload){
                 fpopts.upload = (file, progress, callback) => {
-                    progress.style.width = '50%'
+                    progress.style.width = '5%'
 
-                    let uploader = new FileUploader({
-                        url     : window.AConf.libUpload.upload,
-                        files   : {file},
-                        fields  : {form: opts.form},
-                        onSuccess(up, xhr, res){
-                            if(res.error)
-                                return callback(res.message || 'Unable to upload the file')
-                            let data = res.data
+                    this.pickFileMd5(file, progress, res => {
+                        if(!res.error && res.data.length)
+                            return this.pickFileFinalize(res.data[0], callback)
 
-                            // add custom thumbnails
-                            if(/image/.test(data.type) && !data.thumb)
-                                data.thumb = data.url
-                            
-                            callback(data)
-                        },
-                        onError(up){
-                            callback('Failed on uploading the file')
-                        }
+                        this.pickFileUpload(file, opts, progress, res => {
+                            if(!res.error)
+                                return this.pickFileFinalize(res.data, callback)
+                            callback(res.message)
+                        })
                     })
-
-                    uploader.send()
                 }
             }
         }
 
         new FilePicker(fpopts)
+    }
+
+    pickFileFinalize(result, callback){
+        if(/image/.test(result.type) && !result.thumb)
+            result.thumb = result.url
+        callback(result)
+    }
+
+    pickFileMd5(file, progress, callback){
+        progress.style.width = '7%'
+
+        let fReader = new FileReader;
+
+        fReader.onerror = () => callback({error:1})
+
+        fReader.onload = e => {
+            if(file.size != e.target.result.length)
+                return callback({error:1})
+
+            progress.style.width = '15%'
+            let hash = SparkMD5.hashBinary(e.target.result)
+
+            progress.style.width = '20%'
+            $.get(window.AConf.libUpload.search, {hash}, callback)
+        }
+
+        fReader.readAsBinaryString(file)
+    }
+
+    pickFileUpload(file, opts, progress, callback){
+        let uploader = new FileUploader({
+            url     : window.AConf.libUpload.upload,
+            files   : {file},
+            fields  : {form: opts.form},
+            onSuccess(up, xhr, res){
+                if(res.error){
+                    if(res.error == 422){
+                        for(let k in res.data)
+                            res.message = res.data[k].text
+                    }
+
+                    if(!res.message)
+                        res.message = 'Unable to upload the file'
+                }
+
+                callback(res)
+            },
+            onError(up){
+                callback({error:1,message:'Failed on uploading the file'})
+            }
+        })
+
+        uploader.send()
     }
 
     pickObject(cb, opts){

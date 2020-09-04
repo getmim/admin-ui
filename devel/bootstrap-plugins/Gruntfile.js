@@ -130,7 +130,9 @@ module.exports = function(grunt) {
                 ],
                 tasks: [
                     'run:js_compile',
-                    'copy:docs_js'
+                    'run:js_minify',
+                    'copy:docs_js',
+                    'copy:app_js'
                 ]
             }
         }

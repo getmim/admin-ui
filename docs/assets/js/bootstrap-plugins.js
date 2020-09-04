@@ -7,7 +7,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
   (global = global || self, factory(global['bootstrap-plugins'] = {}, global.jQuery));
-}(this, (function (exports, $) { 'use strict';
+}(this, function (exports, $) { 'use strict';
 
   $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
 
@@ -44,7 +44,7 @@
 
   function _objectSpread(target) {
     for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? Object(arguments[i]) : {};
+      var source = arguments[i] != null ? arguments[i] : {};
       var ownKeys = Object.keys(source);
 
       if (typeof Object.getOwnPropertySymbols === 'function') {
@@ -716,13 +716,13 @@
       strong: [],
       u: [],
       ul: []
-    };
-    /**
-     * A pattern that recognizes a commonly useful subset of URLs that are safe.
-     *
-     * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
-     */
+      /**
+       * A pattern that recognizes a commonly useful subset of URLs that are safe.
+       *
+       * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+       */
 
+    };
     var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi;
     /**
      * A pattern that matches safe data URLs. Only matches image, video and audio types.
@@ -3681,12 +3681,13 @@
   var Selector = {
     DATA_TOGGLE: '[data-toggle="confirm"]',
     MODAL_ACCEPTER: '[data-accept="confirm"]'
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var Confirm =
   /*#__PURE__*/
@@ -6589,12 +6590,13 @@
       dismiss: false,
       focus: false
     }
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var Dialog =
   /*#__PURE__*/
@@ -6840,12 +6842,13 @@
     DATA_DISMISS: '[data-dismiss="drawer"]',
     FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
     STICKY_CONTENT: '.sticky-top'
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var Drawer =
   /*#__PURE__*/
@@ -7896,12 +7899,13 @@
     ITEMS: "." + ClassName$1.ITEMS,
     ADDER: "." + ClassName$1.ADDER,
     REMOVER: "." + ClassName$1.REMOVER
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var FormFiles =
   /*#__PURE__*/
@@ -8129,12 +8133,13 @@
     IMAGE: "." + ClassName$2.IMAGE,
     LIST: "." + ClassName$2.LIST,
     REMOVER: "." + ClassName$2.REMOVER
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var FormGallery =
   /*#__PURE__*/
@@ -8376,12 +8381,13 @@
     CONTAINER: "." + ClassName$3.CONTAINER,
     PREVIEW: "." + ClassName$3.PREVIEW,
     REMOVER: "." + ClassName$3.REMOVER
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var FormImage =
   /*#__PURE__*/
@@ -8563,12 +8569,13 @@
   };
   var Selector$5 = {
     DATA_TOGGLE: '[data-toggle="fileurl"]'
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var FileURL =
   /*#__PURE__*/
@@ -8708,12 +8715,13 @@
   };
   var ClassName$4 = {
     NOT_MATCH: 'linkfilter-not-match'
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var LinkFilter =
   /*#__PURE__*/
@@ -9454,12 +9462,13 @@
     INPUT: "input" + EVENT_KEY$b,
     MOUSEENTER: "mouseenter" + EVENT_KEY$b,
     MOUSELEAVE: "mouseleave" + EVENT_KEY$b
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var RangeTips =
   /*#__PURE__*/
@@ -9734,12 +9743,13 @@
     ITEMS: "." + ClassName$6.ITEMS,
     VALUE: "." + ClassName$6.VALUE,
     DISMISS_ITEM: ".close"
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var TagInput =
   /*#__PURE__*/
@@ -10096,12 +10106,13 @@
   var Selector$7 = {
     DATA_TOGGLE: '[data-toggle="vertical-menu"]',
     MENU: "." + ClassName$7.MENU
+    /**
+     * ------------------------------------------------------------------------
+     * Class Definition
+     * ------------------------------------------------------------------------
+     */
+
   };
-  /**
-   * ------------------------------------------------------------------------
-   * Class Definition
-   * ------------------------------------------------------------------------
-   */
 
   var VerticalMenu =
   /*#__PURE__*/
@@ -11860,6 +11871,8 @@
           }
 
           break;
+
+        default:
       }
     },
     dragstart: function dragstart(event) {
@@ -13120,6 +13133,8 @@
 
             break;
           }
+
+        default:
       } // Override
 
 
@@ -13517,7 +13532,7 @@
       this._inputFormGallery(); // multiple image
 
 
-      this._inputFormFileURL(); // ipnut file url
+      this._inputFormFileURL(); // input file url
 
 
       this._inputFormImage(); // image picker
@@ -13902,6 +13917,8 @@
     ;
 
     _proto.pickFile = function pickFile(cb, opts) {
+      var _this7 = this;
+
       var fpopts = {
         multiple: opts.multiple || false,
         type: opts.accept || '*/*',
@@ -13938,32 +13955,83 @@
 
         if (window.AConf.libUpload.upload) {
           fpopts.upload = function (file, progress, callback) {
-            progress.style.width = '50%';
-            var uploader = new FileUploader({
-              url: window.AConf.libUpload.upload,
-              files: {
-                file: file
-              },
-              fields: {
-                form: opts.form
-              },
-              onSuccess: function onSuccess(up, xhr, res) {
-                if (res.error) return callback(res.message || 'Unable to upload the file');
-                var data = res.data; // add custom thumbnails
+            progress.style.width = '5%';
 
-                if (/image/.test(data.type) && !data.thumb) data.thumb = data.url;
-                callback(data);
-              },
-              onError: function onError(up) {
-                callback('Failed on uploading the file');
-              }
+            _this7.pickFileMd5(file, progress, function (res) {
+              if (!res.error && res.data.length) return _this7.pickFileFinalize(res.data[0], callback);
+
+              _this7.pickFileUpload(file, opts, progress, function (res) {
+                if (!res.error) return _this7.pickFileFinalize(res.data, callback);
+                callback(res.message);
+              });
             });
-            uploader.send();
           };
         }
       }
 
       new FilePicker(fpopts);
+    };
+
+    _proto.pickFileFinalize = function pickFileFinalize(result, callback) {
+      if (/image/.test(result.type) && !result.thumb) result.thumb = result.url;
+      callback(result);
+    };
+
+    _proto.pickFileMd5 = function pickFileMd5(file, progress, callback) {
+      progress.style.width = '7%';
+      var fReader = new FileReader();
+
+      fReader.onerror = function () {
+        return callback({
+          error: 1
+        });
+      };
+
+      fReader.onload = function (e) {
+        if (file.size != e.target.result.length) return callback({
+          error: 1
+        });
+        progress.style.width = '15%';
+        var hash = SparkMD5.hashBinary(e.target.result);
+        progress.style.width = '20%';
+        $.get(window.AConf.libUpload.search, {
+          hash: hash
+        }, callback);
+      };
+
+      fReader.readAsBinaryString(file);
+    };
+
+    _proto.pickFileUpload = function pickFileUpload(file, opts, progress, callback) {
+      var uploader = new FileUploader({
+        url: window.AConf.libUpload.upload,
+        files: {
+          file: file
+        },
+        fields: {
+          form: opts.form
+        },
+        onSuccess: function onSuccess(up, xhr, res) {
+          if (res.error) {
+            if (res.error == 422) {
+              for (var k in res.data) {
+                res.message = res.data[k].text;
+              }
+            }
+
+            if (!res.message) res.message = 'Unable to upload the file';
+          }
+
+          callback(res);
+        },
+        onError: function onError(up) {
+          callback({
+            error: 1,
+            message: 'Failed on uploading the file'
+          });
+        }
+      });
+      uploader.send();
     };
 
     _proto.pickObject = function pickObject(cb, opts) {
@@ -14074,5 +14142,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=bootstrap-plugins.js.map
