@@ -13978,7 +13978,7 @@
     };
 
     _proto.pickFileMd5 = function pickFileMd5(file, progress, callback) {
-      progress.style.width = '7%';
+      progress.style.width = '10%';
       var fReader = new FileReader();
 
       fReader.onerror = function () {
@@ -14003,35 +14003,96 @@
     };
 
     _proto.pickFileUpload = function pickFileUpload(file, opts, progress, callback) {
-      var uploader = new FileUploader({
-        url: window.AConf.libUpload.upload,
-        files: {
-          file: file
-        },
-        fields: {
-          form: opts.form
-        },
-        onSuccess: function onSuccess(up, xhr, res) {
-          if (res.error) {
-            if (res.error == 422) {
-              for (var k in res.data) {
-                res.message = res.data[k].text;
+      progress.style.width = '25%';
+      this.pickFileUploadValidate(file, opts, progress, function (res) {
+        if (res.error) return callback(res);
+        progress.style.width = '30%';
+        var uploader = new FileUploader({
+          url: window.AConf.libUpload.upload,
+          files: {
+            file: file
+          },
+          fields: {
+            form: opts.form
+          },
+          onSuccess: function onSuccess(up, xhr, res) {
+            if (res.error) {
+              if (res.error == 422) {
+                for (var k in res.data) {
+                  res.message = res.data[k].text;
+                }
               }
+
+              if (!res.message) res.message = 'Unable to upload the file';
             }
 
-            if (!res.message) res.message = 'Unable to upload the file';
+            callback(res);
+          },
+          onError: function onError(up) {
+            callback({
+              error: 1,
+              message: 'Failed on uploading the file'
+            });
           }
-
-          callback(res);
-        },
-        onError: function onError(up) {
-          callback({
-            error: 1,
-            message: 'Failed on uploading the file'
-          });
-        }
+        });
+        uploader.send();
       });
-      uploader.send();
+    };
+
+    _proto.pickFileUploadValidate = function pickFileUploadValidate(file, opts, progress, callback) {
+      // validate file before upload
+      var body = {
+        form: opts.form,
+        file: {
+          size: file.size,
+          type: file.type,
+          name: file.name,
+          width: null,
+          height: null
+        }
+      };
+
+      var makeRequest = function makeRequest() {
+        $.ajax({
+          type: 'POST',
+          url: window.AConf.libUpload.validate,
+          data: JSON.stringify(body),
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function success(res) {
+            if (res.error) {
+              if (res.error == 422) {
+                for (var k in res.data) {
+                  res.message = res.data[k].text;
+                }
+              }
+
+              if (!res.message) res.message = 'Unable to parse server response';
+            }
+
+            callback(res);
+          },
+          error: function error(e) {
+            callback({
+              error: 1,
+              messag: 'Unable to reach server'
+            });
+          }
+        });
+      };
+
+      if (/image\//.test(file.type)) {
+        var img = new Image();
+        img.src = window.URL.createObjectURL(file);
+
+        img.onload = function () {
+          body.file.width = img.width;
+          body.file.height = img.height;
+          makeRequest();
+        };
+      } else {
+        makeRequest();
+      }
     };
 
     _proto.pickObject = function pickObject(cb, opts) {

@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'admin-ui',
-    '__version' => '0.14.0',
+    '__version' => '0.15.0',
     '__git' => 'git@github.com:getmim/admin-ui.git',
     '__license' => 'MIT',
     '__author' => [

@@ -499,7 +499,7 @@ class Admin {
     }
 
     pickFileMd5(file, progress, callback){
-        progress.style.width = '7%'
+        progress.style.width = '10%'
 
         let fReader = new FileReader;
 
@@ -520,29 +520,89 @@ class Admin {
     }
 
     pickFileUpload(file, opts, progress, callback){
-        let uploader = new FileUploader({
-            url     : window.AConf.libUpload.upload,
-            files   : {file},
-            fields  : {form: opts.form},
-            onSuccess(up, xhr, res){
-                if(res.error){
-                    if(res.error == 422){
-                        for(let k in res.data)
-                            res.message = res.data[k].text
+        progress.style.width = '25%'
+        this.pickFileUploadValidate(file, opts, progress, res => {
+            if(res.error)
+                return callback(res)
+
+            progress.style.width = '30%'
+            let uploader = new FileUploader({
+                url     : window.AConf.libUpload.upload,
+                files   : {file},
+                fields  : {form: opts.form},
+                onSuccess(up, xhr, res){
+                    if(res.error){
+                        if(res.error == 422){
+                            for(let k in res.data)
+                                res.message = res.data[k].text
+                        }
+
+                        if(!res.message)
+                            res.message = 'Unable to upload the file'
                     }
 
-                    if(!res.message)
-                        res.message = 'Unable to upload the file'
+                    callback(res)
+                },
+                onError(up){
+                    callback({error:1,message:'Failed on uploading the file'})
                 }
+            })
 
-                callback(res)
-            },
-            onError(up){
-                callback({error:1,message:'Failed on uploading the file'})
-            }
+            uploader.send()
         })
+    }
 
-        uploader.send()
+    pickFileUploadValidate(file, opts, progress, callback){
+        // validate file before upload
+        let body = {
+            form: opts.form,
+            file: {
+                size: file.size,
+                type: file.type,
+                name: file.name,
+                width : null,
+                height: null
+            }
+        }
+
+        let makeRequest = () => {
+            $.ajax({
+                type       : 'POST',
+                url        : window.AConf.libUpload.validate,
+                data       : JSON.stringify(body),
+                contentType: 'application/json',
+                dataType   : 'json',
+                success    : res => {
+                    if(res.error){
+                        if(res.error == 422){
+                            for(let k in res.data)
+                                res.message = res.data[k].text
+                        }
+
+                        if(!res.message)
+                            res.message = 'Unable to parse server response'
+                    }
+
+                    callback(res)
+                },
+                error      : e => {
+                    callback({error:1,messag:'Unable to reach server'})
+                }
+            })   
+        }
+
+        if(/image\//.test(file.type)){
+            let img = new Image()
+            img.src = window.URL.createObjectURL(file)
+            img.onload = () => {
+                body.file.width = img.width
+                body.file.height = img.height
+
+                makeRequest()
+            }
+        }else{
+            makeRequest()
+        }
     }
 
     pickObject(cb, opts){
