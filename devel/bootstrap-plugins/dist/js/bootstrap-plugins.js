@@ -7,9 +7,9 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('jquery')) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery'], factory) :
   (global = global || self, factory(global['bootstrap-plugins'] = {}, global.jQuery));
-}(this, function (exports, $) { 'use strict';
+}(this, (function (exports, $$1) { 'use strict';
 
-  $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
+  $$1 = $$1 && Object.prototype.hasOwnProperty.call($$1, 'default') ? $$1['default'] : $$1;
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -44,7 +44,7 @@
 
   function _objectSpread(target) {
     for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
+      var source = arguments[i] != null ? Object(arguments[i]) : {};
       var ownKeys = Object.keys(source);
 
       if (typeof Object.getOwnPropertySymbols === 'function') {
@@ -86,7 +86,7 @@
       bindType: TRANSITION_END,
       delegateType: TRANSITION_END,
       handle: function handle(event) {
-        if ($(event.target).is(this)) {
+        if ($$1(event.target).is(this)) {
           return event.handleObj.handler.apply(this, arguments); // eslint-disable-line prefer-rest-params
         }
 
@@ -99,7 +99,7 @@
     var _this = this;
 
     var called = false;
-    $(this).one(Util.TRANSITION_END, function () {
+    $$1(this).one(Util.TRANSITION_END, function () {
       called = true;
     });
     setTimeout(function () {
@@ -111,8 +111,8 @@
   }
 
   function setTransitionEndSupport() {
-    $.fn.emulateTransitionEnd = transitionEndEmulator;
-    $.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
+    $$1.fn.emulateTransitionEnd = transitionEndEmulator;
+    $$1.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
   }
   /**
    * --------------------------------------------------------------------------
@@ -151,8 +151,8 @@
       } // Get transition-duration of the element
 
 
-      var transitionDuration = $(element).css('transition-duration');
-      var transitionDelay = $(element).css('transition-delay');
+      var transitionDuration = $$1(element).css('transition-duration');
+      var transitionDelay = $$1(element).css('transition-delay');
       var floatTransitionDuration = parseFloat(transitionDuration);
       var floatTransitionDelay = parseFloat(transitionDelay); // Return 0 if element or transition duration is not found
 
@@ -169,7 +169,7 @@
       return element.offsetHeight;
     },
     triggerTransitionEnd: function triggerTransitionEnd(element) {
-      $(element).trigger(TRANSITION_END);
+      $$1(element).trigger(TRANSITION_END);
     },
     // TODO: Remove in v5
     supportsTransitionEnd: function supportsTransitionEnd() {
@@ -227,7 +227,7 @@
   var DATA_KEY = 'bs.autocomplete';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  var JQUERY_NO_CONFLICT = $$1.fn[NAME];
   var Default = {
     list: null,
     prefetch: null,
@@ -266,9 +266,7 @@
    * ------------------------------------------------------------------------
    */
 
-  var Autocomplete =
-  /*#__PURE__*/
-  function () {
+  var Autocomplete = /*#__PURE__*/function () {
     function Autocomplete(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -317,8 +315,8 @@
     };
 
     _proto.dispose = function dispose() {
-      $(this._element).off(EVENT_KEY);
-      $.removeData(this._element, DATA_KEY);
+      $$1(this._element).off(EVENT_KEY);
+      $$1.removeData(this._element, DATA_KEY);
       this._config = null;
       this._element = null;
       this._items = null;
@@ -337,7 +335,7 @@
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 
-      $(this._element).on(Event$1.KEYDOWN_DATA_API, function (e) {
+      $$1(this._element).on(Event$1.KEYDOWN_DATA_API, function (e) {
         var prevent = false;
 
         switch (e.keyCode) {
@@ -366,8 +364,8 @@
 
           case KeyCode.ENTER:
             if (_this._isShown) {
-              var focus = $(_this._dropdown).children('.active').get(0);
-              if (!focus) focus = $(_this._dropdown).children(':first-child').get(0);
+              var focus = $$1(_this._dropdown).children('.active').get(0);
+              if (!focus) focus = $$1(_this._dropdown).children(':first-child').get(0);
               if (focus) _this._element.value = focus.innerText;
 
               _this.hide();
@@ -387,7 +385,7 @@
 
         if (prevent) e.preventDefault();
       });
-      $(this._element).on(Event$1.INPUT_DATA_API, function (e) {
+      $$1(this._element).on(Event$1.INPUT_DATA_API, function (e) {
         _this._query = _this._element.value.trim().toLowerCase();
 
         if (!_this._query) {
@@ -398,7 +396,7 @@
           _this._findFromList();
         }
       });
-      $(this._element).on(Event$1.BLUR_DATA_API, function (e) {
+      $$1(this._element).on(Event$1.BLUR_DATA_API, function (e) {
         if (_this._preventClose) return;
         setTimeout(function () {
           return _this.hide();
@@ -430,7 +428,7 @@
       if (this._config.prefetch) {
         this._showSpinner();
 
-        $.get(this._config.prefetch, function (res) {
+        $$1.get(this._config.prefetch, function (res) {
           _this2._hideSpinner();
 
           if (_this2._config.preProcess) res = _this2._config.preProcess(res);
@@ -465,14 +463,14 @@
 
           for (var k in _this3._relations) {
             var el = _this3._relations[k];
-            var val = $(el).val();
+            var val = $$1(el).val();
             if (!val) continue;
             url += "" + sep + k + "=" + val;
             sep = '&';
           }
         }
 
-        $.get(url, function (res) {
+        $$1.get(url, function (res) {
           _this3._hideSpinner();
 
           if (_this3._config.preProcess) res = _this3._config.preProcess(res);
@@ -524,12 +522,12 @@
     };
 
     _proto._focusNext = function _focusNext() {
-      var next = $(this._dropdown).children(':first-child').get(0);
-      var focused = $(this._dropdown).children('.active').get(0);
+      var next = $$1(this._dropdown).children(':first-child').get(0);
+      var focused = $$1(this._dropdown).children('.active').get(0);
 
       if (focused) {
         focused.classList.remove('active');
-        var tmpNext = $(focused).next().get(0);
+        var tmpNext = $$1(focused).next().get(0);
         if (tmpNext) next = tmpNext;
       }
 
@@ -537,12 +535,12 @@
     };
 
     _proto._focusPrev = function _focusPrev() {
-      var next = $(this._dropdown).children(':last-child').get(0);
-      var focused = $(this._dropdown).children('.active').get(0);
+      var next = $$1(this._dropdown).children(':last-child').get(0);
+      var focused = $$1(this._dropdown).children('.active').get(0);
 
       if (focused) {
         focused.classList.remove('active');
-        var tmpNext = $(focused).prev().get(0);
+        var tmpNext = $$1(focused).prev().get(0);
         if (tmpNext) next = tmpNext;
       }
 
@@ -562,10 +560,10 @@
 
       for (var name in this._config.filterRelation) {
         var selector = this._config.filterRelation[name];
-        this._relations[name] = $(selector).get(0);
-        $(this._relations[name]).change(function (e) {
+        this._relations[name] = $$1(selector).get(0);
+        $$1(this._relations[name]).change(function (e) {
           _this5._element.value = '';
-          $(_this5._element).change(); // we need to trigger this manually
+          $$1(_this5._element).change(); // we need to trigger this manually
 
           _this5._items = [];
         });
@@ -585,15 +583,15 @@
     _proto._makeDropdown = function _makeDropdown() {
       this._element.parentNode.style.position = 'relative';
       var tmpl = '<div class="dropdown-menu" style="width:100%"></div>';
-      this._dropdown = $(tmpl).appendTo(this._element.parentNode).get(0);
+      this._dropdown = $$1(tmpl).appendTo(this._element.parentNode).get(0);
     };
 
     _proto._makeSpinner = function _makeSpinner() {
       var tmpl = '<div class="spinner-border spinner-border-sm text-secondary" role="status"></div>';
-      this._spinner = $(tmpl).appendTo(this._element.parentNode).get(0);
-      $(this._spinner).css({
+      this._spinner = $$1(tmpl).appendTo(this._element.parentNode).get(0);
+      $$1(this._spinner).css({
         position: 'absolute',
-        right: $(this._element).css('padding-right'),
+        right: $$1(this._element).css('padding-right'),
         top: this._element.offsetTop + (this._element.offsetHeight - this._spinner.offsetHeight) / 2 + 'px'
       });
 
@@ -605,7 +603,7 @@
 
       items.forEach(function (i) {
         if (_this6._dropdown.children.length >= _this6._config.maxResult) return;
-        $('<a class="dropdown-item" href="#"></a>').text(i).appendTo(_this6._dropdown).on(Event$1.CLICK_DATA_API, function (e) {
+        $$1('<a class="dropdown-item" href="#"></a>').text(i).appendTo(_this6._dropdown).on(Event$1.CLICK_DATA_API, function (e) {
           _this6._preventClose = true;
           _this6._element.value = e.target.innerText;
 
@@ -634,13 +632,13 @@
 
     Autocomplete._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
+        var data = $$1(this).data(DATA_KEY);
 
-        var _config = _objectSpread({}, Default, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Autocomplete(this, _config);
-          $(this).data(DATA_KEY, data);
+          $$1(this).data(DATA_KEY, data);
         }
 
         if (typeof config === 'string') {
@@ -671,11 +669,11 @@
    */
 
 
-  $.fn[NAME] = Autocomplete._jQueryInterface;
-  $.fn[NAME].Constructor = Autocomplete;
+  $$1.fn[NAME] = Autocomplete._jQueryInterface;
+  $$1.fn[NAME].Constructor = Autocomplete;
 
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT;
+  $$1.fn[NAME].noConflict = function () {
+    $$1.fn[NAME] = JQUERY_NO_CONFLICT;
     return Autocomplete._jQueryInterface;
   };
 
@@ -716,13 +714,13 @@
       strong: [],
       u: [],
       ul: []
-      /**
-       * A pattern that recognizes a commonly useful subset of URLs that are safe.
-       *
-       * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
-       */
-
     };
+    /**
+     * A pattern that recognizes a commonly useful subset of URLs that are safe.
+     *
+     * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+     */
+
     var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi;
     /**
      * A pattern that matches safe data URLs. Only matches image, video and audio types.
@@ -3653,7 +3651,7 @@
   var DATA_KEY$1 = 'bs.confirm';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
-  var JQUERY_NO_CONFLICT$1 = $.fn[NAME$1];
+  var JQUERY_NO_CONFLICT$1 = $$1.fn[NAME$1];
   var Default$1 = {
     title: 'Confirmation',
     text: 'Are you sure want to do the action?',
@@ -3681,17 +3679,14 @@
   var Selector = {
     DATA_TOGGLE: '[data-toggle="confirm"]',
     MODAL_ACCEPTER: '[data-accept="confirm"]'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var Confirm =
-  /*#__PURE__*/
-  function () {
+  var Confirm = /*#__PURE__*/function () {
     function Confirm(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -3719,14 +3714,14 @@
 
     _proto.cancel = function cancel() {
       this._isConfirmed = false;
-      if (this._modal) $(this._modal).modal('hide');
+      if (this._modal) $$1(this._modal).modal('hide');
     };
 
     _proto.dispose = function dispose() {
       [window, this._element].forEach(function (htmlElement) {
-        return $(htmlElement).off(EVENT_KEY$1);
+        return $$1(htmlElement).off(EVENT_KEY$1);
       });
-      $.removeData(this._element, DATA_KEY$1);
+      $$1.removeData(this._element, DATA_KEY$1);
       this._config = null;
       this._element = null;
       this._modal = null;
@@ -3741,7 +3736,7 @@
       var _this = this;
 
       if (this._tagName === 'FORM' || !this._element.dataset.toggle) {
-        $(this._element).on(this._eventType, function (event) {
+        $$1(this._element).on(this._eventType, function (event) {
           _this.ask(_this, event);
         });
       }
@@ -3757,31 +3752,31 @@
       var _this2 = this;
 
       var tx = "\n            <div class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n                <div class=\"modal-dialog\" role=\"document\">\n                    <div class=\"modal-content\">\n                        <div class=\"modal-header\">\n                            <h5 class=\"modal-title\">" + this._config.title + "</h5>\n                            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n                                <span aria-hidden=\"true\">&times;</span>\n                            </button>\n                        </div>\n                        <div class=\"modal-body\">\n                            <p>" + this._config.text + "</p>\n                        </div>\n                        <div class=\"modal-footer\">\n                            <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">" + this._config.btnCancel + "</button>\n                            <button type=\"button\" class=\"btn btn-" + this._config.btnType + "\" data-accept=\"confirm\">" + this._config.btnConfirm + "</button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        ";
-      this._modal = $(tx).appendTo(document.body).get(0);
-      $(this._modal).on(Event$2.MODAL_HIDDEN, function () {
+      this._modal = $$1(tx).appendTo(document.body).get(0);
+      $$1(this._modal).on(Event$2.MODAL_HIDDEN, function () {
         _this2._isConfirmed = false;
-        $(_this2._modal).remove();
+        $$1(_this2._modal).remove();
       });
-      $(this._modal).on(Event$2.ACCEPT_DATA_API, Selector.MODAL_ACCEPTER, function () {
+      $$1(this._modal).on(Event$2.ACCEPT_DATA_API, Selector.MODAL_ACCEPTER, function () {
         _this2._isConfirmed = true;
 
         _this2._element[_this2._execEvent]();
 
         _this2.cancel();
       });
-      $(this._modal).modal('show');
+      $$1(this._modal).modal('show');
     } // Static
     ;
 
     Confirm._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$1);
+        var data = $$1(this).data(DATA_KEY$1);
 
-        var _config = _objectSpread({}, Default$1, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$1, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Confirm(this, _config);
-          $(this).data(DATA_KEY$1, data);
+          $$1(this).data(DATA_KEY$1, data);
         }
 
         if (typeof config === 'string') {
@@ -3817,17 +3812,17 @@
    */
 
 
-  $(document).on(Event$2.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
-    var data = $(this).data(DATA_KEY$1);
+  $$1(document).on(Event$2.CLICK_DATA_API, Selector.DATA_TOGGLE, function (event) {
+    var data = $$1(this).data(DATA_KEY$1);
 
     if (!data) {
       var target = this;
-      var config = $(target).data(DATA_KEY$1) ? 'ask' : _objectSpread({}, $(target).data(), $(this).data(), {
+      var config = $$1(target).data(DATA_KEY$1) ? 'ask' : _objectSpread({}, $$1(target).data(), $$1(this).data(), {
         ask: true
       });
       event.preventDefault();
 
-      Confirm._jQueryInterface.call($(target), config, this);
+      Confirm._jQueryInterface.call($$1(target), config, this);
     } else {
       data.ask(this, event);
     }
@@ -3838,11 +3833,11 @@
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME$1] = Confirm._jQueryInterface;
-  $.fn[NAME$1].Constructor = Confirm;
+  $$1.fn[NAME$1] = Confirm._jQueryInterface;
+  $$1.fn[NAME$1].Constructor = Confirm;
 
-  $.fn[NAME$1].noConflict = function () {
-    $.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
+  $$1.fn[NAME$1].noConflict = function () {
+    $$1.fn[NAME$1] = JQUERY_NO_CONFLICT$1;
     return Confirm._jQueryInterface;
   };
 
@@ -3856,7 +3851,7 @@
 
   (function (factory) {
 
-    factory($, moment);
+    factory($$1, moment);
   })(function ($, moment) {
 
     if (!moment) {
@@ -6573,7 +6568,7 @@
     return $.fn.datetimepicker;
   });
 
-  var bootstrapDatetimepicker = $.fn.datetimepicker;
+  var bootstrapDatetimepicker = $$1.fn.datetimepicker;
 
   /**
    * ------------------------------------------------------------------------
@@ -6590,17 +6585,14 @@
       dismiss: false,
       focus: false
     }
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var Dialog =
-  /*#__PURE__*/
-  function () {
+  var Dialog = /*#__PURE__*/function () {
     function Dialog(options) {
       this._confirmed = false;
       this._options = options;
@@ -6627,7 +6619,7 @@
     _proto._getInputValue = function _getInputValue() {
       if (!this._options.input) return;
       if (this._options.val) return this._options.val.call(this, this._input);
-      return $(this._input).val();
+      return $$1(this._input).val();
     };
 
     _proto._makeInput = function _makeInput() {
@@ -6654,8 +6646,8 @@
       }
 
       var tx = "\n            <div class=\"form-group\">\n                <label for=\"bs-dialog-input\">" + input.label + "</label>\n            </div>";
-      this._input = $(tmpl).get(0);
-      return $(tx).append(this._input);
+      this._input = $$1(tmpl).get(0);
+      return $$1(tx).append(this._input);
     };
 
     _proto._makeModal = function _makeModal() {
@@ -6682,21 +6674,21 @@
       });
 
       var tmpl = "\n            <div class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n                <div class=\"modal-dialog\" role=\"document\">\n                    <div class=\"modal-content\">\n                        " + header + "\n                        <div class=\"modal-body\">\n                            " + message + "\n                        </div>\n                        <div class=\"modal-footer\">\n                            " + buttons + "\n                        </div>\n                    </div>\n                </div>\n            </div>";
-      this._modal = $(tmpl).appendTo(document.body);
+      this._modal = $$1(tmpl).appendTo(document.body);
 
       if (this._options.input) {
         var form = this._makeInput();
 
-        $(this._modal).find('.modal-body').append(form);
+        $$1(this._modal).find('.modal-body').append(form);
       }
 
-      $(this._modal).on('click', '[data-confirm]', function (event) {
+      $$1(this._modal).on('click', '[data-confirm]', function (event) {
         _this._confirmed = true;
-        $(_this._modal).modal('hide');
+        $$1(_this._modal).modal('hide');
       });
-      $(this._modal).on('hidden.bs.modal', function (event) {
+      $$1(this._modal).on('hidden.bs.modal', function (event) {
         setTimeout(function (e) {
-          return $(_this._modal).remove();
+          return $$1(_this._modal).remove();
         }, 1000);
         if (!_this._options.callback) return;
         var arg = _this._confirmed;
@@ -6704,13 +6696,13 @@
 
         _this._options.callback.call(_this, arg);
       });
-      $(this._modal).on('shown.bs.modal', function (event) {
-        if (_this._input) $(_this._input).focus();else $(_this._modal).find('.btn-focus-first').focus();
+      $$1(this._modal).on('shown.bs.modal', function (event) {
+        if (_this._input) $$1(_this._input).focus();else $$1(_this._modal).find('.btn-focus-first').focus();
       });
     };
 
     _proto._showModal = function _showModal() {
-      $(this._modal).modal('show');
+      $$1(this._modal).modal('show');
     } // Static
     ;
 
@@ -6785,7 +6777,7 @@
    */
 
 
-  $[NAME$2] = Dialog;
+  $$1[NAME$2] = Dialog;
 
   /**
    * ------------------------------------------------------------------------
@@ -6798,7 +6790,7 @@
   var DATA_KEY$2 = 'bs.drawer';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
-  var JQUERY_NO_CONFLICT$2 = $.fn[NAME$3];
+  var JQUERY_NO_CONFLICT$2 = $$1.fn[NAME$3];
   var ESCAPE_KEYCODE = 27; // KeyboardEvent.which value for Escape (Esc) key
 
   var Default$3 = {
@@ -6842,17 +6834,14 @@
     DATA_DISMISS: '[data-dismiss="drawer"]',
     FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
     STICKY_CONTENT: '.sticky-top'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var Drawer =
-  /*#__PURE__*/
-  function () {
+  var Drawer = /*#__PURE__*/function () {
     function Drawer(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -6877,11 +6866,11 @@
       var _this = this;
 
       if (this._isShown || this._isTransitioning) return;
-      if ($(this._element).hasClass(ClassName.SLIDE)) this._isTransitioning = true;
-      var showEvent = $.Event(Event$3.SHOW, {
+      if ($$1(this._element).hasClass(ClassName.SLIDE)) this._isTransitioning = true;
+      var showEvent = $$1.Event(Event$3.SHOW, {
         relatedTarget: relatedTarget
       });
-      $(this._element).trigger(showEvent);
+      $$1(this._element).trigger(showEvent);
       if (this._isShown || showEvent.isDefaultPrevented()) return;
       this._isShown = true;
 
@@ -6891,12 +6880,12 @@
 
       this._setEscapeEvent();
 
-      $(this._element).on(Event$3.CLICK_DISMISS, Selector$1.DATA_DISMISS, function (event) {
+      $$1(this._element).on(Event$3.CLICK_DISMISS, Selector$1.DATA_DISMISS, function (event) {
         return _this.hide(event);
       });
-      $(this._content).on(Event$3.MOUSEDOWN_DISMISS, function () {
-        $(_this._element).one(Event$3.MOUSEUP_DISMISS, function (event) {
-          if ($(event.target).is(_this._element)) _this._ignoreBackdropClick = true;
+      $$1(this._content).on(Event$3.MOUSEDOWN_DISMISS, function () {
+        $$1(_this._element).one(Event$3.MOUSEUP_DISMISS, function (event) {
+          if ($$1(event.target).is(_this._element)) _this._ignoreBackdropClick = true;
         });
       });
 
@@ -6910,23 +6899,23 @@
 
       if (event) event.preventDefault();
       if (!this._isShown || this._isTransitioning) return;
-      var hideEvent = $.Event(Event$3.HIDE);
-      $(this._element).trigger(hideEvent);
+      var hideEvent = $$1.Event(Event$3.HIDE);
+      $$1(this._element).trigger(hideEvent);
       if (!this._isShown || hideEvent.isDefaultPrevented()) return;
       this._isShown = false;
-      var transition = $(this._element).hasClass(ClassName.SLIDE);
+      var transition = $$1(this._element).hasClass(ClassName.SLIDE);
       if (transition) this._isTransitioning = true;
 
       this._setEscapeEvent();
 
-      $(document).off(Event$3.FOCUSIN);
-      $(this._element).removeClass(ClassName.SHOW);
-      $(this._element).off(Event$3.CLICK_DISMISS);
-      $(this._content).off(Event$3.MOUSEDOWN_DISMISS);
+      $$1(document).off(Event$3.FOCUSIN);
+      $$1(this._element).removeClass(ClassName.SHOW);
+      $$1(this._element).off(Event$3.CLICK_DISMISS);
+      $$1(this._content).off(Event$3.MOUSEDOWN_DISMISS);
 
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $(this._element).one(Util.TRANSITION_END, function (event) {
+        $$1(this._element).one(Util.TRANSITION_END, function (event) {
           return _this2._hideDrawer(event);
         }).emulateTransitionEnd(transitionDuration);
       } else {
@@ -6936,10 +6925,10 @@
 
     _proto.dispose = function dispose() {
       [window, this._element, this._content].forEach(function (htmlElement) {
-        return $(htmlElement).off(EVENT_KEY$2);
+        return $$1(htmlElement).off(EVENT_KEY$2);
       });
-      $(document).off(Event$3.FOCUSIN);
-      $.removeData(this._element, DATA_KEY$2);
+      $$1(document).off(Event$3.FOCUSIN);
+      $$1.removeData(this._element, DATA_KEY$2);
       this._config = null;
       this._element = null;
       this._content = null;
@@ -6961,7 +6950,7 @@
     _proto._showElement = function _showElement(relatedTarget) {
       var _this3 = this;
 
-      var transition = $(this._element).hasClass(ClassName.SLIDE);
+      var transition = $$1(this._element).hasClass(ClassName.SLIDE);
       if (!this._element.parentNode || this._element.parentNode.nodeType !== Node.ELEMENT_NODE) document.body.appendChild(this._element);
       this._element.style.display = 'block';
 
@@ -6969,23 +6958,23 @@
 
       this._element.setAttribute('aria-modal', true);
 
-      if ($(this._content).hasClass(ClassName.SCROLLABLE)) (this._content.querySelector(Selector$1.MODAL_BODY) || {}).scrollTop = 0;else this._element.scrollTop = 0;
+      if ($$1(this._content).hasClass(ClassName.SCROLLABLE)) (this._content.querySelector(Selector$1.MODAL_BODY) || {}).scrollTop = 0;else this._element.scrollTop = 0;
       if (transition) Util.reflow(this._element);
-      $(this._element).addClass(ClassName.SHOW);
+      $$1(this._element).addClass(ClassName.SHOW);
       if (this._config.focus) this._enforceFocus();
-      var shownEvent = $.Event(Event$3.SHOWN, {
+      var shownEvent = $$1.Event(Event$3.SHOWN, {
         relatedTarget: relatedTarget
       });
 
       var transitionComplete = function transitionComplete() {
         if (_this3._config.focus) _this3._element.focus();
         _this3._isTransitioning = false;
-        $(_this3._element).trigger(shownEvent);
+        $$1(_this3._element).trigger(shownEvent);
       };
 
       if (transition) {
         var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-        $(this._element).one(Util.TRANSITION_END, transitionComplete).emulateTransitionEnd(transitionDuration);
+        $$1(this._element).one(Util.TRANSITION_END, transitionComplete).emulateTransitionEnd(transitionDuration);
       } else {
         transitionComplete();
       }
@@ -6994,9 +6983,9 @@
     _proto._enforceFocus = function _enforceFocus() {
       var _this4 = this;
 
-      $(document).off(Event$3.FOCUSIN) // Guard against infinite focus loop
+      $$1(document).off(Event$3.FOCUSIN) // Guard against infinite focus loop
       .on(Event$3.FOCUSIN, function (event) {
-        if (document !== event.target && _this4._element !== event.target && $(_this4._element).has(event.target).length === 0) {
+        if (document !== event.target && _this4._element !== event.target && $$1(_this4._element).has(event.target).length === 0) {
           _this4._element.focus();
         }
       });
@@ -7006,7 +6995,7 @@
       var _this5 = this;
 
       if (this._isShown && this._config.keyboard) {
-        $(document.body).on(Event$3.KEYDOWN_DISMISS, function (event) {
+        $$1(document.body).on(Event$3.KEYDOWN_DISMISS, function (event) {
           if (event.which === ESCAPE_KEYCODE) {
             event.preventDefault();
 
@@ -7014,7 +7003,7 @@
           }
         });
       } else if (!this._isShown) {
-        $(document.body).off(Event$3.KEYDOWN_DISMISS);
+        $$1(document.body).off(Event$3.KEYDOWN_DISMISS);
       }
     };
 
@@ -7030,19 +7019,19 @@
       this._isTransitioning = false;
 
       this._showBackdrop(function () {
-        $(document.body).removeClass(ClassName.OPEN);
+        $$1(document.body).removeClass(ClassName.OPEN);
 
         _this6._resetAdjustments();
 
         _this6._resetScrollbar();
 
-        $(_this6._element).trigger(Event$3.HIDDEN);
+        $$1(_this6._element).trigger(Event$3.HIDDEN);
       });
     };
 
     _proto._removeBackdrop = function _removeBackdrop() {
       if (this._backdrop) {
-        $(this._backdrop).remove();
+        $$1(this._backdrop).remove();
         this._backdrop = null;
       }
     };
@@ -7050,14 +7039,14 @@
     _proto._showBackdrop = function _showBackdrop(callback) {
       var _this7 = this;
 
-      var animate = $(this._element).hasClass(ClassName.SLIDE) ? ClassName.FADE : '';
+      var animate = $$1(this._element).hasClass(ClassName.SLIDE) ? ClassName.FADE : '';
 
       if (this._isShown && this._config.backdrop) {
         this._backdrop = document.createElement('div');
         this._backdrop.className = ClassName.BACKDROP;
         if (animate) this._backdrop.classList.add(animate);
-        $(this._backdrop).appendTo(document.body);
-        $(this._backdrop).on(Event$3.CLICK_DISMISS, function (event) {
+        $$1(this._backdrop).appendTo(document.body);
+        $$1(this._backdrop).on(Event$3.CLICK_DISMISS, function (event) {
           if (_this7._ignoreBackdropClick) {
             _this7._ignoreBackdropClick = false;
             return;
@@ -7067,13 +7056,13 @@
           if (_this7._config.backdrop === 'static') _this7._element.focus();else _this7.hide();
         });
         if (animate) Util.reflow(this._backdrop);
-        $(this._backdrop).addClass(ClassName.SHOW);
+        $$1(this._backdrop).addClass(ClassName.SHOW);
         if (!callback) return;
         if (!animate) return callback();
         var backdropTransitionDuration = Util.getTransitionDurationFromElement(this._backdrop);
-        $(this._backdrop).one(Util.TRANSITION_END, callback).emulateTransitionEnd(backdropTransitionDuration);
+        $$1(this._backdrop).one(Util.TRANSITION_END, callback).emulateTransitionEnd(backdropTransitionDuration);
       } else if (!this._isShown && this._backdrop) {
-        $(this._backdrop).removeClass(ClassName.SHOW);
+        $$1(this._backdrop).removeClass(ClassName.SHOW);
 
         var callbackRemove = function callbackRemove() {
           _this7._removeBackdrop();
@@ -7081,10 +7070,10 @@
           if (callback) callback();
         };
 
-        if ($(this._element).hasClass(ClassName.SLIDE)) {
+        if ($$1(this._element).hasClass(ClassName.SLIDE)) {
           var _backdropTransitionDuration = Util.getTransitionDurationFromElement(this._backdrop);
 
-          $(this._backdrop).one(Util.TRANSITION_END, callbackRemove).emulateTransitionEnd(_backdropTransitionDuration);
+          $$1(this._backdrop).one(Util.TRANSITION_END, callbackRemove).emulateTransitionEnd(_backdropTransitionDuration);
         } else {
           callbackRemove();
         }
@@ -7111,40 +7100,40 @@
         var fixedContent = [].slice.call(document.querySelectorAll(Selector$1.FIXED_CONTENT));
         var stickyContent = [].slice.call(document.querySelectorAll(Selector$1.STICKY_CONTENT)); // Adjust fixed content padding
 
-        $(fixedContent).each(function (index, element) {
+        $$1(fixedContent).each(function (index, element) {
           var actualPadding = element.style.paddingRight;
-          var calculatedPadding = $(element).css('padding-right');
-          $(element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this8._scrollbarWidth + "px");
+          var calculatedPadding = $$1(element).css('padding-right');
+          $$1(element).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + _this8._scrollbarWidth + "px");
         }); // Adjust sticky content margin
 
-        $(stickyContent).each(function (index, element) {
+        $$1(stickyContent).each(function (index, element) {
           var actualMargin = element.style.marginRight;
-          var calculatedMargin = $(element).css('margin-right');
-          $(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this8._scrollbarWidth + "px");
+          var calculatedMargin = $$1(element).css('margin-right');
+          $$1(element).data('margin-right', actualMargin).css('margin-right', parseFloat(calculatedMargin) - _this8._scrollbarWidth + "px");
         }); // Adjust body padding
 
         var actualPadding = document.body.style.paddingRight;
-        var calculatedPadding = $(document.body).css('padding-right');
-        $(document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
+        var calculatedPadding = $$1(document.body).css('padding-right');
+        $$1(document.body).data('padding-right', actualPadding).css('padding-right', parseFloat(calculatedPadding) + this._scrollbarWidth + "px");
       }
 
-      $(document.body).addClass(ClassName.OPEN);
+      $$1(document.body).addClass(ClassName.OPEN);
     };
 
     _proto._resetScrollbar = function _resetScrollbar() {
       var fixedContent = [].slice.call(document.querySelectorAll(Selector$1.FIXED_CONTENT));
-      $(fixedContent).each(function (index, element) {
-        var padding = $(element).data('padding-right');
-        $(element).removeData('padding-right');
+      $$1(fixedContent).each(function (index, element) {
+        var padding = $$1(element).data('padding-right');
+        $$1(element).removeData('padding-right');
         element.style.paddingRight = padding ? padding : '';
       });
       var elements = [].slice.call(document.querySelectorAll("" + Selector$1.STICKY_CONTENT));
-      $(elements).each(function (index, element) {
-        var margin = $(element).data('margin-right');
-        if (typeof margin !== 'undefined') $(element).css('margin-right', margin).removeData('margin-right');
+      $$1(elements).each(function (index, element) {
+        var margin = $$1(element).data('margin-right');
+        if (typeof margin !== 'undefined') $$1(element).css('margin-right', margin).removeData('margin-right');
       });
-      var padding = $(document.body).data('padding-right');
-      $(document.body).removeData('padding-right');
+      var padding = $$1(document.body).data('padding-right');
+      $$1(document.body).removeData('padding-right');
       document.body.style.paddingRight = padding ? padding : '';
     };
 
@@ -7161,13 +7150,13 @@
 
     Drawer._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$2);
+        var data = $$1(this).data(DATA_KEY$2);
 
-        var _config = _objectSpread({}, Default$3, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$3, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Drawer(this, _config);
-          $(this).data(DATA_KEY$2, data);
+          $$1(this).data(DATA_KEY$2, data);
         }
 
         if (typeof config === 'string') {
@@ -7203,22 +7192,22 @@
    */
 
 
-  $(document).on(Event$3.CLICK_DATA_API, Selector$1.DATA_TOGGLE, function (event) {
+  $$1(document).on(Event$3.CLICK_DATA_API, Selector$1.DATA_TOGGLE, function (event) {
     var _this9 = this;
 
     var target;
     var selector = Util.getSelectorFromElement(this);
     if (selector) target = document.querySelector(selector);
-    var config = $(target).data(DATA_KEY$2) ? 'toggle' : _objectSpread({}, $(target).data(), $(this).data());
+    var config = $$1(target).data(DATA_KEY$2) ? 'toggle' : _objectSpread({}, $$1(target).data(), $$1(this).data());
     if (this.tagName === 'A' || this.tagName === 'AREA') event.preventDefault();
-    var $target = $(target).one(Event$3.SHOW, function (showEvent) {
+    var $target = $$1(target).one(Event$3.SHOW, function (showEvent) {
       if (showEvent.isDefaultPrevented()) return;
       $target.one(Event$3.HIDDEN, function () {
-        if ($(_this9).is(':visible')) _this9.focus();
+        if ($$1(_this9).is(':visible')) _this9.focus();
       });
     });
 
-    Drawer._jQueryInterface.call($(target), config, this);
+    Drawer._jQueryInterface.call($$1(target), config, this);
   });
   /**
    * ------------------------------------------------------------------------
@@ -7226,11 +7215,11 @@
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME$3] = Drawer._jQueryInterface;
-  $.fn[NAME$3].Constructor = Drawer;
+  $$1.fn[NAME$3] = Drawer._jQueryInterface;
+  $$1.fn[NAME$3].Constructor = Drawer;
 
-  $.fn[NAME$3].noConflict = function () {
-    $.fn[NAME$3] = JQUERY_NO_CONFLICT$2;
+  $$1.fn[NAME$3].noConflict = function () {
+    $$1.fn[NAME$3] = JQUERY_NO_CONFLICT$2;
     return Drawer._jQueryInterface;
   };
 
@@ -7249,9 +7238,7 @@
     selected: null
   };
 
-  var FilePicker$1 =
-  /*#__PURE__*/
-  function () {
+  var FilePicker$1 = /*#__PURE__*/function () {
     function FilePicker(config) {
       this._config = this._getConfig(config);
       this._el = {};
@@ -7266,7 +7253,7 @@
 
       this._addElementsListener();
 
-      $(this._el.drawer).drawer('show');
+      $$1(this._el.drawer).drawer('show');
     } // private
 
 
@@ -7276,15 +7263,15 @@
       var _this = this;
 
       // drawer showing
-      $(this._el.drawer).on('show.bs.drawer', function (e) {
+      $$1(this._el.drawer).on('show.bs.drawer', function (e) {
         _this._footerHide();
       }); // drawer shown
 
-      $(this._el.drawer).on('shown.bs.drawer', function (e) {
+      $$1(this._el.drawer).on('shown.bs.drawer', function (e) {
         // calculate the spinner position
         if (_this._el.dhSearchInput) {
           var inpWidth = _this._el.dhSearchInput.offsetWidth;
-          var inpPadRight = parseFloat($(_this._el.dhSearchInput).css('padding-left'));
+          var inpPadRight = parseFloat($$1(_this._el.dhSearchInput).css('padding-left'));
           _this._el.dhSearchSpinner.style.left = inpWidth - inpPadRight * 2.5 + 'px';
 
           _this._spinnerHide();
@@ -7296,16 +7283,16 @@
         _this._searchQuery('');
       }); // drawer hiding
 
-      $(this._el.drawer).on('hide.bs.drawer', function (e) {
+      $$1(this._el.drawer).on('hide.bs.drawer', function (e) {
         if (_this._uploader) e.preventDefault();
       }); // drawer hidden
 
-      $(this._el.drawer).on('hidden.bs.drawer', function (e) {
-        $(_this._el.drawer).remove();
+      $$1(this._el.drawer).on('hidden.bs.drawer', function (e) {
+        $$1(_this._el.drawer).remove();
       }); // input search
 
       if (this._el.dhSearchInput) {
-        $(this._el.dhSearchInput).on('input', function (e) {
+        $$1(this._el.dhSearchInput).on('input', function (e) {
           if (_this._timer) clearTimeout(_this._timer);
           _this._query = _this._el.dhSearchInput.value;
           _this._timer = setTimeout(function (q) {
@@ -7315,14 +7302,14 @@
       } // file list click
 
 
-      $(this._el.drawerBody).on('click', '.filepicker-item-selectable', function (e) {
+      $$1(this._el.drawerBody).on('click', '.filepicker-item-selectable', function (e) {
         var item = e.currentTarget;
 
         if (!_this._config.multiple) {
-          $(_this._el.drawerBody).children('.filepicker-item-active').removeClass('filepicker-item-active');
+          $$1(_this._el.drawerBody).children('.filepicker-item-active').removeClass('filepicker-item-active');
         }
 
-        var path = $(item).data('filepicker.item').path;
+        var path = $$1(item).data('filepicker.item').path;
 
         if (item.classList.toggle('filepicker-item-active')) {
           _this._paths.push(path);
@@ -7333,25 +7320,25 @@
         _this._footerUpdate();
       }); // file list error click
 
-      $(this._el.drawerBody).on('click', '.filepicker-item-error', function (e) {
+      $$1(this._el.drawerBody).on('click', '.filepicker-item-error', function (e) {
         var item = e.currentTarget;
         item.style.opacity = 0;
         setTimeout(function (item) {
-          return $(item).remove();
+          return $$1(item).remove();
         }, 300, item);
       }); // clicking the select button
 
-      $(this._el.dfBtnSelect).click(function (e) {
+      $$1(this._el.dfBtnSelect).click(function (e) {
         var result = [];
-        $(_this._el.drawerBody).children('.filepicker-item-active').each(function (i, e) {
-          return result.push($(e).data('filepicker.item'));
+        $$1(_this._el.drawerBody).children('.filepicker-item-active').each(function (i, e) {
+          return result.push($$1(e).data('filepicker.item'));
         });
         if (_this._config.selected) _this._config.selected.call(_this, result);
-        $(_this._el.drawer).drawer('hide');
+        $$1(_this._el.drawer).drawer('hide');
       });
 
       if (this._el.dhUploadInput) {
-        $(this._el.dhUploadInput).on('change', function (e) {
+        $$1(this._el.dhUploadInput).on('change', function (e) {
           var files = _this._el.dhUploadInput.files;
           if (!files.length) return;
 
@@ -7362,7 +7349,7 @@
 
             var el = _this._renderItem(file, true, null, false, false);
 
-            var prog = $(el).find('.progress-bar').get(0); // start upload the file
+            var prog = $$1(el).find('.progress-bar').get(0); // start upload the file
 
             _this._uploader++;
 
@@ -7373,12 +7360,12 @@
 
               if (typeof res === 'string') {
                 res = _this._hs(res);
-                $(prog).parent().replaceWith("<small class=\"text-danger\">" + res + "</small>");
+                $$1(prog).parent().replaceWith("<small class=\"text-danger\">" + res + "</small>");
                 el.classList.add('filepicker-item-error');
               } else {
                 var nel = _this._renderItem(res, false, el, false, true);
 
-                if (nel) nel.click();else $(el).remove();
+                if (nel) nel.click();else $$1(el).remove();
               }
 
               _this._footerUpdate();
@@ -7395,8 +7382,8 @@
     };
 
     _proto._clearResult = function _clearResult() {
-      $(this._el.drawerBody).find('.filepicker-item-clearable').not('.filepicker-item-active').each(function (i, e) {
-        return $(e).remove();
+      $$1(this._el.drawerBody).find('.filepicker-item-clearable').not('.filepicker-item-active').each(function (i, e) {
+        return $$1(e).remove();
       });
 
       this._footerUpdate();
@@ -7435,16 +7422,16 @@
       }
 
       var tmpl = "\n            <div class=\"drawer slide drawer-right filepicker-container\">\n                <div class=\"drawer-content drawer-content-scrollable\">\n                    <div class=\"drawer-header\">" + header + "</div>\n                    <div class=\"drawer-body\" data-el=\"drawer-body\"></div>\n                    <div class=\"drawer-footer\" data-el=\"drawer-footer\">\n                        <button class=\"btn btn-primary btn-block\" data-el=\"df-btn-select\">\n                            Select\n                        </button>\n                    </div>\n                </div>\n            </div>";
-      this._el.drawer = $(tmpl).appendTo(document.body).get(0); // find identified elements
+      this._el.drawer = $$1(tmpl).appendTo(document.body).get(0); // find identified elements
 
-      $(this._el.drawer).find('[data-el]').each(function (i, e) {
+      $$1(this._el.drawer).find('[data-el]').each(function (i, e) {
         var name = e.dataset.el.replace(/\-[a-z]/g, function (m) {
           return m[1].toUpperCase();
         });
         _this2._el[name] = e;
       }); // add upload label
 
-      $(this._el.dhUploadLabel).append(this._config.btnUpload);
+      $$1(this._el.dhUploadLabel).append(this._config.btnUpload);
     };
 
     _proto._renderItem = function _renderItem(item, uploader, replacer, removable, selectable) {
@@ -7484,10 +7471,10 @@
       if (removable) clss += ' filepicker-item-clearable';
       if (selectable) clss += ' filepicker-item-selectable';
       var tmpl = "\n            <div class=\"media" + clss + "\" title=\"" + safe.name + "\">\n                <img src=\"" + safe.thumb + "\" alt=\"#\" width=\"48\" height=\"48\">\n                <div class=\"media-body\">\n                    <h6>" + safe.name + "</h6>\n                    <small class=\"text-muted\">" + safe.type + "</small>\n                    " + progress + "\n                </div>\n            </div>";
-      var el = $(tmpl).get(0);
+      var el = $$1(tmpl).get(0);
 
       if (uploader) {
-        var img = $(el).children('img').get(0);
+        var img = $$1(el).children('img').get(0);
 
         if (/image\//.test(safe.type)) {
           var reader = new FileReader();
@@ -7499,10 +7486,10 @@
           reader.readAsDataURL(item);
         }
       } else {
-        $(el).data('filepicker.item', item);
+        $$1(el).data('filepicker.item', item);
       }
 
-      if (replacer) $(replacer).replaceWith(el);else $(this._el.drawerBody).append(el);
+      if (replacer) $$1(replacer).replaceWith(el);else $$1(this._el.drawerBody).append(el);
       return el;
     };
 
@@ -7538,7 +7525,7 @@
 
     _proto._footerUpdate = function _footerUpdate() {
       if (this._uploader) return this._footerHide();
-      if ($(this._el.drawerBody).children('.filepicker-item-active').length) this._footerShow();else this._footerHide();
+      if ($$1(this._el.drawerBody).children('.filepicker-item-active').length) this._footerShow();else this._footerHide();
     };
 
     _proto._spinnerHide = function _spinnerHide() {
@@ -7556,7 +7543,7 @@
 
   /**
    * --------------------------------------------------------------------------
-   * FileUploader (v0.0.1): fileuploader.js
+   * FileUploader (v0.1.0): fileuploader.js
    * Licensed under MIT (https://github.com/iqbalfn/fileuploader/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -7566,38 +7553,52 @@
    * Class Definition
    * ------------------------------------------------------------------------
    */
-  var FileUploader$1 =
-  /*#__PURE__*/
-  function () {
+  var FileUploader$1 = /*#__PURE__*/function () {
     function FileUploader(options) {
-      var _this = this;
-
       this._queries = options.queries || {};
       this._fields = options.fields || {};
       this._files = options.files || {};
       this._headers = options.headers || {};
       this._url = options.url;
       this._response = null;
-      this._xhr = null; // events
+      this._xhr = null;
+      this._chunks = null; // {
+      //    chunk::int  Chunk index
+      //    chunks::int  Chunk total
+      //    options::obj {
+      //        minSize::int  Minimum size of file to chunk the upload
+      //        chunkSize:int  Each chunk file size to upload
+      //        test::func  Function to call to test chunk upload
+      //        after::func  Function to call right after last chunk
+      //        before::func  Function to call before the first chunk
+      //    }
+      // }
 
-      var events = ['onStart', 'onProgress', 'onError', 'onSuccess', 'onComplete'];
-      events.forEach(function (i) {
-        if (options[i]) _this[i] = options[i];
-      });
+      if (!Object.keys(this._files).length) throw 'No file provided';
+
+      this._registerEvents(options);
+
+      this._buildUrl();
+
+      this._parseChunkOption(options);
     } // events callback
 
 
     var _proto = FileUploader.prototype;
 
-    _proto.onStart = function onStart() {};
+    _proto.onChankUploaded = function onChankUploaded(up, xhr, res, cb) {
+      cb(true);
+    };
 
-    _proto.onProgress = function onProgress() {};
+    _proto.onComplete = function onComplete() {};
 
     _proto.onError = function onError() {};
 
-    _proto.onSuccess = function onSuccess() {};
+    _proto.onProgress = function onProgress() {};
 
-    _proto.onComplete = function onComplete() {} // public
+    _proto.onStart = function onStart() {};
+
+    _proto.onSuccess = function onSuccess() {} // public
     // actions
     ;
 
@@ -7606,59 +7607,13 @@
     };
 
     _proto.send = function send() {
-      var _this2 = this;
+      var _this = this;
 
-      var formData = new FormData(),
-          xhr = new XMLHttpRequest();
-      this._xhr = xhr;
+      if (!this._chunks) return this._sendSingle();
 
-      for (var field in this._fields) {
-        formData.append(field, this._fields[field]);
-      }
-
-      for (var _field in this._files) {
-        formData.append(_field, this._files[_field], this._files[_field].name);
-      }
-
-      var url = this._url;
-      var usign = url.includes('?') ? '&' : '?';
-      var queries = [];
-
-      for (var k in this._queries) {
-        queries.push(this._qs(k) + '=' + this._qs(this._queries[k]));
-      }
-
-      if (queries.length) url += usign + queries;
-      xhr.open('POST', url, true);
-
-      xhr.onreadystatechange = function () {
-        _this2.onProgress(_this2, xhr.readyState);
-
-        if (xhr.readyState != 4) return;
-
-        if (xhr.status != 200) {
-          _this2.onError(_this2, _this2._xhr);
-
-          _this2.onComplete(_this2, _this2._xhr);
-
-          return;
-        }
-
-        var res = null;
-
-        try {
-          res = JSON.parse(xhr.responseText);
-        } catch (e) {
-          res = xhr.responseText;
-        }
-
-        _this2.onSuccess(_this2, _this2._xhr, res);
-
-        _this2.onComplete(_this2, _this2._xhr);
-      };
-
-      xhr.send(formData);
-      this.onStart(this, this._xhr);
+      this._chunks.options.before(this, function (cont) {
+        _this._sendChunks();
+      });
     } // setter & adder
     ;
 
@@ -7720,8 +7675,176 @@
     } // private
     ;
 
+    _proto._buildUrl = function _buildUrl() {
+      var queries = [];
+      var usign = this._url.includes('?') ? '&' : '?';
+
+      for (var k in this._queries) {
+        queries.push(this._qs(k) + '=' + this._qs(this._queries[k]));
+      }
+
+      if (queries.length) this._url += usign + queries;
+    };
+
+    _proto._parseChunkOption = function _parseChunkOption(options) {
+      if (!options.chunks) return;
+      var file = null;
+      var config = {};
+      var useChunk = false;
+      var defs = {
+        chunkSize: 200000,
+        minSize: 500000,
+        after: function after(p, r, cb) {
+          cb(r);
+        },
+        before: function before(up, cb) {
+          cb(true);
+        },
+        test: function test() {
+          return true;
+        }
+      };
+
+      for (var k in defs) {
+        config[k] = options.chunks[k] || defs[k];
+      }
+
+      for (var _k in this._files) {
+        file = this._files[_k];
+        if (file.size < config.minSize) continue;
+        var proc = config.test(this, file, config);
+        if (!proc) continue;
+        useChunk = true;
+        break;
+      }
+
+      if (useChunk && Object.keys(this._files).length > 1) throw 'Multiple file is not supported for chunk upload';
+      this._chunks = {
+        chunk: 0,
+        chunks: Math.ceil(file.size / config.chunkSize),
+        options: config
+      };
+    };
+
     _proto._qs = function _qs(str) {
       return encodeURIComponent(str);
+    };
+
+    _proto._registerEvents = function _registerEvents(options) {
+      var _this2 = this;
+
+      var events = ['onChankUploaded', 'onComplete', 'onError', 'onProgress', 'onSuccess', 'onStart'];
+      events.forEach(function (i) {
+        if (options[i]) _this2[i] = options[i];
+      });
+    };
+
+    _proto._sendSingle = function _sendSingle() {
+      var _this3 = this;
+
+      this.onStart(this);
+
+      this._upload(this._files, this._fields, function (err, res) {
+        _this3.onProgress(_this3, 100);
+
+        _this3.onComplete(_this3, _this3._xhr);
+
+        if (err) return _this3.onError(_this3, _this3._xhr);
+
+        _this3.onSuccess(_this3, _this3._xhr, res);
+      });
+    };
+
+    _proto._sendChunks = function _sendChunks() {
+      var _this4 = this;
+
+      var file;
+      var fkey;
+
+      for (var k in this._files) {
+        file = this._files[k];
+        fkey = k;
+      }
+
+      var nextChunkIndex = this._chunks.chunk + 1;
+      var config = this._chunks;
+      var opts = config.options;
+      if (config.chunk) this.onStart(this);
+      var chunkStart = config.chunk * opts.chunkSize;
+      var chunkEnd = chunkStart + opts.chunkSize;
+      if (chunkEnd > file.size) chunkEnd = file.size;
+      var chunkFile = file.slice(chunkStart, chunkEnd);
+
+      if (!chunkFile.size) {
+        this.onComplete(this, this._xhr);
+        var res;
+
+        try {
+          res = JSON.parse(this._response);
+        } catch (e) {
+          res = this._response;
+        }
+
+        return this._chunks.options.after(this, res, function (r) {
+          _this4.onSuccess(_this4, _this4._xhr, r);
+        });
+      }
+
+      var chunkFields = this._fields;
+      chunkFields.chunk = this._chunks.chunk;
+      chunkFields.chunks = this._chunks.chunks;
+      var chunkProgress = Math.round(nextChunkIndex / this._chunks.chunks * 100);
+      var chunkForm = {};
+      chunkForm[fkey] = chunkFile;
+      this._chunks.chunk = nextChunkIndex;
+
+      this._upload(chunkForm, chunkFields, function (err, res) {
+        _this4.onProgress(_this4, chunkProgress);
+
+        if (err) return _this4.onError(_this4, _this4._xhr);
+
+        _this4.onChankUploaded(_this4, _this4._xhr, res, function (next) {
+          if (next === true) return setTimeout(function () {
+            return _this4._sendChunks();
+          }, 100);
+          return _this4.onError(_this4, _this4._xhr);
+        });
+      });
+    };
+
+    _proto._upload = function _upload(files, fields, callback) {
+      var _this5 = this;
+
+      var formData = new FormData(),
+          xhr = new XMLHttpRequest();
+      this._xhr = xhr;
+
+      for (var field in fields) {
+        formData.append(field, fields[field]);
+      }
+
+      for (var _field in files) {
+        formData.append(_field, files[_field], files[_field].name);
+      }
+
+      xhr.open('POST', this._url, true);
+
+      xhr.onreadystatechange = function (e) {
+        if (xhr.readyState != 4) return;
+        _this5._response = xhr.responseText;
+        if (xhr.status != 200) return callback(xhr.status, 'Invalid server response');
+        var res = null;
+
+        try {
+          res = JSON.parse(xhr.responseText);
+        } catch (e) {
+          res = xhr.responseText;
+        }
+
+        callback(0, res);
+      };
+
+      xhr.send(formData);
     };
 
     return FileUploader;
@@ -7740,7 +7863,7 @@
   var DATA_KEY$3 = 'bs.formerror';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
-  var JQUERY_NO_CONFLICT$3 = $.fn[NAME$4];
+  var JQUERY_NO_CONFLICT$3 = $$1.fn[NAME$4];
   var Default$5 = {};
   var Event$4 = {
     INPUT_DATA_API: "input" + EVENT_KEY$3 + DATA_API_KEY$3,
@@ -7753,9 +7876,7 @@
    * ------------------------------------------------------------------------
    */
 
-  var FormError =
-  /*#__PURE__*/
-  function () {
+  var FormError = /*#__PURE__*/function () {
     function FormError(element, config) {
       this._element = element;
       this._controls = [].slice.call(element.elements, 0);
@@ -7775,7 +7896,7 @@
       var _this = this;
 
       this._controls.forEach(function (e) {
-        var $e = $(e);
+        var $e = $$1(e);
         var feedback = $e.next('.invalid-feedback').get(0);
 
         if (!feedback) {
@@ -7798,7 +7919,7 @@
 
       this._element.setAttribute('novalidate', '');
 
-      $(this._element).on(Event$4.SUBMIT_DATA_API, function (e) {
+      $$1(this._element).on(Event$4.SUBMIT_DATA_API, function (e) {
         if (!_this2._element.checkValidity()) {
           e.preventDefault();
           e.stopPropagation();
@@ -7806,7 +7927,7 @@
 
         _this2._controls.forEach(function (c) {
           if (!c.checkValidity()) {
-            if ($(c).data('feedback')) $(c).data('feedback').innerText = c.validationMessage;
+            if ($$1(c).data('feedback')) $$1(c).data('feedback').innerText = c.validationMessage;
           }
         });
 
@@ -7819,11 +7940,11 @@
 
     FormError._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$3);
+        var data = $$1(this).data(DATA_KEY$3);
 
         if (!data) {
           data = new FormError(this);
-          $(this).data(DATA_KEY$3, data);
+          $$1(this).data(DATA_KEY$3, data);
         }
       });
     };
@@ -7849,11 +7970,11 @@
    */
 
 
-  $.fn[NAME$4] = FormError._jQueryInterface;
-  $.fn[NAME$4].Constructor = FormError;
+  $$1.fn[NAME$4] = FormError._jQueryInterface;
+  $$1.fn[NAME$4].Constructor = FormError;
 
-  $.fn[NAME$4].noConflict = function () {
-    $.fn[NAME$4] = JQUERY_NO_CONFLICT$3;
+  $$1.fn[NAME$4].noConflict = function () {
+    $$1.fn[NAME$4] = JQUERY_NO_CONFLICT$3;
     return FormError._jQueryInterface;
   };
 
@@ -7867,7 +7988,7 @@
   var VERSION$5 = '0.0.3';
   var DATA_KEY$4 = 'bs.formfiles';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
-  var JQUERY_NO_CONFLICT$4 = $.fn[NAME$5];
+  var JQUERY_NO_CONFLICT$4 = $$1.fn[NAME$5];
   var Default$6 = {
     filePicker: null,
     transform: function transform(res) {
@@ -7899,22 +8020,19 @@
     ITEMS: "." + ClassName$1.ITEMS,
     ADDER: "." + ClassName$1.ADDER,
     REMOVER: "." + ClassName$1.REMOVER
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var FormFiles =
-  /*#__PURE__*/
-  function () {
+  var FormFiles = /*#__PURE__*/function () {
     function FormFiles(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
       this._model = document.querySelector(this._element.dataset.model);
-      this._items = $(element).children(Selector$2.ITEMS).get(0);
+      this._items = $$1(element).children(Selector$2.ITEMS).get(0);
       this._isTransitioning = false;
 
       this._updateValue();
@@ -7931,7 +8049,7 @@
 
     // Public
     _proto.addItem = function addItem(item) {
-      $(this._element).trigger(Event$5.ADD, item);
+      $$1(this._element).trigger(Event$5.ADD, item);
 
       this._value.push(item);
 
@@ -7939,8 +8057,8 @@
 
       this._drawItem(item);
 
-      $(this._element).trigger(Event$5.ADDED, item);
-      $(this._element).trigger(Event$5.CHANGE);
+      $$1(this._element).trigger(Event$5.ADDED, item);
+      $$1(this._element).trigger(Event$5.CHANGE);
     };
 
     _proto.removeItem = function removeItem(index) {
@@ -7950,19 +8068,19 @@
       if (!item) return;
       if (this._isTransitioning) return;
       this._isTransitioning = true;
-      $(this._element).trigger(Event$5.DELETE, item);
+      $$1(this._element).trigger(Event$5.DELETE, item);
 
       this._value.splice(index, 1);
 
       this._model.value = this._value.length ? JSON.stringify(this._value) : '';
-      var itemEl = $(this._items).children()[index];
+      var itemEl = $$1(this._items).children()[index];
       itemEl.classList.add(ClassName$1.HIDE);
       var transitionDuration = Util.getTransitionDurationFromElement(itemEl);
-      $(itemEl).one(Util.TRANSITION_END, function (e) {
-        $(itemEl).remove();
+      $$1(itemEl).one(Util.TRANSITION_END, function (e) {
+        $$1(itemEl).remove();
         _this._isTransitioning = false;
-        $(_this._element).trigger(Event$5.DELETED, item);
-        $(_this._element).trigger(Event$5.CHANGE);
+        $$1(_this._element).trigger(Event$5.DELETED, item);
+        $$1(_this._element).trigger(Event$5.CHANGE);
       }).emulateTransitionEnd(transitionDuration);
     };
 
@@ -7970,23 +8088,23 @@
       this._model.value = '[]';
       this._value = [];
       this._items.innerHTML = '';
-      $(this._element).trigger(Event$5.TRUNCATE);
-      $(this._element).trigger(Event$5.CHANGE);
+      $$1(this._element).trigger(Event$5.TRUNCATE);
+      $$1(this._element).trigger(Event$5.CHANGE);
     } // Private
     ;
 
     _proto._addElementListener = function _addElementListener() {
       var _this2 = this;
 
-      $(this._element).on(Event$5.CLICK_DATA_API, Selector$2.ADDER, function (e) {
+      $$1(this._element).on(Event$5.CLICK_DATA_API, Selector$2.ADDER, function (e) {
         if (_this2._config.filePicker) {
           _this2._config.filePicker(function (res) {
             if (res) _this2.addItem(res);
           }, _this2);
         }
       });
-      $(this._element).on(Event$5.CLICK_DATA_API, Selector$2.REMOVER, function (e, i) {
-        var index = $(e.currentTarget.parentNode).index();
+      $$1(this._element).on(Event$5.CLICK_DATA_API, Selector$2.REMOVER, function (e, i) {
+        var index = $$1(e.currentTarget.parentNode).index();
 
         _this2.removeItem(index);
       });
@@ -7995,12 +8113,12 @@
     _proto._addModelListener = function _addModelListener() {
       var _this3 = this;
 
-      $(this._model).on(Event$5.CHANGE_DATA_API, function (e) {
+      $$1(this._model).on(Event$5.CHANGE_DATA_API, function (e) {
         _this3._updateValue();
 
         _this3._drawItems();
 
-        $(_this3._element).trigger(Event$5.CHANGE);
+        $$1(_this3._element).trigger(Event$5.CHANGE);
       });
     };
 
@@ -8008,7 +8126,7 @@
       item = this._config.transform(item);
       var icon = item.icon || '<i class="fa fa-file-text-o" aria-hidden="true"></i>';
       var tmpl = "\n            <li class=\"slide-up\">\n                <a href=\"" + item.url + "\" class=\"formfiles-item\" target=\"_blank\">\n                    <div class=\"formfiles-item-icon\">" + icon + "</div>\n                    <div class=\"formfiles-item-title\">" + item.name + "</div>\n                    <div class=\"formfiles-item-meta\">" + item.meta + "</div>\n                </a>\n                <button type=\"button\" class=\"close formfiles-item-remove\" aria-label=\"Close\">\n                    <span aria-hidden=\"true\">&times;</span>\n                </button>\n            </li>";
-      $(tmpl).appendTo(this._items);
+      $$1(tmpl).appendTo(this._items);
     };
 
     _proto._drawItems = function _drawItems() {
@@ -8048,13 +8166,13 @@
 
     FormFiles._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$4);
+        var data = $$1(this).data(DATA_KEY$4);
 
-        var _config = _objectSpread({}, Default$6, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$6, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new FormFiles(this, _config);
-          $(this).data(DATA_KEY$4, data);
+          $$1(this).data(DATA_KEY$4, data);
         }
       });
     };
@@ -8080,11 +8198,11 @@
    */
 
 
-  $.fn[NAME$5] = FormFiles._jQueryInterface;
-  $.fn[NAME$5].Constructor = FormFiles;
+  $$1.fn[NAME$5] = FormFiles._jQueryInterface;
+  $$1.fn[NAME$5].Constructor = FormFiles;
 
-  $.fn[NAME$5].noConflict = function () {
-    $.fn[NAME$5] = JQUERY_NO_CONFLICT$4;
+  $$1.fn[NAME$5].noConflict = function () {
+    $$1.fn[NAME$5] = JQUERY_NO_CONFLICT$4;
     return FormFiles._jQueryInterface;
   };
 
@@ -8098,7 +8216,7 @@
   var VERSION$6 = '0.0.2';
   var DATA_KEY$5 = 'bs.formgallery';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
-  var JQUERY_NO_CONFLICT$5 = $.fn[NAME$6];
+  var JQUERY_NO_CONFLICT$5 = $$1.fn[NAME$6];
   var Default$7 = {
     imagePicker: function imagePicker(cb) {
       return cb(prompt('Image URL'));
@@ -8133,21 +8251,18 @@
     IMAGE: "." + ClassName$2.IMAGE,
     LIST: "." + ClassName$2.LIST,
     REMOVER: "." + ClassName$2.REMOVER
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var FormGallery =
-  /*#__PURE__*/
-  function () {
+  var FormGallery = /*#__PURE__*/function () {
     function FormGallery(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
-      this._list = $(element).children(Selector$3.LIST).get(0);
+      this._list = $$1(element).children(Selector$3.LIST).get(0);
       this._model = document.querySelector(this._element.dataset.model);
 
       this._updateValue();
@@ -8162,7 +8277,7 @@
 
     // Public
     _proto.addImage = function addImage(url) {
-      $(this._element).trigger(Event$6.ADD, url);
+      $$1(this._element).trigger(Event$6.ADD, url);
 
       this._value.push(url);
 
@@ -8170,17 +8285,17 @@
 
       this._drawItem(url);
 
-      $(this._element).trigger(Event$6.ADDED, url);
-      $(this._element).trigger(Event$6.CHANGE);
+      $$1(this._element).trigger(Event$6.ADDED, url);
+      $$1(this._element).trigger(Event$6.CHANGE);
     };
 
     _proto.clear = function clear() {
-      $(this._element).trigger(Event$6.CLEAR);
+      $$1(this._element).trigger(Event$6.CLEAR);
       this._model.value = '';
       this._value = [];
       this._list.innerHTML = '';
-      $(this._element).trigger(Event$6.CLEARED);
-      $(this._element).trigger(Event$6.CHANGE);
+      $$1(this._element).trigger(Event$6.CLEARED);
+      $$1(this._element).trigger(Event$6.CHANGE);
     };
 
     _proto.preview = function preview(index) {
@@ -8202,34 +8317,34 @@
     _proto.remove = function remove(index) {
       var item = this._value[index];
       if (!item) return;
-      $(this._element).trigger(Event$6.DELETE, item);
+      $$1(this._element).trigger(Event$6.DELETE, item);
 
       this._value.splice(index, 1);
 
       this._model.value = this._value.length ? JSON.stringify(this._value) : '';
-      var itemEl = $(this._list).children()[index];
+      var itemEl = $$1(this._list).children()[index];
       itemEl.classList.add(ClassName$2.HIDE);
-      $(itemEl).remove();
-      $(this._element).trigger(Event$6.DELETED, item);
-      $(this._element).trigger(Event$6.CHANGE);
+      $$1(itemEl).remove();
+      $$1(this._element).trigger(Event$6.DELETED, item);
+      $$1(this._element).trigger(Event$6.CHANGE);
     } // Private
     ;
 
     _proto._addModelListener = function _addModelListener() {
       var _this2 = this;
 
-      $(this._model).on(Event$6.CHANGE_DATA_API, function (e) {
+      $$1(this._model).on(Event$6.CHANGE_DATA_API, function (e) {
         _this2._updateValue();
 
         _this2._drawItems();
 
-        $(_this2._element).trigger(Event$6.CHANGE);
+        $$1(_this2._element).trigger(Event$6.CHANGE);
       });
     };
 
     _proto._drawItem = function _drawItem(item) {
       var tmpl = "\n            <div class=\"formgallery-item\">\n                <button type=\"button\" class=\"close formgallery-remove\" aria-label=\"Close\" title=\"Remove\">\n                    <span aria-hidden=\"true\">\xD7</span>\n                </button>\n                <a href=\"#\" class=\"formgallery-image\" style=\"background-image: url('" + item + "')\"></a>\n            </div>";
-      $(tmpl).appendTo(this._list);
+      $$1(tmpl).appendTo(this._list);
     };
 
     _proto._drawItems = function _drawItems() {
@@ -8269,13 +8384,13 @@
 
     FormGallery._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$5);
+        var data = $$1(this).data(DATA_KEY$5);
 
-        var _config = _objectSpread({}, Default$7, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$7, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new FormGallery(this, _config);
-          $(this).data(DATA_KEY$5, data);
+          $$1(this).data(DATA_KEY$5, data);
         }
 
         if (typeof config === 'string') {
@@ -8309,23 +8424,23 @@
    */
 
 
-  $(document).on(Event$6.CLICK_DATA_API, Selector$3.REMOVER, function (event) {
+  $$1(document).on(Event$6.CLICK_DATA_API, Selector$3.REMOVER, function (event) {
     var target = this.parentNode;
     if (this.tagName === 'A' || this.tagName === 'AREA') event.preventDefault();
 
-    FormGallery._jQueryInterface.call($(target.parentNode.parentNode), 'remove', $(target).index());
+    FormGallery._jQueryInterface.call($$1(target.parentNode.parentNode), 'remove', $$1(target).index());
   });
-  $(document).on(Event$6.CLICK_DATA_API, Selector$3.IMAGE, function (event) {
+  $$1(document).on(Event$6.CLICK_DATA_API, Selector$3.IMAGE, function (event) {
     var target = this.parentNode;
     if (this.tagName === 'A' || this.tagName === 'AREA') event.preventDefault();
 
-    FormGallery._jQueryInterface.call($(target.parentNode.parentNode), 'preview', $(target).index());
+    FormGallery._jQueryInterface.call($$1(target.parentNode.parentNode), 'preview', $$1(target).index());
   });
-  $(document).on(Event$6.CLICK_DATA_API, Selector$3.ADDER, function (event) {
+  $$1(document).on(Event$6.CLICK_DATA_API, Selector$3.ADDER, function (event) {
     var target = this.parentNode;
     if (this.tagName === 'A' || this.tagName === 'AREA') event.preventDefault();
 
-    FormGallery._jQueryInterface.call($(target), 'pick', target);
+    FormGallery._jQueryInterface.call($$1(target), 'pick', target);
   });
   /**
    * ------------------------------------------------------------------------
@@ -8333,11 +8448,11 @@
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME$6] = FormGallery._jQueryInterface;
-  $.fn[NAME$6].Constructor = FormGallery;
+  $$1.fn[NAME$6] = FormGallery._jQueryInterface;
+  $$1.fn[NAME$6].Constructor = FormGallery;
 
-  $.fn[NAME$6].noConflict = function () {
-    $.fn[NAME$6] = JQUERY_NO_CONFLICT$5;
+  $$1.fn[NAME$6].noConflict = function () {
+    $$1.fn[NAME$6] = JQUERY_NO_CONFLICT$5;
     return FormGallery._jQueryInterface;
   };
 
@@ -8351,7 +8466,7 @@
   var VERSION$7 = '0.0.1';
   var DATA_KEY$6 = 'bs.formimage';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
-  var JQUERY_NO_CONFLICT$6 = $.fn[NAME$7];
+  var JQUERY_NO_CONFLICT$6 = $$1.fn[NAME$7];
   var Default$8 = {
     imagePicker: function imagePicker(cb) {
       return cb(prompt('Image URL'));
@@ -8381,21 +8496,18 @@
     CONTAINER: "." + ClassName$3.CONTAINER,
     PREVIEW: "." + ClassName$3.PREVIEW,
     REMOVER: "." + ClassName$3.REMOVER
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var FormImage =
-  /*#__PURE__*/
-  function () {
+  var FormImage = /*#__PURE__*/function () {
     function FormImage(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
-      this._preview = $(element).children(Selector$4.PREVIEW).get(0);
+      this._preview = $$1(element).children(Selector$4.PREVIEW).get(0);
       this._model = document.querySelector(this._element.dataset.model);
       this._value = this._model.value;
       if (typeof this._config.imagePicker === 'string') this._config.imagePicker = window[this._config.imagePicker];
@@ -8440,20 +8552,20 @@
     _proto._addModelListener = function _addModelListener() {
       var _this2 = this;
 
-      $(this._model).on('change', function (e) {
+      $$1(this._model).on('change', function (e) {
         if (_this2._value != e.target.value) _this2._setImage(e.target.value);
       });
     };
 
     _proto._clearImage = function _clearImage() {
-      $(this._element).trigger(Event$7.CLEAR);
+      $$1(this._element).trigger(Event$7.CLEAR);
 
       this._preview.removeAttribute('style');
 
       this._element.classList.add(ClassName$3.EMPTY);
 
-      $(this._element).trigger(Event$7.CLEARED);
-      $(this._element).trigger(Event$7.CHANGE);
+      $$1(this._element).trigger(Event$7.CLEARED);
+      $$1(this._element).trigger(Event$7.CHANGE);
     };
 
     _proto._getConfig = function _getConfig(config) {
@@ -8463,26 +8575,26 @@
     };
 
     _proto._updateImage = function _updateImage() {
-      $(this._element).trigger(Event$7.UPDATE);
+      $$1(this._element).trigger(Event$7.UPDATE);
 
       this._element.classList.remove(ClassName$3.EMPTY);
 
       this._preview.style.backgroundImage = "url(" + this._value + ")";
       this._preview.href = this._value;
-      $(this._element).trigger(Event$7.UPDATED);
-      $(this._element).trigger(Event$7.CHANGE);
+      $$1(this._element).trigger(Event$7.UPDATED);
+      $$1(this._element).trigger(Event$7.CHANGE);
     } // Static
     ;
 
     FormImage._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$6);
+        var data = $$1(this).data(DATA_KEY$6);
 
-        var _config = _objectSpread({}, Default$8, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$8, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new FormImage(this, _config);
-          $(this).data(DATA_KEY$6, data);
+          $$1(this).data(DATA_KEY$6, data);
         }
 
         if (typeof config === 'string') {
@@ -8518,17 +8630,17 @@
    */
 
 
-  $(document).on(Event$7.CLICK_DATA_API, Selector$4.REMOVER, function (event) {
+  $$1(document).on(Event$7.CLICK_DATA_API, Selector$4.REMOVER, function (event) {
     var target = this.parentNode;
     if (this.tagName === 'A' || this.tagName === 'AREA') event.preventDefault();
 
-    FormImage._jQueryInterface.call($(target), 'clear', target);
+    FormImage._jQueryInterface.call($$1(target), 'clear', target);
   });
-  $(document).on(Event$7.CLICK_DATA_API, Selector$4.PREVIEW, function (event) {
+  $$1(document).on(Event$7.CLICK_DATA_API, Selector$4.PREVIEW, function (event) {
     var target = this.parentNode;
     if (this.tagName === 'A' || this.tagName === 'AREA') event.preventDefault();
 
-    FormImage._jQueryInterface.call($(target), 'pickOrPreview', target);
+    FormImage._jQueryInterface.call($$1(target), 'pickOrPreview', target);
   });
   /**
    * ------------------------------------------------------------------------
@@ -8536,11 +8648,11 @@
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME$7] = FormImage._jQueryInterface;
-  $.fn[NAME$7].Constructor = FormImage;
+  $$1.fn[NAME$7] = FormImage._jQueryInterface;
+  $$1.fn[NAME$7].Constructor = FormImage;
 
-  $.fn[NAME$7].noConflict = function () {
-    $.fn[NAME$7] = JQUERY_NO_CONFLICT$6;
+  $$1.fn[NAME$7].noConflict = function () {
+    $$1.fn[NAME$7] = JQUERY_NO_CONFLICT$6;
     return FormImage._jQueryInterface;
   };
 
@@ -8555,7 +8667,7 @@
   var DATA_KEY$7 = 'bs.fileurl';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var DATA_API_KEY$4 = '.data-api';
-  var JQUERY_NO_CONFLICT$7 = $.fn[NAME$8];
+  var JQUERY_NO_CONFLICT$7 = $$1.fn[NAME$8];
   var Default$9 = {
     filePicker: function filePicker(cb, btn, input) {
       cb(prompt('File URL'));
@@ -8569,17 +8681,14 @@
   };
   var Selector$5 = {
     DATA_TOGGLE: '[data-toggle="fileurl"]'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var FileURL =
-  /*#__PURE__*/
-  function () {
+  var FileURL = /*#__PURE__*/function () {
     function FileURL(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -8597,8 +8706,8 @@
 
     // Public
     _proto.dispose = function dispose() {
-      $(this._element).off(EVENT_KEY$7);
-      $.removeData(this._element, DATA_KEY$7);
+      $$1(this._element).off(EVENT_KEY$7);
+      $$1.removeData(this._element, DATA_KEY$7);
       this._config = null;
       this._element = null;
       this._model = null;
@@ -8608,9 +8717,9 @@
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 
-      $(this._element).on(Event$8.CLICK_DATA_API, function (e) {
+      $$1(this._element).on(Event$8.CLICK_DATA_API, function (e) {
         _this._filePicker(function (res) {
-          return $(_this._model).val(res);
+          return $$1(_this._model).val(res);
         }, _this._element, _this._model);
       });
     };
@@ -8624,13 +8733,13 @@
 
     FileURL._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$7);
+        var data = $$1(this).data(DATA_KEY$7);
 
-        var _config = _objectSpread({}, Default$9, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$9, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new FileURL(this, _config);
-          $(this).data(DATA_KEY$7, data);
+          $$1(this).data(DATA_KEY$7, data);
         }
       });
     };
@@ -8656,12 +8765,12 @@
    */
 
 
-  $(document).on(Event$8.CLICK_DATA_API, Selector$5.DATA_TOGGLE, function (event) {
-    var data = $(this).data(DATA_KEY$7);
+  $$1(document).on(Event$8.CLICK_DATA_API, Selector$5.DATA_TOGGLE, function (event) {
+    var data = $$1(this).data(DATA_KEY$7);
     if (data) return;
-    var config = $(this).data();
+    var config = $$1(this).data();
 
-    FileURL._jQueryInterface.call($(this), config, this);
+    FileURL._jQueryInterface.call($$1(this), config, this);
   });
   /**
    * ------------------------------------------------------------------------
@@ -8669,11 +8778,11 @@
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME$8] = FileURL._jQueryInterface;
-  $.fn[NAME$8].Constructor = FileURL;
+  $$1.fn[NAME$8] = FileURL._jQueryInterface;
+  $$1.fn[NAME$8].Constructor = FileURL;
 
-  $.fn[NAME$8].noConflict = function () {
-    $.fn[NAME$8] = JQUERY_NO_CONFLICT$7;
+  $$1.fn[NAME$8].noConflict = function () {
+    $$1.fn[NAME$8] = JQUERY_NO_CONFLICT$7;
     return FileURL._jQueryInterface;
   };
 
@@ -8688,7 +8797,7 @@
   var DATA_KEY$8 = 'bs.linkfilter';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$5 = '.data-api';
-  var JQUERY_NO_CONFLICT$8 = $.fn[NAME$9];
+  var JQUERY_NO_CONFLICT$8 = $$1.fn[NAME$9];
   var KEY_UP = 38;
   var KEY_DOWN = 40;
   var KEY_ENTER = 13; // https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
@@ -8715,17 +8824,14 @@
   };
   var ClassName$4 = {
     NOT_MATCH: 'linkfilter-not-match'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var LinkFilter =
-  /*#__PURE__*/
-  function () {
+  var LinkFilter = /*#__PURE__*/function () {
     function LinkFilter(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -8745,9 +8851,9 @@
     // Public
     _proto.dispose = function dispose() {
       [this._input].forEach(function (htmlElement) {
-        return $(htmlElement).off(EVENT_KEY$8);
+        return $$1(htmlElement).off(EVENT_KEY$8);
       });
-      $.removeData(this._element, DATA_KEY$8);
+      $$1.removeData(this._element, DATA_KEY$8);
       this._config = null;
       this._element = null;
       this._timer = null;
@@ -8758,7 +8864,7 @@
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 
-      $(this._input).on(Event$9.KEYDOWN, function (e) {
+      $$1(this._input).on(Event$9.KEYDOWN, function (e) {
         if (e.keyCode === KEY_ENTER) return _this._clickActive(e);
         if (e.keyCode === KEY_DOWN) return _this._focusNextItem(e);
         if (e.keyCode === KEY_UP) return _this._focusPrevItem(e);
@@ -8829,10 +8935,10 @@
     _proto._findItem = function _findItem(relatedTarget) {
       var _this2 = this;
 
-      var findingEvent = $.Event(Event$9.FINDING, {
+      var findingEvent = $$1.Event(Event$9.FINDING, {
         relatedTarget: relatedTarget
       });
-      $(this._element).trigger(findingEvent);
+      $$1(this._element).trigger(findingEvent);
 
       var val = this._input.value.trim().replace(RE_ESCAPE, "\\$&");
 
@@ -8842,7 +8948,7 @@
       var activeFound;
       if (val === this._lastQuery) return;
       this._lastQuery = val;
-      $(this._element).children().each(function (i, e) {
+      $$1(this._element).children().each(function (i, e) {
         var eText = e.innerText;
         if ('text' in e.dataset) eText = e.dataset.text;
         var show = false;
@@ -8869,16 +8975,16 @@
 
       if (found) {
         if (!activeFound && found === 1) firstItem.classList.add(this._config.active);
-        finalEvent = $.Event(Event$9.FOUND, {
+        finalEvent = $$1.Event(Event$9.FOUND, {
           relatedTarget: relatedTarget
         });
       } else {
-        finalEvent = $.Event(Event$9.EMPTY, {
+        finalEvent = $$1.Event(Event$9.EMPTY, {
           relatedTarget: relatedTarget
         });
       }
 
-      $(this._element).trigger(finalEvent);
+      $$1(this._element).trigger(finalEvent);
     };
 
     _proto._getConfig = function _getConfig(config) {
@@ -8890,13 +8996,13 @@
 
     LinkFilter._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$8);
+        var data = $$1(this).data(DATA_KEY$8);
 
-        var _config = _objectSpread({}, Default$a, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$a, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new LinkFilter(this, _config);
-          $(this).data(DATA_KEY$8, data);
+          $$1(this).data(DATA_KEY$8, data);
         }
       });
     };
@@ -8922,11 +9028,11 @@
    */
 
 
-  $.fn[NAME$9] = LinkFilter._jQueryInterface;
-  $.fn[NAME$9].Constructor = LinkFilter;
+  $$1.fn[NAME$9] = LinkFilter._jQueryInterface;
+  $$1.fn[NAME$9].Constructor = LinkFilter;
 
-  $.fn[NAME$9].noConflict = function () {
-    $.fn[NAME$9] = JQUERY_NO_CONFLICT$8;
+  $$1.fn[NAME$9].noConflict = function () {
+    $$1.fn[NAME$9] = JQUERY_NO_CONFLICT$8;
     return LinkFilter._jQueryInterface;
   };
 
@@ -8948,9 +9054,7 @@
     }
   };
 
-  var ListEditor =
-  /*#__PURE__*/
-  function () {
+  var ListEditor = /*#__PURE__*/function () {
     function ListEditor(config) {
       this._config = this._getConfig(config);
       this._value = '[]';
@@ -9004,11 +9108,11 @@
         if (fInput) fInput.focus();
       });
 
-      $(this._el.list).on('click', '.btn-remove', function (e) {
+      $$1(this._el.list).on('click', '.btn-remove', function (e) {
         e.preventDefault();
         var list = e.target.closest('.list-editor-item');
-        $(list).slideUp(function (f) {
-          $(list).remove();
+        $$1(list).slideUp(function (f) {
+          $$1(list).remove();
 
           _this._updateModel();
         });
@@ -9027,8 +9131,8 @@
         }
 
         fInput.select();
-        $('html, body').animate({
-          scrollTop: $(_this._el.editor).offset().top
+        $$1('html, body').animate({
+          scrollTop: $$1(_this._el.editor).offset().top
         });
       });
     };
@@ -9071,7 +9175,7 @@
 
       actions = actions.join('');
       var tmpl = "\n            <li class=\"list-group-item list-editor-item\" data-object=\"" + safe.object + "\" data-index=\"" + index + "\">\n                <div class=\"d-flex w-100 justify-content-between\">\n                    <h5 class=\"mb-1\">" + safe.title + "</h5>\n                    <div>\n                        <div class=\"btn-group btn-group-sm\" role=\"group\" aria-label=\"Action\">\n                            " + actions + "\n                        </div>\n                    </div>\n                </div>\n                <small>" + infos + "</small>\n            </li>";
-      $(this._el.list).append(tmpl);
+      $$1(this._el.list).append(tmpl);
     };
 
     _proto._getConfig = function _getConfig(config) {
@@ -9144,7 +9248,7 @@
   var DATA_KEY$9 = 'bs.pwdstr';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$6 = '.data-api';
-  var JQUERY_NO_CONFLICT$9 = $.fn[NAME$a];
+  var JQUERY_NO_CONFLICT$9 = $$1.fn[NAME$a];
   var Default$c = {
     progress: null,
     tester: function tester(cb, pass, input) {
@@ -9190,9 +9294,7 @@
    * ------------------------------------------------------------------------
    */
 
-  var PasswordStrength =
-  /*#__PURE__*/
-  function () {
+  var PasswordStrength = /*#__PURE__*/function () {
     function PasswordStrength(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -9201,7 +9303,7 @@
       this._tester = this._config.tester;
       this._value = 0;
       if (typeof this._progress === 'string') this._progress = document.querySelector(this._progress);
-      if (this._progress) this._progress_bar = $(this._progress).children('.progress-bar').get(0);
+      if (this._progress) this._progress_bar = $$1(this._progress).children('.progress-bar').get(0);
       if (typeof this._tester === 'string') this._tester = window[this._tester];
 
       this._addElementListener();
@@ -9212,8 +9314,8 @@
 
     // Public
     _proto.dispose = function dispose() {
-      $(this._element).off(EVENT_KEY$9);
-      $.removeData(this._element, DATA_KEY$9);
+      $$1(this._element).off(EVENT_KEY$9);
+      $$1.removeData(this._element, DATA_KEY$9);
       this._config = null;
       this._element = null;
       this._progress = null;
@@ -9226,10 +9328,10 @@
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 
-      $(this._element).on(Event$a.INPUT_DATA_API, function (e) {
+      $$1(this._element).on(Event$a.INPUT_DATA_API, function (e) {
         _this._calculateStrength(e);
       });
-      $(this._element).on(Event$a.CHANGE_DATA_API, function (e) {
+      $$1(this._element).on(Event$a.CHANGE_DATA_API, function (e) {
         _this._calculateStrength(e);
       });
     };
@@ -9254,7 +9356,7 @@
       this._progress_bar.setAttribute('class', cls);
 
       this._progress_bar.style.width = value + '%';
-      $(this._element).trigger(Event$a.CHANGE_DATA_API, value);
+      $$1(this._element).trigger(Event$a.CHANGE_DATA_API, value);
     };
 
     _proto._getConfig = function _getConfig(config) {
@@ -9266,13 +9368,13 @@
 
     PasswordStrength._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$9);
+        var data = $$1(this).data(DATA_KEY$9);
 
-        var _config = _objectSpread({}, Default$c, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$c, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new PasswordStrength(this, _config);
-          $(this).data(DATA_KEY$9, data);
+          $$1(this).data(DATA_KEY$9, data);
         }
       });
     };
@@ -9298,11 +9400,11 @@
    */
 
 
-  $.fn[NAME$a] = PasswordStrength._jQueryInterface;
-  $.fn[NAME$a].Constructor = PasswordStrength;
+  $$1.fn[NAME$a] = PasswordStrength._jQueryInterface;
+  $$1.fn[NAME$a].Constructor = PasswordStrength;
 
-  $.fn[NAME$a].noConflict = function () {
-    $.fn[NAME$a] = JQUERY_NO_CONFLICT$9;
+  $$1.fn[NAME$a].noConflict = function () {
+    $$1.fn[NAME$a] = JQUERY_NO_CONFLICT$9;
     return PasswordStrength._jQueryInterface;
   };
 
@@ -9317,7 +9419,7 @@
   var DATA_KEY$a = 'bs.pickercolor';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var DATA_API_KEY$7 = '.data-api';
-  var JQUERY_NO_CONFLICT$a = $.fn[NAME$b];
+  var JQUERY_NO_CONFLICT$a = $$1.fn[NAME$b];
   var Default$d = {
     input: null
   };
@@ -9335,9 +9437,7 @@
    * ------------------------------------------------------------------------
    */
 
-  var PickerColor =
-  /*#__PURE__*/
-  function () {
+  var PickerColor = /*#__PURE__*/function () {
     function PickerColor(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -9364,12 +9464,12 @@
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 
-      $(this._element).on(Event$b.CHANGE, function (e) {
+      $$1(this._element).on(Event$b.CHANGE, function (e) {
         _this._input.value = e.target.value.toUpperCase();
 
         _this._inputChanges();
       });
-      $(this._input).on(Event$b.CHANGE, function (e) {
+      $$1(this._input).on(Event$b.CHANGE, function (e) {
         return _this._inputChanges();
       });
     };
@@ -9395,13 +9495,13 @@
 
     PickerColor._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$a);
+        var data = $$1(this).data(DATA_KEY$a);
 
-        var _config = _objectSpread({}, Default$d, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$d, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new PickerColor(this, _config);
-          $(this).data(DATA_KEY$a, data);
+          $$1(this).data(DATA_KEY$a, data);
         }
       });
     };
@@ -9427,11 +9527,11 @@
    */
 
 
-  $.fn[NAME$b] = PickerColor._jQueryInterface;
-  $.fn[NAME$b].Constructor = PickerColor;
+  $$1.fn[NAME$b] = PickerColor._jQueryInterface;
+  $$1.fn[NAME$b].Constructor = PickerColor;
 
-  $.fn[NAME$b].noConflict = function () {
-    $.fn[NAME$b] = JQUERY_NO_CONFLICT$a;
+  $$1.fn[NAME$b].noConflict = function () {
+    $$1.fn[NAME$b] = JQUERY_NO_CONFLICT$a;
     return PickerColor._jQueryInterface;
   };
 
@@ -9445,7 +9545,7 @@
   var VERSION$c = '0.0.1';
   var DATA_KEY$b = 'bs.rangetips';
   var EVENT_KEY$b = "." + DATA_KEY$b;
-  var JQUERY_NO_CONFLICT$b = $.fn[NAME$c];
+  var JQUERY_NO_CONFLICT$b = $$1.fn[NAME$c];
   var CLASS_PREFIX = 'bs-tooltip';
   var DefaultType$a = {
     template: 'string'
@@ -9462,17 +9562,14 @@
     INPUT: "input" + EVENT_KEY$b,
     MOUSEENTER: "mouseenter" + EVENT_KEY$b,
     MOUSELEAVE: "mouseleave" + EVENT_KEY$b
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var RangeTips =
-  /*#__PURE__*/
-  function () {
+  var RangeTips = /*#__PURE__*/function () {
     function RangeTips(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -9494,14 +9591,14 @@
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 
-      $(this._element).on(Event$c.MOUSEENTER + " " + Event$c.FOCUSIN, function (e) {
+      $$1(this._element).on(Event$c.MOUSEENTER + " " + Event$c.FOCUSIN, function (e) {
         _this._show();
       }).on(Event$c.MOUSELEAVE, function (e) {
         if (document.activeElement !== _this._element) _this._hide();
       }).on(Event$c.FOCUSOUT, function (e) {
-        if (!$(_this._element).is(':hover')) _this._hide();
+        if (!$$1(_this._element).is(':hover')) _this._hide();
       });
-      $(this._element).on(Event$c.INPUT, function (e) {
+      $$1(this._element).on(Event$c.INPUT, function (e) {
         _this._updateLabel();
 
         _this._updatePosition();
@@ -9526,7 +9623,7 @@
     };
 
     _proto._makeTooltips = function _makeTooltips() {
-      var tooltips = $(this._config.template).get(0);
+      var tooltips = $$1(this._config.template).get(0);
       tooltips.classList.add(CLASS_PREFIX + "-top");
 
       this._parent.appendChild(tooltips);
@@ -9571,13 +9668,13 @@
 
     RangeTips._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$b);
+        var data = $$1(this).data(DATA_KEY$b);
 
-        var _config = _objectSpread({}, Default$e, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$e, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new RangeTips(this, _config);
-          $(this).data(DATA_KEY$b, data);
+          $$1(this).data(DATA_KEY$b, data);
         }
       });
     };
@@ -9603,11 +9700,11 @@
    */
 
 
-  $.fn[NAME$c] = RangeTips._jQueryInterface;
-  $.fn[NAME$c].Constructor = RangeTips;
+  $$1.fn[NAME$c] = RangeTips._jQueryInterface;
+  $$1.fn[NAME$c].Constructor = RangeTips;
 
-  $.fn[NAME$c].noConflict = function () {
-    $.fn[NAME$c] = JQUERY_NO_CONFLICT$b;
+  $$1.fn[NAME$c].noConflict = function () {
+    $$1.fn[NAME$c] = JQUERY_NO_CONFLICT$b;
     return RangeTips._jQueryInterface;
   };
 
@@ -9622,7 +9719,7 @@
   var DATA_KEY$c = 'bs.slugify';
   var EVENT_KEY$c = "." + DATA_KEY$c;
   var DATA_API_KEY$8 = '.data-api';
-  var JQUERY_NO_CONFLICT$c = $.fn[NAME$d];
+  var JQUERY_NO_CONFLICT$c = $$1.fn[NAME$d];
   var Default$f = {};
   var Event$d = {
     INPUT_DATA_API: "input" + EVENT_KEY$c + DATA_API_KEY$8,
@@ -9634,9 +9731,7 @@
    * ------------------------------------------------------------------------
    */
 
-  var Slugify =
-  /*#__PURE__*/
-  function () {
+  var Slugify = /*#__PURE__*/function () {
     function Slugify(element, config) {
       this._element = element;
       this._source = document.querySelector(config.source);
@@ -9655,15 +9750,15 @@
     _proto._addElementListener = function _addElementListener() {
       var _this = this;
 
-      $(this._element).on(Event$d.FOCUS_DATA_API, function (e) {
-        $(_this._source).off(Event$d.INPUT_DATA_API);
+      $$1(this._element).on(Event$d.FOCUS_DATA_API, function (e) {
+        $$1(_this._source).off(Event$d.INPUT_DATA_API);
       });
     };
 
     _proto._addSourceListener = function _addSourceListener() {
       var _this2 = this;
 
-      $(this._source).on(Event$d.INPUT_DATA_API, function (e) {
+      $$1(this._source).on(Event$d.INPUT_DATA_API, function (e) {
         _this2._element.value = _this2._source.value.toLowerCase().replace(/[^\w\-]/g, '-').replace(/\-+/g, '-').replace(/^\-|\-$/g, '');
       });
     } // Static
@@ -9671,13 +9766,13 @@
 
     Slugify._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$c);
+        var data = $$1(this).data(DATA_KEY$c);
 
-        var _config = _objectSpread({}, Default$f, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$f, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new Slugify(this, _config);
-          $(this).data(DATA_KEY$c, data);
+          $$1(this).data(DATA_KEY$c, data);
         }
       });
     };
@@ -9703,11 +9798,11 @@
    */
 
 
-  $.fn[NAME$d] = Slugify._jQueryInterface;
-  $.fn[NAME$d].Constructor = Slugify;
+  $$1.fn[NAME$d] = Slugify._jQueryInterface;
+  $$1.fn[NAME$d].Constructor = Slugify;
 
-  $.fn[NAME$d].noConflict = function () {
-    $.fn[NAME$d] = JQUERY_NO_CONFLICT$c;
+  $$1.fn[NAME$d].noConflict = function () {
+    $$1.fn[NAME$d] = JQUERY_NO_CONFLICT$c;
     return Slugify._jQueryInterface;
   };
 
@@ -9721,7 +9816,7 @@
   var VERSION$e = '0.0.3';
   var DATA_KEY$d = 'bs.taginput';
   var EVENT_KEY$d = "." + DATA_KEY$d;
-  var JQUERY_NO_CONFLICT$d = $.fn[NAME$e];
+  var JQUERY_NO_CONFLICT$d = $$1.fn[NAME$e];
   var ENTER_KEYCODE = 13; // KeyboardEvent.which value for Enter key
   // const COMMA_KEYCODE      = 188 // KeyboardEvent.which value for Comma (,) key
 
@@ -9743,17 +9838,14 @@
     ITEMS: "." + ClassName$6.ITEMS,
     VALUE: "." + ClassName$6.VALUE,
     DISMISS_ITEM: ".close"
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var TagInput =
-  /*#__PURE__*/
-  function () {
+  var TagInput = /*#__PURE__*/function () {
     function TagInput(element, config) {
       this._config = this._getConfig(config);
       this._element = element;
@@ -9825,7 +9917,7 @@
     _proto._setFilterListener = function _setFilterListener() {
       var _this = this;
 
-      $(this._element).on(Event$e.FILTER_KEYDOWN, function (e) {
+      $$1(this._element).on(Event$e.FILTER_KEYDOWN, function (e) {
         if (e.keyCode !== ENTER_KEYCODE && e.key !== COMMA_KEY) return;
         e.preventDefault();
 
@@ -9844,7 +9936,7 @@
     _proto._setInputListener = function _setInputListener() {
       var _this2 = this;
 
-      $(this._input).on('change', function () {
+      $$1(this._input).on('change', function () {
         _this2._renderValue();
       });
     };
@@ -9852,15 +9944,15 @@
     _proto._setItemsListener = function _setItemsListener() {
       var _this3 = this;
 
-      $(this._items).on(Event$e.CLICK_ITEM_DISMISS, Selector$6.DISMISS_ITEM, function (e) {
-        var index = $(_this3._items).children('li').index(e.currentTarget.parentNode);
+      $$1(this._items).on(Event$e.CLICK_ITEM_DISMISS, Selector$6.DISMISS_ITEM, function (e) {
+        var index = $$1(_this3._items).children('li').index(e.currentTarget.parentNode);
 
         _this3._removeItem(index);
       });
     };
 
     _proto._renderValue = function _renderValue() {
-      $(this._items).html('');
+      $$1(this._items).html('');
 
       try {
         this._values = JSON.parse(this._input.value);
@@ -9878,13 +9970,13 @@
 
     TagInput._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY$d);
+        var data = $$1(this).data(DATA_KEY$d);
 
-        var _config = _objectSpread({}, Default$g, $(this).data(), typeof config === 'object' && config ? config : {});
+        var _config = _objectSpread({}, Default$g, $$1(this).data(), typeof config === 'object' && config ? config : {});
 
         if (!data) {
           data = new TagInput(this, _config);
-          $(this).data(DATA_KEY$d, data);
+          $$1(this).data(DATA_KEY$d, data);
         }
       });
     };
@@ -9910,11 +10002,11 @@
    */
 
 
-  $.fn[NAME$e] = TagInput._jQueryInterface;
-  $.fn[NAME$e].Constructor = TagInput;
+  $$1.fn[NAME$e] = TagInput._jQueryInterface;
+  $$1.fn[NAME$e].Constructor = TagInput;
 
-  $.fn[NAME$e].noConflict = function () {
-    $.fn[NAME$e] = JQUERY_NO_CONFLICT$d;
+  $$1.fn[NAME$e].noConflict = function () {
+    $$1.fn[NAME$e] = JQUERY_NO_CONFLICT$d;
     return TagInput._jQueryInterface;
   };
 
@@ -9947,9 +10039,7 @@
    * ------------------------------------------------------------------------
    */
 
-  var Toaster =
-  /*#__PURE__*/
-  function () {
+  var Toaster = /*#__PURE__*/function () {
     function Toaster(opt, title) {
       if (null === opt) return;
       if (!ToasterObject) ToasterObject = new Toaster(null);
@@ -9971,7 +10061,7 @@
 
       var html = this._makeContainer(ver, hor);
 
-      ToasterContainer[position] = $(html).appendTo('body');
+      ToasterContainer[position] = $$1(html).appendTo('body');
       return ToasterContainer[position];
     };
 
@@ -10021,12 +10111,12 @@
 
       var html = this._makeHtml(config);
 
-      $(html).appendTo(this._getContainer(config)).toast({
+      $$1(html).appendTo(this._getContainer(config)).toast({
         animation: true,
         autohide: true,
         delay: config.delay
       }).toast('show').on('hidden.bs.toast', function () {
-        $(this).remove();
+        $$1(this).remove();
       });
     } // Getters
     ;
@@ -10059,7 +10149,7 @@
    */
 
 
-  $[NAME$f] = Toaster;
+  $$1[NAME$f] = Toaster;
 
   /**
    * ------------------------------------------------------------------------
@@ -10072,7 +10162,7 @@
   var DATA_KEY$e = 'bs.vertmenu';
   var EVENT_KEY$e = "." + DATA_KEY$e;
   var DATA_API_KEY$9 = '.data-api';
-  var JQUERY_NO_CONFLICT$e = $.fn[NAME$g];
+  var JQUERY_NO_CONFLICT$e = $$1.fn[NAME$g];
   var ARROW_LEFT_KEYCODE = 37; // KeyboardEvent.which value for left arrow key
 
   var ARROW_UP_KEYCODE = 38; // KeyboardEvent.which value for up arrow key
@@ -10106,17 +10196,14 @@
   var Selector$7 = {
     DATA_TOGGLE: '[data-toggle="vertical-menu"]',
     MENU: "." + ClassName$7.MENU
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var VerticalMenu =
-  /*#__PURE__*/
-  function () {
+  var VerticalMenu = /*#__PURE__*/function () {
     function VerticalMenu(element, config) {
       this._isTransitioning = false;
       this._element = element;
@@ -10130,62 +10217,62 @@
 
     // Public
     _proto.toggle = function toggle() {
-      if ($(this._parent).hasClass(ClassName$7.SHOW)) this.hide();else this.show();
+      if ($$1(this._parent).hasClass(ClassName$7.SHOW)) this.hide();else this.show();
     };
 
     _proto.show = function show() {
       var _this = this;
 
-      if (this._isTransitioning || $(this._element).hasClass(ClassName$7.SHOW)) return;
-      var startEvent = $.Event(Event$f.SHOW);
-      $(this._element).trigger(startEvent);
+      if (this._isTransitioning || $$1(this._element).hasClass(ClassName$7.SHOW)) return;
+      var startEvent = $$1.Event(Event$f.SHOW);
+      $$1(this._element).trigger(startEvent);
       if (startEvent.isDefaultPrevented()) return;
       var dimension = 'height';
-      $(this._element).removeClass(ClassName$7.COLLAPSE).addClass(ClassName$7.COLLAPSING);
+      $$1(this._element).removeClass(ClassName$7.COLLAPSE).addClass(ClassName$7.COLLAPSING);
       this._element.style[dimension] = 0;
-      $(this._parent).addClass(ClassName$7.SHOW);
+      $$1(this._parent).addClass(ClassName$7.SHOW);
       this._isTransitioning = true;
 
       var complete = function complete() {
-        $(_this._element).removeClass(ClassName$7.COLLAPSING).addClass(ClassName$7.COLLAPSE);
+        $$1(_this._element).removeClass(ClassName$7.COLLAPSING).addClass(ClassName$7.COLLAPSE);
         _this._element.style[dimension] = '';
         _this._isTransitioning = false;
-        $(_this._element).trigger(Event$f.SHOWN);
+        $$1(_this._element).trigger(Event$f.SHOWN);
       };
 
       var capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
       var scrollSize = "scroll" + capitalizedDimension;
       var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-      $(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+      $$1(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
       this._element.style[dimension] = this._element[scrollSize] + "px";
     };
 
     _proto.hide = function hide() {
       var _this2 = this;
 
-      if (this._isTransitioning || !$(this._parent).hasClass(ClassName$7.SHOW)) return;
-      var startEvent = $.Event(Event$f.HIDE);
-      $(this._element).trigger(startEvent);
+      if (this._isTransitioning || !$$1(this._parent).hasClass(ClassName$7.SHOW)) return;
+      var startEvent = $$1.Event(Event$f.HIDE);
+      $$1(this._element).trigger(startEvent);
       if (startEvent.isDefaultPrevented()) return;
       var dimension = 'height';
       this._element.style[dimension] = this._element.getBoundingClientRect()[dimension] + "px";
       Util.reflow(this._element);
-      $(this._element).addClass(ClassName$7.COLLAPSING).removeClass(ClassName$7.COLLAPSE);
+      $$1(this._element).addClass(ClassName$7.COLLAPSING).removeClass(ClassName$7.COLLAPSE);
       this._isTransitioning = true;
 
       var complete = function complete() {
         _this2._isTransitioning = false;
-        $(_this2._parent).removeClass(ClassName$7.SHOW);
-        $(_this2._element).trigger(Event$f.HIDDEN);
+        $$1(_this2._parent).removeClass(ClassName$7.SHOW);
+        $$1(_this2._element).trigger(Event$f.HIDDEN);
       };
 
       this._element.style[dimension] = '';
       var transitionDuration = Util.getTransitionDurationFromElement(this._element);
-      $(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
+      $$1(this._element).one(Util.TRANSITION_END, complete).emulateTransitionEnd(transitionDuration);
     };
 
     _proto.dispose = function dispose() {
-      $.removeData(this._element, DATA_KEY$e);
+      $$1.removeData(this._element, DATA_KEY$e);
       this._config = null;
       this._parent = null;
       this._element = null;
@@ -10221,7 +10308,7 @@
       var parentOpen = parent.classList.contains(ClassName$7.SHOW);
       var next; // ( 1 )
 
-      if (siblingUl && parentOpen) next = $(parent).find('> ul >li:first-child > a').get(0); // ( 2,3,4 )
+      if (siblingUl && parentOpen) next = $$1(parent).find('> ul >li:first-child > a').get(0); // ( 2,3,4 )
 
       if (!next) {
         // let find next menu item
@@ -10233,7 +10320,7 @@
           var CPNext = cParent.nextElementSibling; // li:next
 
           if (CPNext) {
-            next = $(CPNext).children('a').get(0);
+            next = $$1(CPNext).children('a').get(0);
             break;
           }
 
@@ -10242,7 +10329,7 @@
           var cPPLi = cPParent.parentNode; // li?
 
           if (cPPLi.tagName != 'LI' || cPPLi.classList.contains(ClassName$7.MENU)) break;
-          cTarget = $(cPPLi).children('a').get(0);
+          cTarget = $$1(cPPLi).children('a').get(0);
           if (cTarget) continue;
           break;
         }
@@ -10262,7 +10349,7 @@
         target.click();
       } else {
         var gParent = parent.parentNode.parentNode;
-        if (gParent.classList.contains(ClassName$7.MENU_PARENT)) $(gParent).children('a').focus();
+        if (gParent.classList.contains(ClassName$7.MENU_PARENT)) $$1(gParent).children('a').focus();
       }
 
       return true;
@@ -10306,7 +10393,7 @@
           var nextParent = prevParent;
 
           while (true) {
-            var nextPUl = $(nextParent).children('ul').get(0);
+            var nextPUl = $$1(nextParent).children('ul').get(0);
             var lastNPUlLI = nextPUl.lastElementChild;
             if (!lastNPUlLI) break;
 
@@ -10315,21 +10402,21 @@
             var _isOpen = lastNPUlLI.classList.contains(ClassName$7.SHOW);
 
             if (!_hasChildren || !_isOpen) {
-              prev = $(lastNPUlLI).children('a').get(0);
+              prev = $$1(lastNPUlLI).children('a').get(0);
               break;
             }
 
             nextParent = lastNPUlLI;
           }
         } else {
-          prev = $(prevParent).children('a').get(0);
+          prev = $$1(prevParent).children('a').get(0);
         }
       } else {
         var pParent = parent.parentNode; // ul
 
         var pPLi = pParent.parentNode; // li
 
-        if (pPLi.tagName === 'LI' && !pPLi.classList.contains(ClassName$7.MENU)) prev = $(pPLi).children('a');
+        if (pPLi.tagName === 'LI' && !pPLi.classList.contains(ClassName$7.MENU)) prev = $$1(pPLi).children('a');
       }
 
       if (prev) prev.focus();
@@ -10365,7 +10452,7 @@
 
     VerticalMenu._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var $this = $(this);
+        var $this = $$1(this);
         var data = $this.data(DATA_KEY$e);
 
         var _config = _objectSpread({}, Default$i, $this.data(), typeof config === 'object' && config ? config : {});
@@ -10406,29 +10493,29 @@
    */
 
 
-  $(document).on(Event$f.CLICK_DATA_API, Selector$7.DATA_TOGGLE, function (event) {
+  $$1(document).on(Event$f.CLICK_DATA_API, Selector$7.DATA_TOGGLE, function (event) {
     // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
     if (event.currentTarget.tagName === 'A') {
       event.preventDefault();
     }
 
-    var $trigger = $(this);
+    var $trigger = $$1(this);
     var $target = $trigger.next('ul');
 
     VerticalMenu._jQueryInterface.call($target, 'toggle');
   });
-  $(document).on(Event$f.KEYDOWN_DATA_API, Selector$7.MENU, VerticalMenu._dataApiKeydownHandler);
+  $$1(document).on(Event$f.KEYDOWN_DATA_API, Selector$7.MENU, VerticalMenu._dataApiKeydownHandler);
   /**
    * ------------------------------------------------------------------------
    * jQuery
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME$g] = VerticalMenu._jQueryInterface;
-  $.fn[NAME$g].Constructor = VerticalMenu;
+  $$1.fn[NAME$g] = VerticalMenu._jQueryInterface;
+  $$1.fn[NAME$g].Constructor = VerticalMenu;
 
-  $.fn[NAME$g].noConflict = function () {
-    $.fn[NAME$g] = JQUERY_NO_CONFLICT$e;
+  $$1.fn[NAME$g].noConflict = function () {
+    $$1.fn[NAME$g] = JQUERY_NO_CONFLICT$e;
     return VerticalMenu._jQueryInterface;
   };
 
@@ -11871,8 +11958,6 @@
           }
 
           break;
-
-        default:
       }
     },
     dragstart: function dragstart(event) {
@@ -13133,8 +13218,6 @@
 
             break;
           }
-
-        default:
       } // Override
 
 
@@ -13151,9 +13234,7 @@
   };
   var AnotherViewer = WINDOW.Viewer;
 
-  var Viewer =
-  /*#__PURE__*/
-  function () {
+  var Viewer = /*#__PURE__*/function () {
     /**
      * Create a new Viewer.
      * @param {Element} element - The target element for viewing.
@@ -13474,6 +13555,276 @@
 
   assign(Viewer.prototype, render, events, handlers, methods, others);
 
+  var formatError = function formatError(res) {
+    if (res.error == 422) {
+      for (var k in res.data) {
+        res.message = res.data[k].text;
+      }
+    }
+
+    if (!res.message) res.message = 'Unable to parse server response';
+    return res;
+  };
+
+  var AdminFilePicker = /*#__PURE__*/function () {
+    function AdminFilePicker(cb, opts) {
+      var fpopts = {
+        multiple: opts.multiple || false,
+        type: opts.accept || '*/*',
+        btnUpload: '<i class="fas fa-upload"></i>',
+        selected: function selected(files) {
+          cb(files);
+        }
+      };
+
+      if (window.AConf && window.AConf.libUpload) {
+        if (window.AConf.libUpload.thumbs) fpopts.thumbnails = window.AConf.libUpload.thumbs;
+      }
+
+      fpopts = this._defineFileSearch(fpopts);
+      fpopts = this._defineFileUpload(fpopts, opts);
+      new FilePicker(fpopts);
+    }
+
+    var _proto = AdminFilePicker.prototype;
+
+    _proto._defineFileSearch = function _defineFileSearch(fpopts) {
+      if (!window.AConf || !window.AConf.libUpload) return fpopts;
+
+      fpopts.search = function (query, type, callback) {
+        var data = {
+          query: query,
+          type: type
+        };
+        var target = window.AConf.libUpload.search;
+        $.get(target, data, function (res) {
+          if (res.error) return callback([]);
+          var files = [];
+          res.data.forEach(function (file) {
+            if (/image/.test(file.type) && !file.thumb) file.thumb = file.url;
+            files.push(file);
+          });
+          callback(files);
+        }).fail(function (res) {
+          $.dialog.alert('Whoops!', 'Failed to fetch data from server');
+          callback([]);
+        });
+      };
+
+      return fpopts;
+    };
+
+    _proto._defineFileUpload = function _defineFileUpload(fpopts, opts) {
+      var _this = this;
+
+      if (!window.AConf || !window.AConf.libUpload || !window.AConf.libUpload.upload) return fpopts;
+
+      fpopts.upload = function (file, progress, callback) {
+        progress.style.width = '5%';
+
+        _this._findByHash(file, progress, function (res) {
+          if (!res.error && res.data.length) return _this._formatResult(res.data[0], callback);
+
+          _this._uploadFile(file, opts, progress, function (res) {
+            if (!res.error) return _this._formatResult(res.data, callback);
+            callback(res.message);
+          });
+        });
+      };
+
+      return fpopts;
+    };
+
+    _proto._formatResult = function _formatResult(result, callback) {
+      if (/image/.test(result.type) && !result.thumb) result.thumb = result.url;
+      callback(result);
+    };
+
+    _proto._findByHash = function _findByHash(file, progress, callback) {
+      progress.style.width = '10%';
+      var fReader = new FileReader();
+
+      fReader.onerror = function () {
+        return callback({
+          error: 1
+        });
+      };
+
+      fReader.onload = function (e) {
+        if (file.size != e.target.result.length) return callback({
+          error: 1
+        });
+        progress.style.width = '15%';
+        var hash = SparkMD5.hashBinary(e.target.result);
+        progress.style.width = '20%';
+        $.get(window.AConf.libUpload.search, {
+          hash: hash
+        }, callback);
+      };
+
+      fReader.readAsBinaryString(file);
+    };
+
+    _proto._uploadFile = function _uploadFile(file, opts, progress, callback) {
+      var _this2 = this;
+
+      progress.style.width = '25%';
+
+      this._validateFile(file, opts, progress, function (res) {
+        if (res.error) return callback(res);
+        progress.style.width = '30%';
+        if (file.size < 500000) return _this2._uploadFileSingle(file, opts, progress, callback);
+        opts.token = res.data.token;
+
+        _this2._uploadFileChunks(file, opts, progress, callback);
+      });
+    };
+
+    _proto._uploadFileChunks = function _uploadFileChunks(file, opts, progress, callback) {
+      var uploader = new FileUploader({
+        url: window.AConf.libUpload.chunk,
+        files: {
+          file: file
+        },
+        fields: {
+          form: opts.form,
+          token: opts.token
+        },
+        chunks: {
+          minSize: 1,
+          after: function after(up, res, cb) {
+            var body = {
+              form: opts.form,
+              token: opts.token,
+              name: file.name
+            };
+            $.ajax({
+              type: 'POST',
+              url: window.AConf.libUpload.finalize,
+              data: JSON.stringify(body),
+              contentType: 'application/json',
+              dataType: 'json',
+              success: function success(res) {
+                if (res.error) res = formatError(res);
+                callback(res);
+              },
+              error: function error(e) {
+                callback({
+                  error: 1,
+                  messag: 'Unable to reach server'
+                });
+              }
+            });
+          }
+        },
+        onChankUploaded: function onChankUploaded(up, xhr, res, callback) {
+          if (res.error) {
+            res = formatError(res);
+            return callback(res.message);
+          }
+
+          callback(true);
+        },
+        onProgress: function onProgress(up, percent) {
+          progress.style.width = 30 + percent / 100 * 60 + '%';
+        },
+        onSuccess: function onSuccess(up, xhr, res) {
+          if (typeof res !== 'object') return callback({
+            error: 1,
+            message: 'Unable to parse server response'
+          });
+          if (res.error) res = formatError(res);
+          progress.style.width = '100%';
+          callback(res);
+        },
+        onError: function onError(up) {
+          callback({
+            error: 1,
+            message: 'Failed on uploading the file'
+          });
+        }
+      });
+      uploader.send();
+    };
+
+    _proto._uploadFileSingle = function _uploadFileSingle(file, opts, progress, callback) {
+      var uploader = new FileUploader({
+        url: window.AConf.libUpload.upload,
+        files: {
+          file: file
+        },
+        fields: {
+          form: opts.form
+        },
+        onSuccess: function onSuccess(up, xhr, res) {
+          progress.style.width = '100%';
+          if (typeof res !== 'object') return callback({
+            error: 1,
+            message: 'Unable to parse server response'
+          });
+          if (res.error) res = formatError(res);
+          callback(res);
+        },
+        onError: function onError(up) {
+          callback({
+            error: 1,
+            message: 'Failed on uploading the file'
+          });
+        }
+      });
+      uploader.send();
+    };
+
+    _proto._validateFile = function _validateFile(file, opts, progress, callback) {
+      // validate file before upload
+      var body = {
+        form: opts.form,
+        file: {
+          size: file.size,
+          type: file.type,
+          name: file.name,
+          width: null,
+          height: null
+        }
+      };
+
+      var makeRequest = function makeRequest() {
+        $.ajax({
+          type: 'POST',
+          url: window.AConf.libUpload.validate,
+          data: JSON.stringify(body),
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function success(res) {
+            if (res.error) res = formatError(res);
+            callback(res);
+          },
+          error: function error(e) {
+            callback({
+              error: 1,
+              messag: 'Unable to reach server'
+            });
+          }
+        });
+      };
+
+      if (/image\//.test(file.type)) {
+        var img = new Image();
+        img.src = window.URL.createObjectURL(file);
+
+        img.onload = function () {
+          body.file.width = img.width;
+          body.file.height = img.height;
+          makeRequest();
+        };
+      } else {
+        makeRequest();
+      }
+    };
+
+    return AdminFilePicker;
+  }();
+
   /**
    * --------------------------------------------------------------------------
    * Admin UI (v0.0.1): admin.js
@@ -13483,7 +13834,7 @@
   var DATA_KEY$f = 'bs.admin';
   var EVENT_KEY$f = "." + DATA_KEY$f;
   var DATA_API_KEY$a = '.data-api';
-  var JQUERY_NO_CONFLICT$f = $.fn[NAME$h];
+  var JQUERY_NO_CONFLICT$f = $$1.fn[NAME$h];
   var ARROW_DOWN_KEYCODE$1 = 40;
   var Event$g = {
     CLICK_DATA_API: "click" + EVENT_KEY$f + DATA_API_KEY$a,
@@ -13503,9 +13854,7 @@
     DRAWER_MAIN_SEARCH: [false, "#" + IDName.DRAWER_MAIN_SEARCH]
   };
 
-  var Admin =
-  /*#__PURE__*/
-  function () {
+  var Admin = /*#__PURE__*/function () {
     function Admin() {
       this._populateElements(); // drawer stuff
 
@@ -13545,7 +13894,7 @@
       // input autocomplete
 
 
-      $('.form-autocomplete').autocomplete({
+      $$1('.form-autocomplete').autocomplete({
         preProcess: function preProcess(res) {
           if (res.error) return [];
           var flat = [];
@@ -13556,7 +13905,7 @@
         }
       }); // select ajax source
 
-      $('.selectpicker').selectpickerAjax({
+      $$1('.selectpicker').selectpickerAjax({
         ajaxPreProcess: function ajaxPreProcess(res) {
           if (res.error) return {};
           var flat = {};
@@ -13566,19 +13915,19 @@
           return flat;
         }
       });
-      $('.form-confirm').confirm(); // form confirmation
+      $$1('.form-confirm').confirm(); // form confirmation
 
-      $('.needs-validation').formerror(); // form need validation
+      $$1('.needs-validation').formerror(); // form need validation
 
-      $('.picker-color').pickercolor(); // color picker
+      $$1('.picker-color').pickercolor(); // color picker
 
-      $('.custom-range').rangetips(); // input range
+      $$1('.custom-range').rangetips(); // input range
 
-      $('.tag-input-filter').taginput(); // tag input
+      $$1('.tag-input-filter').taginput(); // tag input
 
-      $('.slugify').slugify(); // input slugify
+      $$1('.slugify').slugify(); // input slugify
 
-      $('.linkfilter').linkfilter(); // input link filter
+      $$1('.linkfilter').linkfilter(); // input link filter
 
       this._formMainAutofocus(); // autofocus form element
 
@@ -13591,14 +13940,14 @@
       var _this = this;
 
       if (!this._el.DRAWER_MAIN) return;
-      $(this._el.DRAWER_MAIN).on(Event$g.DRAWER_SHOWN, function (e) {
+      $$1(this._el.DRAWER_MAIN).on(Event$g.DRAWER_SHOWN, function (e) {
         return _this._el.DRAWER_MAIN_FILTER.focus();
       });
-      $(this._el.DRAWER_MAIN_SEARCH).linkfilter({
+      $$1(this._el.DRAWER_MAIN_SEARCH).linkfilter({
         input: this._el.DRAWER_MAIN_FILTER,
         empty: true
       });
-      $(this._el.DRAWER_MAIN_FILTER).on('input paste change search', function (e) {
+      $$1(this._el.DRAWER_MAIN_FILTER).on('input paste change search', function (e) {
         var nextState = _this._el.DRAWER_MAIN_FILTER.value.trim() ? 'search' : 'menu';
         if (nextState === _this._drawerState) return;
 
@@ -13615,10 +13964,10 @@
         _this._drawerState = nextState;
       }); // focus to menu
 
-      $(this._el.DRAWER_MAIN_FILTER).on('keyup.admin-ui', function (e) {
+      $$1(this._el.DRAWER_MAIN_FILTER).on('keyup.admin-ui', function (e) {
         if (e.keyCode !== ARROW_DOWN_KEYCODE$1) return;
         if (_this._el.DRAWER_MAIN_FILTER.value.trim()) return;
-        $(_this._el.DRAWER_MAIN_MENU).find('> ul > li:first-child > a').focus();
+        $$1(_this._el.DRAWER_MAIN_MENU).find('> ul > li:first-child > a').focus();
       });
     };
 
@@ -13631,7 +13980,7 @@
         var element = form.elements[i];
         if (!element.classList.contains('form-control')) continue;
         if (!fElement) fElement = element;
-        var formGroup = $(element).closest('.form-group');
+        var formGroup = $$1(element).closest('.form-group');
         if (!formGroup) continue;
 
         if (formGroup.hasClass('is-invalid')) {
@@ -13674,12 +14023,12 @@
 
 
       document.querySelectorAll('.img-viewer').forEach(function (e) {
-        $(e).data('viwerjs.admin-ui', new Viewer(e, options));
+        $$1(e).data('viwerjs.admin-ui', new Viewer(e, options));
       });
       options = this._getViewerOption(true); // galleries
 
       document.querySelectorAll('.gallery-viewer').forEach(function (e) {
-        $(e).data('viwerjs.admin-ui', new Viewer(e, options));
+        $$1(e).data('viwerjs.admin-ui', new Viewer(e, options));
       });
     };
 
@@ -13691,10 +14040,10 @@
         'time': 'HH:mm:ss'
       };
       document.querySelectorAll('.datetimepicker').forEach(function (e) {
-        var input = $(e).children('input.form-control').get(0);
+        var input = $$1(e).children('input.form-control').get(0);
         var type = input.getAttribute('type');
         if (!formats[type]) return;
-        $(e).datetimepicker({
+        $$1(e).datetimepicker({
           format: formats[type]
         });
       });
@@ -13712,16 +14061,16 @@
           mode: e.dataset.mode
         };
         var data = window.CodeMirror.fromTextArea(e, opts);
-        $(e).data('codemirror.bs.admin', data); // now handle the label related element
+        $$1(e).data('codemirror.bs.admin', data); // now handle the label related element
 
         if (!e.id) return;
         var label = document.querySelector("[for=\"" + e.id + "\"");
         if (!label) return;
-        $(label).data('codemirror', e);
-        $(label).on('click', function (e) {
-          var te = $(e.target).data('codemirror');
+        $$1(label).data('codemirror', e);
+        $$1(label).on('click', function (e) {
+          var te = $$1(e.target).data('codemirror');
           if (!te) return;
-          $(te).data('codemirror.bs.admin').focus();
+          $$1(te).data('codemirror.bs.admin').focus();
         });
       });
     };
@@ -13783,7 +14132,7 @@
           };
         }
 
-        $(e).formfiles({
+        $$1(e).formfiles({
           filePicker: filePicker,
           transform: transform
         });
@@ -13793,7 +14142,7 @@
     _proto._inputFormFileURL = function _inputFormFileURL() {
       var _this3 = this;
 
-      $('.fileurl-picker').fileurl({
+      $$1('.fileurl-picker').fileurl({
         filePicker: function filePicker(cb, btn, model) {
           var opts = {
             accept: btn.dataset.accept || '*/*',
@@ -13813,7 +14162,7 @@
     _proto._inputFormGallery = function _inputFormGallery() {
       var _this4 = this;
 
-      $('.formgallery').formgallery({
+      $$1('.formgallery').formgallery({
         imagePicker: function imagePicker(cb, plugin) {
           var opts = {
             accept: 'image/*',
@@ -13836,7 +14185,7 @@
     _proto._inputFormImage = function _inputFormImage() {
       var _this5 = this;
 
-      $('.formimage').formimage({
+      $$1('.formimage').formimage({
         imagePicker: function imagePicker(cb, plugin) {
           var opts = {
             accept: 'image/*',
@@ -13857,9 +14206,9 @@
     _proto._inputPasswordStrength = function _inputPasswordStrength() {
       document.querySelectorAll('.password-strength').forEach(function (e) {
         var parent = e.parentNode;
-        var progress = $(parent).children('.progress').get(0);
+        var progress = $$1(parent).children('.progress').get(0);
         parent.classList.add('form-group-password-meter');
-        $(e).pwdstr({
+        $$1(e).pwdstr({
           progress: progress
         });
       });
@@ -13869,7 +14218,7 @@
       document.querySelectorAll('.form-summernote').forEach(function (e) {
         var toolbar = [['style', ['style']], ['font', ['bold', 'italic', 'clear']], ['para', ['ul', 'ol']], ['table', ['table']], ['insert', ['link', 'video']], ['view', ['fullscreen', 'codeview']]];
         if (e.dataset.form) toolbar[4] = ['insert', ['link', 'picture', 'video']];
-        $(e).summernote({
+        $$1(e).summernote({
           disableResizeEditor: true,
           placeholder: e.getAttribute('placeholder'),
           tabsize: 2,
@@ -13877,18 +14226,18 @@
           toolbar: toolbar,
           callbacks: {
             onFocus: function onFocus(e) {
-              var ctn = $(e.currentTarget).parent().parent();
+              var ctn = $$1(e.currentTarget).parent().parent();
               ctn.addClass('note-editor-focus');
             },
             onBlur: function onBlur(e, i) {
-              var ctn = $(e.currentTarget).parent().parent();
+              var ctn = $$1(e.currentTarget).parent().parent();
               ctn.removeClass('note-editor-focus');
             }
           }
         });
         var id = e.id;
-        $("label[for=" + id + "]").click(function (evn) {
-          $(e).summernote('focus');
+        $$1("label[for=" + id + "]").click(function (evn) {
+          $$1(e).summernote('focus');
         });
       });
     };
@@ -13898,10 +14247,10 @@
 
       this._navbar_main = document.querySelector('#navbar-main');
       if (!this._navbar_main) return;
-      $(window).on("scroll" + EVENT_KEY$f + DATA_API_KEY$a, function (e) {
+      $$1(window).on("scroll" + EVENT_KEY$f + DATA_API_KEY$a, function (e) {
         if (window.pageYOffset) _this6._navbar_main.classList.add('navbar-shadow');else _this6._navbar_main.classList.remove('navbar-shadow');
       });
-      $(window).scroll();
+      $$1(window).scroll();
     };
 
     _proto._populateElements = function _populateElements() {
@@ -13917,182 +14266,7 @@
     ;
 
     _proto.pickFile = function pickFile(cb, opts) {
-      var _this7 = this;
-
-      var fpopts = {
-        multiple: opts.multiple || false,
-        type: opts.accept || '*/*',
-        btnUpload: '<i class="fas fa-upload"></i>',
-        selected: function selected(files) {
-          cb(files);
-        }
-      };
-
-      if (window.AConf && window.AConf.libUpload) {
-        if (window.AConf.libUpload.thumbs) fpopts.thumbnails = window.AConf.libUpload.thumbs;
-
-        if (window.AConf.libUpload.search) {
-          fpopts.search = function (query, type, callback) {
-            var data = {
-              query: query,
-              type: type
-            };
-            var target = window.AConf.libUpload.search;
-            $.get(target, data, function (res) {
-              if (res.error) return callback([]);
-              var files = [];
-              res.data.forEach(function (file) {
-                if (/image/.test(file.type) && !file.thumb) file.thumb = file.url;
-                files.push(file);
-              });
-              callback(files);
-            }).fail(function (res) {
-              $.dialog.alert('Whoops!', 'Failed to fetch data from server');
-              callback([]);
-            });
-          };
-        }
-
-        if (window.AConf.libUpload.upload) {
-          fpopts.upload = function (file, progress, callback) {
-            progress.style.width = '5%';
-
-            _this7.pickFileMd5(file, progress, function (res) {
-              if (!res.error && res.data.length) return _this7.pickFileFinalize(res.data[0], callback);
-
-              _this7.pickFileUpload(file, opts, progress, function (res) {
-                if (!res.error) return _this7.pickFileFinalize(res.data, callback);
-                callback(res.message);
-              });
-            });
-          };
-        }
-      }
-
-      new FilePicker(fpopts);
-    };
-
-    _proto.pickFileFinalize = function pickFileFinalize(result, callback) {
-      if (/image/.test(result.type) && !result.thumb) result.thumb = result.url;
-      callback(result);
-    };
-
-    _proto.pickFileMd5 = function pickFileMd5(file, progress, callback) {
-      progress.style.width = '10%';
-      var fReader = new FileReader();
-
-      fReader.onerror = function () {
-        return callback({
-          error: 1
-        });
-      };
-
-      fReader.onload = function (e) {
-        if (file.size != e.target.result.length) return callback({
-          error: 1
-        });
-        progress.style.width = '15%';
-        var hash = SparkMD5.hashBinary(e.target.result);
-        progress.style.width = '20%';
-        $.get(window.AConf.libUpload.search, {
-          hash: hash
-        }, callback);
-      };
-
-      fReader.readAsBinaryString(file);
-    };
-
-    _proto.pickFileUpload = function pickFileUpload(file, opts, progress, callback) {
-      progress.style.width = '25%';
-      this.pickFileUploadValidate(file, opts, progress, function (res) {
-        if (res.error) return callback(res);
-        progress.style.width = '30%';
-        var uploader = new FileUploader({
-          url: window.AConf.libUpload.upload,
-          files: {
-            file: file
-          },
-          fields: {
-            form: opts.form
-          },
-          onSuccess: function onSuccess(up, xhr, res) {
-            if (res.error) {
-              if (res.error == 422) {
-                for (var k in res.data) {
-                  res.message = res.data[k].text;
-                }
-              }
-
-              if (!res.message) res.message = 'Unable to upload the file';
-            }
-
-            callback(res);
-          },
-          onError: function onError(up) {
-            callback({
-              error: 1,
-              message: 'Failed on uploading the file'
-            });
-          }
-        });
-        uploader.send();
-      });
-    };
-
-    _proto.pickFileUploadValidate = function pickFileUploadValidate(file, opts, progress, callback) {
-      // validate file before upload
-      var body = {
-        form: opts.form,
-        file: {
-          size: file.size,
-          type: file.type,
-          name: file.name,
-          width: null,
-          height: null
-        }
-      };
-
-      var makeRequest = function makeRequest() {
-        $.ajax({
-          type: 'POST',
-          url: window.AConf.libUpload.validate,
-          data: JSON.stringify(body),
-          contentType: 'application/json',
-          dataType: 'json',
-          success: function success(res) {
-            if (res.error) {
-              if (res.error == 422) {
-                for (var k in res.data) {
-                  res.message = res.data[k].text;
-                }
-              }
-
-              if (!res.message) res.message = 'Unable to parse server response';
-            }
-
-            callback(res);
-          },
-          error: function error(e) {
-            callback({
-              error: 1,
-              messag: 'Unable to reach server'
-            });
-          }
-        });
-      };
-
-      if (/image\//.test(file.type)) {
-        var img = new Image();
-        img.src = window.URL.createObjectURL(file);
-
-        img.onload = function () {
-          body.file.width = img.width;
-          body.file.height = img.height;
-          makeRequest();
-        };
-      } else {
-        makeRequest();
-      }
+      new AdminFilePicker(cb, opts);
     };
 
     _proto.pickObject = function pickObject(cb, opts) {
@@ -14114,7 +14288,7 @@
               type: type
             };
             var target = window.AConf.objFilter.search;
-            $.get(target, data, function (res) {
+            $$1.get(target, data, function (res) {
               if (res.error) return callback([]);
               var result = [];
               res.data.forEach(function (e) {
@@ -14129,7 +14303,7 @@
               });
               callback(result);
             }).fail(function (res) {
-              $.dialog.alert('Whoops!', 'Failed to fetch data from server');
+              $$1.dialog.alert('Whoops!', 'Failed to fetch data from server');
               callback([]);
             });
           };
@@ -14169,10 +14343,10 @@
     return Admin;
   }();
 
-  $(window).on(Event$g.LOAD_DATA_API, function () {
-    if (!$(document.body).data(DATA_KEY$f)) $(document.body).data(DATA_KEY$f, new Admin());
+  $$1(window).on(Event$g.LOAD_DATA_API, function () {
+    if (!$$1(document.body).data(DATA_KEY$f)) $$1(document.body).data(DATA_KEY$f, new Admin());
   });
-  $(document).on(Event$g.CLICK_DATA_API, 'a', function (e) {
+  $$1(document).on(Event$g.CLICK_DATA_API, 'a', function (e) {
     if (this.getAttribute('href') === '#0') e.preventDefault();
   });
 
@@ -14203,5 +14377,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=bootstrap-plugins.js.map
