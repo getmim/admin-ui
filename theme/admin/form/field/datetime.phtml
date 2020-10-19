@@ -1,5 +1,8 @@
 <?php
     $value = (string)$value;
+    if($value)
+        $value = date('Y-m-d\TH:i:s', strtotime($value));
+    
     $attrs = [
         'type'        => 'datetime-local',
         'class'       => 'form-control',
