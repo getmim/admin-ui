@@ -82,7 +82,7 @@ class Admin {
                 return flat
             }
         })
-        
+
         $('.form-confirm').confirm()            // form confirmation
         $('.needs-validation').formerror()      // form need validation
         $('.picker-color').pickercolor()        // color picker
@@ -94,7 +94,7 @@ class Admin {
         this._formMainAutofocus()               // autofocus form element
     }
 
-    // Private 
+    // Private
 
     _drawerMainAddListener(){
         if(!this._el.DRAWER_MAIN)
@@ -214,7 +214,7 @@ class Admin {
 
             if(!formats[type])
                 return
-            
+
             $(e).datetimepicker({ format: formats[type] })
         })
     }
@@ -292,7 +292,7 @@ class Admin {
                         icon  : res.icon || null
                     }
                 }
-                
+
                 filePicker = (cb, plugin) => {
                     let opts = {
                         icon : `<i class="${plugin._element.dataset.icon}"></i>`,
@@ -360,23 +360,34 @@ class Admin {
             let progress = $(parent).children('.progress').get(0)
 
             parent.classList.add('form-group-password-meter')
-            
+
             $(e).pwdstr({progress})
         })
     }
 
     _inputSummernote(){
         document.querySelectorAll('.form-summernote').forEach(e => {
-            let toolbar = [
-                    ['style',   ['style']],
-                    ['font',    ['bold', 'italic', 'clear']],
-                    ['para',    ['ul', 'ol']],
-                    ['table',   ['table']],
-                    ['insert',  ['link','video']],
-                    ['view',    ['fullscreen','codeview']]
-            ];
-            if(e.dataset.form)
-                toolbar[4] = ['insert',  ['link','picture','video']];
+            let toolbar = []
+
+            if (!e.classList.contains('minimal')) {
+                toolbar = [
+                        ['style',   ['style']],
+                        ['font',    ['bold', 'italic', 'clear']],
+                        ['para',    ['ul', 'ol']],
+                        ['table',   ['table']],
+                        ['insert',  ['link','video']],
+                        ['view',    ['fullscreen','codeview']]
+                ];
+                if(e.dataset.form)
+                    toolbar[4] = ['insert',  ['link','picture','video']];
+            }else{
+                toolbar = [
+                        ['font',    ['bold', 'italic', 'clear']],
+                        ['para',    ['ul', 'ol']],
+                        ['insert',  ['link']],
+                        ['view',    ['fullscreen']]
+                ];
+            }
 
             $(e).summernote({
                 disableResizeEditor: true,
@@ -396,7 +407,7 @@ class Admin {
                 }
             })
 
-            let id = e.id 
+            let id = e.id
             $(`label[for=${id}]`).click(evn => {
                 $(e).summernote('focus')
             })
@@ -435,7 +446,7 @@ class Admin {
     pickFile(cb, opts){
     	new AdminFilePicker(cb, opts);
     }
-    
+
     pickObject(cb, opts){
         let fpopts = {
             multiple : true,

@@ -21,7 +21,7 @@ submenu: summernote
 </nav>
 
 <div class="container">
-    <div class="row mt-4 mb-4">
+    <div class="row mt-4">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Default</div>
@@ -33,12 +33,47 @@ submenu: summernote
                                 <textarea class="form-control form-summernote" id="input-textarea" data-form="article"></textarea>
                             </div>
                         </div>
-                        
+
                         <div class="source-code hidden" data-hl="php">
                             // config
                             'content' => [
                                 'label' => 'Content',
                                 'type' => 'summernote',
+                                'upload' => 'article',
+                                'rules' => [
+                                    'required' => true,
+                                    'empty' => false
+                                ]
+                            ]
+
+                            // view
+                            $form->field('content');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Minimal</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-textarea-minimal">About You</label>
+                                <textarea class="form-control form-summernote minimal" id="input-textarea-minimal" data-form="article"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'content' => [
+                                'label' => 'Content',
+                                'type' => 'summernote-minimal',
                                 'upload' => 'article',
                                 'rules' => [
                                     'required' => true,

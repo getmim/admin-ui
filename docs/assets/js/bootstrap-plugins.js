@@ -1,6 +1,6 @@
 /*!
   * Admin UI v0.0.1 (https://github.com/getmim/admin-ui)
-  * Copyright 2011-2020 MIM Dev
+  * Copyright 2011-2021 MIM Dev
   * Licensed under MIT (https://github.com/getmim/admin-ui/blob/master/LICENSE)
   */
 (function (global, factory) {
@@ -13931,7 +13931,7 @@
 
       this._formMainAutofocus(); // autofocus form element
 
-    } // Private 
+    } // Private
 
 
     var _proto = Admin.prototype;
@@ -14216,8 +14216,15 @@
 
     _proto._inputSummernote = function _inputSummernote() {
       document.querySelectorAll('.form-summernote').forEach(function (e) {
-        var toolbar = [['style', ['style']], ['font', ['bold', 'italic', 'clear']], ['para', ['ul', 'ol']], ['table', ['table']], ['insert', ['link', 'video']], ['view', ['fullscreen', 'codeview']]];
-        if (e.dataset.form) toolbar[4] = ['insert', ['link', 'picture', 'video']];
+        var toolbar = [];
+
+        if (!e.classList.contains('minimal')) {
+          toolbar = [['style', ['style']], ['font', ['bold', 'italic', 'clear']], ['para', ['ul', 'ol']], ['table', ['table']], ['insert', ['link', 'video']], ['view', ['fullscreen', 'codeview']]];
+          if (e.dataset.form) toolbar[4] = ['insert', ['link', 'picture', 'video']];
+        } else {
+          toolbar = [['font', ['bold', 'italic', 'clear']], ['para', ['ul', 'ol']], ['insert', ['link']], ['view', ['fullscreen']]];
+        }
+
         $$1(e).summernote({
           disableResizeEditor: true,
           placeholder: e.getAttribute('placeholder'),
