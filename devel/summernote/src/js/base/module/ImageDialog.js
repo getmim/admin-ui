@@ -11,7 +11,7 @@ export default class ImageDialog {
   }
 
   initialize(){
-    // console.log('initialized')
+    console.log('initialized')
   }
 
   destroy(){
@@ -34,10 +34,10 @@ export default class ImageDialog {
 
     admin.pickFile(res => {
       this.context.invoke('editor.restoreRange');
-      if (this.options.callbacks.onImageLinkInsert) {
-        this.context.triggerEvent('image.link.insert', res.path);
+      if (this.options && this.options.callbacks.onImageLinkInsert) {
+        this.context.triggerEvent('image.link.insert', res.url);
       }else{
-        this.context.invoke('editor.insertImage', res[0].path);
+        this.context.invoke('editor.insertImage', res[0].url);
       }
     }, opts)
   }

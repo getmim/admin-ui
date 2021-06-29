@@ -7713,7 +7713,8 @@
 
     var _proto = ImageDialog.prototype;
 
-    _proto.initialize = function initialize() {// console.log('initialized')
+    _proto.initialize = function initialize() {
+      console.log('initialized');
     };
 
     _proto.destroy = function destroy() {// console.log('destroyed')
@@ -7735,10 +7736,10 @@
       admin.pickFile(function (res) {
         _this.context.invoke('editor.restoreRange');
 
-        if (_this.options.callbacks.onImageLinkInsert) {
-          _this.context.triggerEvent('image.link.insert', res.path);
+        if (_this.options && _this.options.callbacks.onImageLinkInsert) {
+          _this.context.triggerEvent('image.link.insert', res.url);
         } else {
-          _this.context.invoke('editor.insertImage', res[0].path);
+          _this.context.invoke('editor.insertImage', res[0].url);
         }
       }, opts);
     };
