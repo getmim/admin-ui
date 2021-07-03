@@ -13674,13 +13674,12 @@
         if (res.error) return callback(res);
         progress.style.width = '30%';
         if (file.size < 500000) return _this2._uploadFileSingle(file, opts, progress, callback);
-        opts.token = res.data.token;
 
-        _this2._uploadFileChunks(file, opts, progress, callback);
+        _this2._uploadFileChunks(file, opts, progress, res.data.token, callback);
       });
     };
 
-    _proto._uploadFileChunks = function _uploadFileChunks(file, opts, progress, callback) {
+    _proto._uploadFileChunks = function _uploadFileChunks(file, opts, progress, token, callback) {
       var uploader = new FileUploader({
         url: window.AConf.libUpload.chunk,
         files: {
@@ -13688,14 +13687,14 @@
         },
         fields: {
           form: opts.form,
-          token: opts.token
+          token: token
         },
         chunks: {
           minSize: 1,
           after: function after(up, res, cb) {
             var body = {
               form: opts.form,
-              token: opts.token,
+              token: token,
               name: file.name
             };
             $.ajax({

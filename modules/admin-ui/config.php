@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'admin-ui',
-    '__version' => '0.17.1',
+    '__version' => '0.17.2',
     '__git' => 'git@github.com:getmim/admin-ui.git',
     '__license' => 'MIT',
     '__author' => [
@@ -61,7 +61,7 @@ return [
                     'js/summernote.min.js' => 1,
                     'js/codemirror.min.js' => 1,
                     'js/bootstrap.min.js' => 1,
-                    'js/bootstrap-plugins.min.js' => 1
+                    'js/bootstrap-plugins.min.js' => 2
                 ]
             ]
         ]

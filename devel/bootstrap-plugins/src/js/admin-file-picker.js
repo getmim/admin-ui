@@ -122,22 +122,22 @@ class AdminFilePicker {
 
             if(file.size < 500000)
             	return this._uploadFileSingle(file, opts, progress, callback)
-            opts.token = res.data.token
-            this._uploadFileChunks(file, opts, progress, callback)
+
+            this._uploadFileChunks(file, opts, progress, res.data.token, callback)
         })
     }
 
-    _uploadFileChunks(file, opts, progress, callback){
+    _uploadFileChunks(file, opts, progress, token, callback){
     	let uploader = new FileUploader({
             url     : window.AConf.libUpload.chunk,
             files   : {file},
-            fields  : {form: opts.form, token: opts.token},
+            fields  : {form: opts.form, token: token},
             chunks  : {
                 minSize: 1,
                 after(up, res, cb){
                     let body = {
                         form  : opts.form,
-                        token : opts.token,
+                        token : token,
                         name  : file.name
                     }
 
