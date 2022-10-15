@@ -1,11 +1,17 @@
 <?php
     $value = (string)$value;
+    $value = str_replace('.', ',', $value);
     $attrs = [
-        'type'        => 'number',
-        'class'       => 'form-control',
-        'placeholder' => $field->label,
+        'type'        => 'hidden',
         'id'          => $id,
         'name'        => $field->name,
+        'value'       => $value
+    ];
+    $attrs_mask = [
+        'type'        => 'text',
+        'class'       => 'form-control number-separator',
+        'data-input'  => '#' . $id,
+        'placeholder' => $field->label,
         'value'       => $value
     ];
 
@@ -24,6 +30,7 @@
     <?php if($show_label): ?>
         <label for="<?= $id ?>"><?= $field->label ?></label>
     <?php endif; ?>
+    <input<?= to_attr($attrs_mask) ?>>
     <input<?= to_attr($attrs) ?>>
     <div class="invalid-feedback"><?= ($error?$error->text:'') ?></div>
 </div>
