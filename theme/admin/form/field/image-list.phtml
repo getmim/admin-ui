@@ -1,9 +1,10 @@
 <?php
     $upload_form = null;
-    if(isset($field->form))
+    if (isset($field->form)) {
         $upload_form = $field->form;
-    elseif(isset($rules->upload) && is_string($rules->upload))
+    }elseif (isset($rules->upload) && is_string($rules->upload)) {
         $upload_form = $rules->upload;
+    }
 
     $l_id = $id . '-action';
     
@@ -12,10 +13,14 @@
         'name'  => $field->name,
         'class' => 'formgallery-model'
     ];
-    if(isset($rules->required) && $rules->required)
+
+    if (isset($rules->required) && $rules->required) {
         $t_attrs['required'] = null;
-    if(isset($rules->empty) && !$rules->empty)
+    }
+
+    if (isset($rules->empty) && !$rules->empty) {
         $t_attrs['required'] = null;
+    }
 
     $d_attrs = [
         'class' => 'formgallery',
@@ -23,17 +28,19 @@
         'data-model' => '#' . $id,
         'data-form'  => ''
     ];
-    if($upload_form){
+    if ($upload_form) {
         $d_attrs['data-form'] = $upload_form;
         $mimes = $this->config->libUpload->forms->$upload_form->mime ?? NULL;
-        if($mimes)
+        if ($mimes) {
             $d_attrs['data-accept'] = implode(',', $mimes);
+        }
     }
 
-    if($value && ( is_object($value) || is_array($value)))
+    if ($value && ( is_object($value) || is_array($value))) {
         $value = json_encode($value);
-    else
+    } elseif (!$value) {
         $value = '[]';
+    }
 ?>
 <div class="form-group<?= ($error ? ' is-invalid' : '' ) ?>">
     <?php if($show_label): ?>
