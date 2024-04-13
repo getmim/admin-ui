@@ -215,7 +215,10 @@ class Admin {
             if(!formats[type])
                 return
 
-            $(e).datetimepicker({ format: formats[type] })
+            $(e).datetimepicker({
+                format: formats[type],
+                showClear: true
+            })
         })
     }
 
