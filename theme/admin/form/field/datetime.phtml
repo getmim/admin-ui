@@ -9,7 +9,8 @@
         'placeholder' => $field->label,
         'id'          => $id,
         'name'        => $field->name,
-        'value'       => $value
+        'value'       => $value,
+        'step'        => 1
     ];
 
     if(isset($rules->required) && $rules->required)
