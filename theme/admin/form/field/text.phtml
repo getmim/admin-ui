@@ -105,6 +105,10 @@
 
         $attrs['data-source'] = '#' . $data_source;
     }
+
+    if (isset($field->readonly) && $field->readonly) {
+        $attrs['readonly'] = 'readonly';
+    }
 ?>
 <div class="form-group<?= ($error ? ' is-invalid' : '' ) ?>">
     <?php if($show_label): ?>
