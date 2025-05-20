@@ -1,0 +1,92 @@
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">Dialog</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Modules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Dialog</li>
+            </ol>
+        </nav>
+    </div>
+    
+    <div class="form-inline">
+        <a class="btn btn-primary" href="https://github.com/iqbalfn/bootstrap-dialog" target="_blank">
+            Module
+        </a>
+    </div>
+    
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Alert</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <button class="btn btn-primary" onclick="showAlert()">Show Alert</button>
+                            <script>
+                                function showAlert(){
+                                    $.dialog.alert('Alert!', 'This is an alert message')
+                                }
+                            </script>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Confirm</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <button class="btn btn-primary" onclick="askConfirm()">Ask Confirmation</button>
+                            <script>
+                                function askConfirm(){
+                                    $.dialog.confirm('Confirmation', 'Are you sure about that?', res => alert(res))
+                                }
+                            </script>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Prompt</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <button class="btn btn-primary" onclick="askName()">Ask User Input</button>
+                            <script>
+                                function askName(){
+                                    let input = {
+                                        type: 'text',
+                                        label: 'Your Name'
+                                    }
+
+                                    $.dialog.prompt('Identity', 'Please tell me your name', input, res => {
+                                        alert(res)
+                                    })
+                                }
+                            </script>
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

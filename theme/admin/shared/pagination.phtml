@@ -6,10 +6,22 @@
 		elseif($align === 'right')
 			$align_class = ' justify-content-end';
 	}
+
+    $size_class = '';
+    if (isset($size)) {
+        $size_class = ' pagination-' . $size;
+    }
 ?>
 <nav aria-label="Pagination">
-    <ul class="pagination<?= $align_class ?>">
+    <ul class="pagination<?= $align_class ?><?= $size_class ?> mb-0">
         <?php foreach($pages as $page): ?>
+            <?php if($page->label == '&#187;'): ?>
+                <li class="page-item">
+                    <a class="page-link pagination-goto" href="#0" data-container="body" data-toggle="popover" data-placement="top">
+                        ...
+                    </a>
+                </li>
+            <?php endif; ?>
             <?php if($page->active): ?>
                 <?php if($page->next_btn || $page->prev_btn): ?>
                     <li class="page-item disabled">
@@ -32,3 +44,26 @@
         <?php endforeach; ?>
     </ul>
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', e => {
+        $('.pagination-goto').popover({
+            content() {
+                return `
+                    <form class="input-group input-group-sm mb-0">
+                    <?php foreach ($pages->getQuery() as $key => $value): ?>
+                        <input type="hidden" name="<?= $key ?>" value="<?= $value ?>">
+                    <?php endforeach; ?>
+                        <input type="number" name="page" class="form-control" style="width:75px" min="1">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </form>
+                `
+            },
+            sanitize: false,
+            html: true
+        })
+    })
+</script>

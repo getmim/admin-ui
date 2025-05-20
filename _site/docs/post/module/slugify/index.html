@@ -1,0 +1,66 @@
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">Slugify</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Modules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Slugify</li>
+            </ol>
+        </nav>
+    </div>
+    
+    <div class="form-inline">
+        <a class="btn btn-primary" href="https://github.com/iqbalfn/bootstrap-slugify" target="_blank">
+            Module
+        </a>
+    </div>
+    
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-title">Title</label>
+                                <input type="text" placeholder="Title" class="form-control" id="input-title">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-slug">Slug</label>
+                                <input type="text" placeholder="Slug" class="form-control slugify" id="input-slug" data-source="#input-title">
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'title' => [
+                                'label' => 'Title',
+                                'type' => 'text',
+                                'rules' => ['required'=>true]
+                            ],
+                            'slug' => [
+                                'label' => 'Slug',
+                                'type' => 'text',
+                                'slugof' => 'title',
+                                'rules' => [
+                                    'required' => TRUE,
+                                    'empty' => FALSE
+                                ]
+                            ]
+
+                            // view
+                            $form->field('title');
+                            $form->field('slug');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">Autocomplete</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Modules</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Autocomplete</li>
+            </ol>
+        </nav>
+    </div>
+    
+    <div class="form-inline">
+        <a class="btn btn-primary" href="https://github.com/iqbalfn/bootstrap-autocomplete" target="_blank">
+            Module
+        </a>
+    </div>
+    
+</nav>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Source Datalist</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-datalist">Timezone</label>
+                                <input type="text" class="form-control form-autocomplete" placeholder="Timezone" list="list-timezone" id="input-datalist">
+                                <datalist id="list-timezone">
+                                    <option>Asia/Aden</option>
+                                    <option>Asia/Aqtau</option>
+                                    <option>Asia/Baghdad</option>
+                                    <option>Asia/Barnaul</option>
+                                    <option>Asia/Chita</option>
+                                    <option>Asia/Dhaka</option>
+                                    <option>Asia/Famagusta</option>
+                                    <option>Asia/Hong_Kong</option>
+                                    <option>Asia/Jayapura</option>
+                                    <option>Asia/Kuala_Lumpur</option>
+                                    <option>Asia/Jakarta</option>
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'timezone' => [
+                                'label' => 'Timezones',
+                                'type' => 'text',
+                                'options' => [
+                                    'Asia/Aden' => 'Asia/Aden',
+                                    'Asia/Aqtau' => 'Asia/Aqtau',
+                                    'Asia/Baghdad' => 'Asia/Baghdad',
+                                    'Asia/Barnaul' => 'Asia/Barnaul',
+                                    'Asia/Chita' => 'Asia/Chita',
+                                    'Asia/Dhaka' => 'Asia/Dhaka',
+                                    'Asia/Famagusta' => 'Asia/Famagusta',
+                                    'Asia/Hong_Kong' => 'Asia/Hong_Kong',
+                                    'Asia/Jayapura' => 'Asia/Jayapura',
+                                    'Asia/Kuala_Lumpur' => 'Asia/Kuala_Lumpur',
+                                    'Asia/Jakarta' => 'Asia/Jakarta'
+                                ],
+                                'rules' => [
+                                    'required' => TRUE,
+                                    'empty' => FALSE
+                                ]
+                            ]
+
+                            // view
+                            $form->field('timezone');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Source Prefetch</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-prefetch">Timezone</label>
+                                <input type="text" class="form-control form-autocomplete" placeholder="Timezone" id="input-prefetch" data-prefetch="http://localhost/server/timezone/?group=Asia">
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'timezone' => [
+                                'label' => 'Timezones',
+                                'type' => 'text',
+                                'ac-prefetch' => [
+                                    'route'  => ['adminObjectFilter', [], ['what'=> 'ASIA','type'=>'timezone']]
+                                ],
+                                'rules' => [
+                                    'required' => TRUE,
+                                    'empty' => FALSE
+                                ]
+                            ]
+
+                            // view
+                            $form->field('timezone');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Source URL</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-url">Timezone</label>
+                                <input type="text" class="form-control form-autocomplete" placeholder="Timezone" id="input-url" data-filter="http://localhost/server/timezone/?q=#QUERY#">
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'timezone' => [
+                                'label' => 'Timezones',
+                                'type' => 'text',
+                                'ac-filter' => [
+                                    'route'  => ['adminObjectFilter', [], ['what'=> 'ASIA','type'=>'timezone','query'=>'#QUERY#']]
+                                ],
+                                'rules' => [
+                                    'required' => TRUE,
+                                    'empty' => FALSE
+                                ]
+                            ]
+
+                            // view
+                            $form->field('timezone');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Source URL With Relation</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                        	<div class="form-group">
+                                <label for="select-continent">Continent</label>
+                                <select name="continent" id="select-continent" class="form-control">
+                                	<option value="Asia">Asia</option>
+                                	<option value="Africa">Africa</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-url2">Timezone</label>
+                                <input type="text" class="form-control form-autocomplete" placeholder="Timezone" id="input-url2" data-filter="http://localhost/server/timezone/?q=#QUERY#" data-filter-relation="{&quot;parent&quot;:&quot;#select-continent&quot;}">
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'timezone' => [
+                                'label' => 'Timezones',
+                                'type' => 'text',
+                                'ac-filter' => [
+                                    'route'  => ['adminObjectFilter', [], ['what'=> 'ASIA','type'=>'timezone','query'=>'#QUERY#']],
+                                    'relation' => [
+                                    	'parent' => '#select-continent'
+                                    ]
+                                ],
+                                'rules' => [
+                                    'required' => TRUE,
+                                    'empty' => FALSE
+                                ]
+                            ]
+
+                            // view
+                            $form->field('timezone');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

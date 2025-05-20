@@ -1,0 +1,36 @@
+<?php
+    $value = (string)$value;
+    $value = str_replace('.', ',', $value);
+    $attrs = [
+        'type'        => 'hidden',
+        'id'          => $id,
+        'name'        => $field->name,
+        'value'       => $value
+    ];
+    $attrs_mask = [
+        'type'        => 'text',
+        'class'       => 'form-control number-separator',
+        'data-input'  => '#' . $id,
+        'placeholder' => $field->label,
+        'value'       => $value
+    ];
+
+    if(isset($rules->required) && $rules->required)
+        $attrs['required'] = null;
+    if(isset($rules->empty) && !$rules->empty)
+        $attrs['required'] = null;
+    if(isset($rules->numeric) && is_object($rules->numeric)){
+        if(isset($rules->numeric->min))
+            $attrs['min'] = $rules->numeric->min;
+        if(isset($rules->numeric->max))
+            $attrs['max'] = $rules->numeric->max;
+    }
+?>
+<div class="form-group<?= ($error ? ' is-invalid' : '' ) ?>">
+    <?php if($show_label): ?>
+        <label for="<?= $id ?>"><?= $field->label ?></label>
+    <?php endif; ?>
+    <input<?= to_attr($attrs_mask) ?>>
+    <input<?= to_attr($attrs) ?>>
+    <div class="invalid-feedback"><?= ($error?$error->text:'') ?></div>
+</div>
