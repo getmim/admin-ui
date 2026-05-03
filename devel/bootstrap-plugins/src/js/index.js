@@ -13,6 +13,7 @@ import FormError from './form-error'
 import FormFiles from './form-files'
 import FormGallery from './form-gallery'
 import FormImage from './form-image'
+import FormMap from './form-map'
 import FormFileURL from './form-fileurl'
 import LinkFilter from './link-filter'
 import ListEditor from './list-editor'
@@ -48,6 +49,7 @@ export {
     FormFiles,
     FormGallery,
     FormImage,
+    FormMap,
     LinkFilter,
     ListEditor,
     PasswordStrength,

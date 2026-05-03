@@ -16,7 +16,6 @@ Perbaikan komponen
 
 Beberapa komponen yang mungkin perlu ditambahkan:
 
-1. Location Picker
 1. Form Audio
 1. Form Video
 

@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'admin-ui',
-    '__version' => '0.21.0',
+    '__version' => '0.22.0',
     '__git' => 'git@github.com:getmim/admin-ui.git',
     '__license' => 'MIT',
     '__author' => [
@@ -47,6 +47,7 @@ return [
                     'css/codemirror.min.css' => 1,
                     'css/bootstrap-plugins.min.css' => 1,
                     'css/Chart.min.css' => 1,
+                    'css/leaflet.css' => 1,
                     'css/summernote.min.css' => 1
                 ],
                 'js' => []
@@ -62,6 +63,7 @@ return [
                     'js/codemirror.min.js' => 1,
                     'js/number-mask.min.js' => 1,
                     'js/bootstrap.min.js' => 1,
+                    'js/leaflet.js' => 1,
                     'js/bootstrap-plugins.min.js' => 2
                 ]
             ]

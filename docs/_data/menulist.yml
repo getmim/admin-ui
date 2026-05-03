@@ -87,6 +87,10 @@ docs:
         label: Image
         url: /post/form/image
 
+      - id: map
+        label: Map Picker
+        url: /post/form/map
+
       - id: object-list
         label: Object List
         url: /post/form/object-list

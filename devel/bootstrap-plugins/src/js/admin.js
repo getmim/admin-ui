@@ -90,6 +90,7 @@ class Admin {
         $('.tag-input-filter').taginput()       // tag input
         $('.slugify').slugify()                 // input slugify
         $('.linkfilter').linkfilter()           // input link filter
+        $('.formmap').formmap()                 // map picker
 
         this._formMainAutofocus()               // autofocus form element
     }

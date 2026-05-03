@@ -26,11 +26,8 @@ select.selectpicker {
   width: 100%;
   text-align: right;
   white-space: nowrap;
-  display: -webkit-inline-box;
   display: inline-flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: justify;
   justify-content: space-between;
 }
 
@@ -194,7 +191,6 @@ select.selectpicker {
   width: 100%;
   text-align: left;
   overflow: hidden;
-  -webkit-box-flex: 0;
   flex: 0 1 auto;
 }
 
@@ -276,7 +272,6 @@ select.selectpicker {
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -359,7 +354,6 @@ select.selectpicker {
   height: 1em;
   border-style: solid;
   border-width: 0 0.26em 0.26em 0;
-  -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
@@ -819,7 +813,6 @@ select.selectpicker {
 }
 
 .drawer.show {
-  -webkit-transform: none;
   transform: none;
 }
 
@@ -832,13 +825,11 @@ select.selectpicker {
 }
 
 .drawer.slide {
-  -webkit-transition: left 0.2s ease, right 0.2s ease;
   transition: left 0.2s ease, right 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .drawer.slide {
-    -webkit-transition: none;
     transition: none;
   }
 }
@@ -876,23 +867,16 @@ select.selectpicker {
 }
 
 .drawer-content.drawer-content-scrollable {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
 }
 
 .drawer-content.drawer-content-scrollable > div {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
 }
 
 .drawer-content.drawer-content-scrollable > div.drawer-body {
-  -webkit-box-flex: 1;
   flex: 1;
   overflow-y: auto;
 }
@@ -1050,70 +1034,49 @@ select.selectpicker {
 }
 
 .fa-spin {
-  -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
 }
 
 .fa-pulse {
-  -webkit-animation: fa-spin 1s infinite steps(8);
   animation: fa-spin 1s infinite steps(8);
-}
-
-@-webkit-keyframes fa-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-  -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
-  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
-  -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
 
 .fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(1, -1);
   transform: scale(1, -1);
 }
 
 .fa-flip-both, .fa-flip-horizontal.fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(-1, -1);
   transform: scale(-1, -1);
 }
 
@@ -1123,7 +1086,6 @@ select.selectpicker {
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical,
 :root .fa-flip-both {
-  -webkit-filter: none;
   filter: none;
 }
 
@@ -6755,7 +6717,6 @@ readers do not read off random characters that represent icons */
 }
 
 .filepicker-container .drawer-body .filepicker-item.filepicker-item-error {
-  -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease;
   opacity: 1;
 }
@@ -6782,10 +6743,7 @@ readers do not read off random characters that represent icons */
 }
 
 .formfiles {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
   width: 100%;
   font-size: 1rem;
@@ -6809,7 +6767,6 @@ readers do not read off random characters that represent icons */
   list-style: none;
   margin: 0;
   padding: 0;
-  -webkit-box-flex: 1;
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
@@ -6827,13 +6784,11 @@ readers do not read off random characters that represent icons */
 }
 
 .formfiles-items > li.slide-up {
-  -webkit-transition: height 0.3s ease;
   transition: height 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .formfiles-items > li.slide-up {
-    -webkit-transition: none;
     transition: none;
   }
 }
@@ -6864,11 +6819,8 @@ readers do not read off random characters that represent icons */
   background-color: #eee;
   margin-right: 0.75rem;
   background-color: #e9ecef;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
 }
 
@@ -6900,10 +6852,7 @@ readers do not read off random characters that represent icons */
 
 .formgallery {
   background-color: #FFFFFF;
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
   width: 100%;
   height: 13.13rem;
@@ -6918,7 +6867,6 @@ readers do not read off random characters that represent icons */
   border-top-right-radius: 0.25rem;
   padding: 0.75rem 0.75rem;
   letter-spacing: 0;
-  -webkit-box-flex: 1;
   flex: 1;
   overflow: auto;
   font-size: 0;
@@ -6988,13 +6936,11 @@ readers do not read off random characters that represent icons */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .formgallery-image {
-    -webkit-transition: none;
     transition: none;
   }
 }
@@ -7022,8 +6968,6 @@ readers do not read off random characters that represent icons */
 
 .formimage {
   position: relative;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
   width: 100%;
   padding: 0.75rem 0.75rem;
@@ -7047,14 +6991,9 @@ readers do not read off random characters that represent icons */
 }
 
 .formimage-preview {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
   height: 100%;
   background-position: center center;
@@ -7062,13 +7001,11 @@ readers do not read off random characters that represent icons */
   background-size: cover;
   cursor: pointer;
   background-color: #f8f9fa;
-  -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .formimage-preview {
-    -webkit-transition: none;
     transition: none;
   }
 }
@@ -7079,6 +7016,21 @@ readers do not read off random characters that represent icons */
   top: 0.75rem;
   cursor: pointer;
   z-index: 1000;
+}
+
+.formmap {
+  position: relative;
+  width: 100%;
+  padding: 0.75rem 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.formmap-control {
+  background-color: #f8f9fa;
+  margin-top: 0.75rem;
+  height: 19.1rem;
 }
 
 .input-group-append input[type="color"] {
@@ -7180,9 +7132,7 @@ readers do not read off random characters that represent icons */
   width: 100%;
   left: 0px;
   bottom: 0px;
-  -webkit-transition: all 250ms ease 0s;
   transition: all 250ms ease 0s;
-  -webkit-transform: scale(0);
   transform: scale(0);
 }
 
@@ -7194,7 +7144,6 @@ readers do not read off random characters that represent icons */
 }
 
 .sw-theme-default > ul.step-anchor > li.active > a::after {
-  -webkit-transform: scale(1);
   transform: scale(1);
 }
 
@@ -7207,7 +7156,6 @@ readers do not read off random characters that represent icons */
 
 .sw-theme-default > ul.step-anchor > li.done > a::after {
   background: #5cb85c;
-  -webkit-transform: scale(1);
   transform: scale(1);
 }
 
@@ -7221,7 +7169,6 @@ readers do not read off random characters that represent icons */
 .sw-theme-default > ul.step-anchor > li.danger > a::after {
   background: #d9534f;
   border-left-color: #f8d7da;
-  -webkit-transform: scale(1);
   transform: scale(1);
 }
 
@@ -7248,7 +7195,6 @@ readers do not read off random characters that represent icons */
   height: 100%;
   width: 100%;
   background: rgba(255, 255, 255, 0.7);
-  -webkit-transition: all .2s ease;
   transition: all .2s ease;
   z-index: 2;
 }
@@ -7267,28 +7213,17 @@ readers do not read off random characters that represent icons */
   height: 80px;
   margin-top: -40px;
   margin-left: -40px;
-  -webkit-animation: spin 1s linear infinite;
   /* Safari */
   animation: spin 1s linear infinite;
 }
 
 /* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
 
 @keyframes spin {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -7510,7 +7445,6 @@ readers do not read off random characters that represent icons */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -7580,7 +7514,6 @@ readers do not read off random characters that represent icons */
   line-height: 0;
   opacity: 0.5;
   overflow: hidden;
-  -webkit-transition: opacity 0.15s;
   transition: opacity 0.15s;
   width: 30px;
 }
@@ -7640,7 +7573,6 @@ readers do not read off random characters that represent icons */
   float: left;
   height: 24px;
   overflow: hidden;
-  -webkit-transition: background-color 0.15s;
   transition: background-color 0.15s;
   width: 24px;
 }
@@ -7706,7 +7638,6 @@ readers do not read off random characters that represent icons */
   opacity: 0.8;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-transition: opacity 0.15s;
   transition: opacity 0.15s;
   white-space: nowrap;
 }
@@ -7724,7 +7655,6 @@ readers do not read off random characters that represent icons */
   position: absolute;
   right: -40px;
   top: -40px;
-  -webkit-transition: background-color 0.15s;
   transition: background-color 0.15s;
   width: 80px;
 }
@@ -7765,7 +7695,6 @@ readers do not read off random characters that represent icons */
 
 .viewer-move {
   cursor: move;
-  cursor: -webkit-grab;
   cursor: grab;
 }
 
@@ -7778,34 +7707,19 @@ readers do not read off random characters that represent icons */
 }
 
 .viewer-transition {
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
-}
-
-@-webkit-keyframes viewer-spinner {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes viewer-spinner {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
 
 .viewer-loading::after {
-  -webkit-animation: viewer-spinner 1s linear infinite;
   animation: viewer-spinner 1s linear infinite;
   border: 4px solid rgba(255, 255, 255, 0.1);
   border-left-color: rgba(255, 255, 255, 0.5);
@@ -7859,7 +7773,6 @@ readers do not read off random characters that represent icons */
 }
 
 .custom-control.image-checkbox label:after, .custom-control.image-checkbox label:before {
-  -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease;
   opacity: 0;
   left: .25rem;
@@ -7898,11 +7811,8 @@ readers do not read off random characters that represent icons */
 }
 
 .page-login {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
-  -webkit-box-pack: center;
   justify-content: center;
   padding: 2rem 2rem 5rem;
   height: 100vh;

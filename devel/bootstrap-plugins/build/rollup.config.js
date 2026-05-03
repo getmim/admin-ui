@@ -15,13 +15,16 @@ const plugins = [
       'createClass',
       'inheritsLoose',
       'defineProperty',
-      'objectSpread'
+      'objectSpread',
+      'toPropertyKey',
+      'toPrimitive'
     ]
   })
 ]
 const globals = {
   jquery: 'jQuery', // Ensure we use jQuery which is always available even in noConflict mode
   moment: 'moment',
+  leaflet: 'leaflet',
   'popper.js': 'Popper'
 }
 

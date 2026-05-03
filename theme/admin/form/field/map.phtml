@@ -1,0 +1,34 @@
+<?php
+    $i_attrs = [
+        'type'  => 'text',
+        'name'  => $field->name,
+        'class' => 'form-control formmap-model',
+        'id'    => $id,
+        'value' => ($value??'')
+    ];
+    if(isset($rules->required) && $rules->required)
+        $i_attrs['required'] = null;
+    if(isset($rules->empty) && !$rules->empty)
+        $i_attrs['required'] = null;
+
+    $c_attrs = [
+        'class' => 'formmap',
+        'id'    => $id . '-container'
+    ];
+
+    $m_attrs = [
+        'class' => 'formmap-control',
+        'id' => $id . '-control'
+    ];
+?>
+
+<div class="form-group <?= ($error ? ' is-invalid' : '' ) ?>">
+    <?php if($show_label): ?>
+        <label for="<?= $id ?>"><?= $field->label ?></label>
+    <?php endif; ?>
+    <div<?= to_attr($c_attrs) ?>>
+        <input<?= to_attr($i_attrs) ?>>
+        <div<?= to_attr($m_attrs) ?>></div>
+    </div>
+    <div class="invalid-feedback"><?= ($error?$error->text:'') ?></div>
+</div>

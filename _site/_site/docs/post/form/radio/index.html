@@ -1,0 +1,474 @@
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">Radio</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Forms</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Radio</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" id="admin-home-fld-gender-1" name="gender" type="radio" value="1"> <label class="custom-control-label" for="admin-home-fld-gender-1">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" id="admin-home-fld-gender-2" name="gender" type="radio" value="2"> <label class="custom-control-label" for="admin-home-fld-gender-2">Female</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" id="admin-home-fld-gender-3" name="gender" type="radio" value="3"> <label class="custom-control-label" for="admin-home-fld-gender-3">Apache Helicopter</label>
+                                </div>
+                                <div class="invalid-feedback">This field is required</div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'gender' => [
+                                'label' => 'Gender',
+                                'type' => 'radio',
+                                'options' => [
+                                    '1' => 'Male',
+                                    '2' => 'Female',
+                                    '3' => 'Apache Helicopter'
+                                ],
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('gender');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Group</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label>The City</label>
+                                <div class="radio-group">
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio2a" name="radio2" class="custom-control-input">
+                                        <label class="custom-control-label" for="radio2a">Bandung</label>
+                                    </div>
+                                    <!-- TRIM START -->
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio2b" name="radio2" class="custom-control-input">
+                                        <label class="custom-control-label" for="radio2b">Jakarta</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio2c" name="radio2" class="custom-control-input">
+                                        <label class="custom-control-label" for="radio2c">Medan</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio2d" name="radio2" class="custom-control-input">
+                                        <label class="custom-control-label" for="radio2d">Padang</label>
+                                    </div>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio2e" name="radio2" class="custom-control-input">
+                                        <label class="custom-control-label" for="radio2e">Surabaya</label>
+                                    </div>
+                                    <!-- TRIM END -->
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" id="radio2f" name="radio2" class="custom-control-input">
+                                        <label class="custom-control-label" for="radio2f">Batam</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'city' => [
+                                'label' => 'The City',
+                                'type' => 'radio-group',
+                                'options' => [
+                                    '1' => 'Bandung',
+                                    '2' => 'Jakarta',
+                                    '3' => 'Medan',
+                                    '4' => 'Padang',
+                                    '5' => 'Surabaya',
+                                    '6' => 'Batam'
+                                ],
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('city');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Tree</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <div class="radio-group">
+                                    <div class="custom-control custom-radio">
+                                        <input name="radio3" type="radio" class="custom-control-input" id="check4a">
+                                        <label class="custom-control-label" for="check4a">DKI Jakarta</label>
+                                    </div>
+                                    <div class="ml-3">
+                                        <div class="custom-control custom-radio">
+                                            <input name="radio3" type="radio" class="custom-control-input" id="check4a1">
+                                            <label class="custom-control-label" for="check4a1">Jakarta Pusat</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input name="radio3" type="radio" class="custom-control-input" id="check4a2">
+                                            <label class="custom-control-label" for="check4a2">Jakarta Utara</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="custom-control custom-radio">
+                                                <input name="radio3" type="radio" class="custom-control-input" id="check4a2a">
+                                                <label class="custom-control-label" for="check4a2a">Kelapa Gading</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input name="radio3" type="radio" class="custom-control-input" id="check4a3">
+                                            <label class="custom-control-label" for="check4a3">Jakarta Timur</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="custom-control custom-radio">
+                                                <input name="radio3" type="radio" class="custom-control-input" id="check4a3a">
+                                                <label class="custom-control-label" for="check4a3a">Duren Sawit</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input name="radio3" type="radio" class="custom-control-input" id="check4a3b">
+                                                <label class="custom-control-label" for="check4a3b">Cawang</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'city' => [
+                                'label' => 'The City',
+                                'type' => 'radio-tree',
+                                'options' => [
+                                    ['value'=>1, 'label'=>'DKI Jakarta',   'parent'=>0],
+                                    ['value'=>2, 'label'=>'Jakarta Pusat', 'parent'=>1],
+                                    ['value'=>3, 'label'=>'Jakarta Utara', 'parent'=>1],
+                                    ['value'=>4, 'label'=>'Kelapa Gading', 'parent'=>3],
+                                    ['value'=>5, 'label'=>'Jakarta Timur', 'parent'=>1],
+                                    ['value'=>6, 'label'=>'Duren Sawit',   'parent'=>5],
+                                    ['value'=>7, 'label'=>'Cawang',        'parent'=>5]
+                                ],
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('city');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Big Size</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label>Location</label>
+                                <div class="radio-group size-big">
+                                    <div class="custom-control custom-radio">
+                                        <input name="radio3" type="radio" class="custom-control-input" id="check4a">
+                                        <label class="custom-control-label" for="check4a">DKI Jakarta</label>
+                                    </div>
+                                    <div class="ml-3">
+                                        <div class="custom-control custom-radio">
+                                            <input name="radio3" type="radio" class="custom-control-input" id="check4a1">
+                                            <label class="custom-control-label" for="check4a1">Jakarta Pusat</label>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input name="radio3" type="radio" class="custom-control-input" id="check4a2">
+                                            <label class="custom-control-label" for="check4a2">Jakarta Utara</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="custom-control custom-radio">
+                                                <input name="radio3" type="radio" class="custom-control-input" id="check4a2a">
+                                                <label class="custom-control-label" for="check4a2a">Kelapa Gading</label>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-radio">
+                                            <input name="radio3" type="radio" class="custom-control-input" id="check4a3">
+                                            <label class="custom-control-label" for="check4a3">Jakarta Timur</label>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="custom-control custom-radio">
+                                                <input name="radio3" type="radio" class="custom-control-input" id="check4a3a">
+                                                <label class="custom-control-label" for="check4a3a">Duren Sawit</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input name="radio3" type="radio" class="custom-control-input" id="check4a3b">
+                                                <label class="custom-control-label" for="check4a3b">Cawang</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'city' => [
+                                'label' => 'The City',
+                                'type' => 'radio-tree',
+                                'options' => [
+                                    ['value'=>1, 'label'=>'DKI Jakarta',   'parent'=>0],
+                                    ['value'=>2, 'label'=>'Jakarta Pusat', 'parent'=>1],
+                                    ['value'=>3, 'label'=>'Jakarta Utara', 'parent'=>1],
+                                    ['value'=>4, 'label'=>'Kelapa Gading', 'parent'=>3],
+                                    ['value'=>5, 'label'=>'Jakarta Timur', 'parent'=>1],
+                                    ['value'=>6, 'label'=>'Duren Sawit',   'parent'=>5],
+                                    ['value'=>7, 'label'=>'Cawang',        'parent'=>5]
+                                ],
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('city');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card mt-4">
+                <div class="card-header">Image</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio image-checkbox">
+                                        <input type="radio" class="custom-control-input" id="ck2a" name="ck2">
+                                        <label class="custom-control-label" for="ck2a">
+                                            <img src="/assets/img/annie-spratt.jpg" alt="#" class="img-fluid">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio image-checkbox">
+                                        <input type="radio" class="custom-control-input" id="ck2b" name="ck2">
+                                        <label class="custom-control-label" for="ck2b">
+                                            <img src="/assets/img/natasha-miller.jpg" alt="#" class="img-fluid">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio image-checkbox">
+                                        <input type="radio" class="custom-control-input" id="ck2c" name="ck2">
+                                        <label class="custom-control-label" for="ck2c">
+                                            <img src="/assets/img/muneeb-syed.jpg" alt="#" class="img-fluid">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="custom-control custom-radio image-checkbox mt-4">
+                                        <input type="radio" class="custom-control-input" id="ck2d" name="ck2">
+                                        <label class="custom-control-label" for="ck2d">
+                                            <img src="/assets/img/vladimir-kudinov.jpg" alt="#" class="img-fluid">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'cover' => [
+                                'label' => 'Cover',
+                                'type' => 'radio-image',
+                                'options' => [
+                                    '1' => '/assets/img/andre-francois.jpg',
+                                    '2' => '/assets/img/annie-spratt.jpg',
+                                    '3' => '/assets/img/muneeb-syed.jpg',
+                                    '4' => '/assets/img/natasha-miller.jpg'
+                                ],
+                                'column' => 3,
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('cover');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">List Group</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label>Province</label>
+                                <div class="list-group list-group-form">
+                                    <input type="radio" name="province" id="prov-1">
+                                    <label class="list-group-item list-group-item-action" for="prov-1">
+                                        Jakarta Pusat
+                                    </label>
+                                    <input type="radio" name="province" id="prov-2">
+                                    <label class="list-group-item list-group-item-action" for="prov-2">
+                                        Jakarta Utara
+                                    </label>
+                                    <input type="radio" name="province" id="prov-3">
+                                    <label class="list-group-item list-group-item-action" for="prov-3">
+                                        Jakarta Timur
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'province' => [
+                                'label' => 'Province',
+                                'type' => 'radio-list-group',
+                                'options' => [
+                                    1 => ['label'=>'Jakarta Pusat'],
+                                    2 => ['label'=>'Jakarta Utara'],
+                                    3 => ['label'=>'Jakarta Timur']
+                                ],
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('province');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">List Group Custom Element</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label>Province</label>
+                                <div class="list-group list-group-form">
+                                    <input type="radio" name="province2" id="prov-2-1">
+                                    <label class="list-group-item list-group-item-action" for="prov-2-1">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Jakarta Pusat</h5>
+                                            <small>3 days ago</small>
+                                        </div>
+                                        <p class="mb-1">Central Jakarta (Indonesian: Jakarta Pusat) is one of the five administrative cities (kota administrasi) which form the Special Capital Region of Jakarta.</p>
+                                    </label>
+
+                                    <input type="radio" name="province2" id="prov-2-2">
+                                    <label class="list-group-item list-group-item-action" for="prov-2-2">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Jakarta Utara</h5>
+                                            <small>3 days ago</small>
+                                        </div>
+                                        <p class="mb-1">North Jakarta (Indonesian: Jakarta Utara) is one of the five administrative cities (kota administrasi) which form Special Capital Region of Jakarta, Indonesia.</p>
+                                    </label>
+
+                                    <input type="radio" name="province2" id="prov-2-3">
+                                    <label class="list-group-item list-group-item-action" for="prov-2-3">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">Jakarta Timur</h5>
+                                            <small>3 days ago</small>
+                                        </div>
+                                        <p class="mb-1">East Jakarta (Indonesian: Jakarta Timur) is one of the five administrative cities (kota administrasi) which form Special Capital Region of Jakarta, Indonesia.</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'province2' => [
+                                'label' => 'Province',
+                                'type' => 'radio-list-group',
+                                'options' => [
+                                    1 => [
+                                        'label'=>'Jakarta Pusat',
+                                        'info'=>'Central Jakarta (Indonesian: Jakarta Pusat) is one of the five administrative cities (kota administrasi) which form the Special Capital Region of Jakarta.',
+                                        'hint' => '3 days ago'
+                                    ],
+                                    2 => [
+                                        'label'=>'Jakarta Utara',
+                                        'info'=>'North Jakarta (Indonesian: Jakarta Utara) is one of the five administrative cities (kota administrasi) which form Special Capital Region of Jakarta, Indonesia.',
+                                        'hint' => '3 days ago'
+                                    ],
+                                    3 => [
+                                        'label'=>'Jakarta Timur',
+                                        'info'=>'East Jakarta (Indonesian: Jakarta Timur) is one of the five administrative cities (kota administrasi) which form Special Capital Region of Jakarta, Indonesia.',
+                                        'hint' => '3 days ago'
+                                    ]
+                                ],
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('province');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="navbar-main-spacer"></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-white navbar-shadow">
+    <div class="navbar-multiline mr-auto">
+        <span class="navbar-brand" href="#0">Gallery</span>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="#0">Forms</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+            </ol>
+        </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Default</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="fga-1">Images</label>
+                                <textarea id="input-images" class="formgallery-model">
+                                    [
+                                        "/assets/img/andre-francois.jpg",
+                                        "/assets/img/annie-spratt.jpg",
+                                        "/assets/img/natasha-miller.jpg",
+                                        "/assets/img/muneeb-syed.jpg",
+                                        "/assets/img/timj.jpg",
+                                        "/assets/img/vladimir-kudinov.jpg"
+                                    ]
+                                </textarea>
+                                <div class="formgallery" id="fg-1" data-model="#input-images" data-form="galleries">
+                                    <div class="formgallery-list formgallery-list-four">
+                                        <div class="formgallery-item">
+                                            <button type="button" class="close formgallery-remove" aria-label="Close" title="Remove">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <a href="#" class="formgallery-image" style="background-image: url(/assets/img/andre-francois.jpg)">
+                                            </a>
+                                        </div>
+                                        <div class="formgallery-item">
+                                            <button type="button" class="close formgallery-remove" aria-label="Close" title="Remove">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <a href="#" class="formgallery-image" style="background-image: url(/assets/img/annie-spratt.jpg)">
+                                            </a>
+                                        </div>
+                                        <div class="formgallery-item">
+                                            <button type="button" class="close formgallery-remove" aria-label="Close" title="Remove">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <a href="#" class="formgallery-image" style="background-image: url(/assets/img/natasha-miller.jpg)">
+                                            </a>
+                                        </div>
+                                        <div class="formgallery-item">
+                                            <button type="button" class="close formgallery-remove" aria-label="Close" title="Remove">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <a href="#" class="formgallery-image" style="background-image: url(/assets/img/muneeb-syed.jpg)">
+                                            </a>
+                                        </div>
+                                        <div class="formgallery-item">
+                                            <button type="button" class="close formgallery-remove" aria-label="Close" title="Remove">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <a href="#" class="formgallery-image" style="background-image: url(/assets/img/timj.jpg)">
+                                            </a>
+                                        </div>
+                                        <div class="formgallery-item">
+                                            <button type="button" class="close formgallery-remove" aria-label="Close" title="Remove">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
+                                            <a href="#" class="formgallery-image" style="background-image: url(/assets/img/vladimir-kudinov.jpg)">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-light formgallery-action" id="fga-1">
+                                        Add Image
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'images' => [
+                                'label' => 'Images',
+                                'type' => 'image-list',
+                                'form' => 'std-image',
+                                'rules' => [
+                                    'required' => true,
+                                    'empty' => false
+                                ]
+                            ]
+
+                            // view
+                            $form->field('images');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

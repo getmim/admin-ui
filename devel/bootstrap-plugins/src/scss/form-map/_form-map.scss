@@ -1,0 +1,14 @@
+.formmap{
+    position: relative;
+    width: 100%;
+    padding: $formmap-padding-y $formmap-padding-x;
+    border: $formmap-border-width solid $formmap-border-color;
+    @include border-radius($formmap-border-radius, 0);
+    @include box-shadow($formmap-box-shadow);
+}
+
+.formmap-control {
+    background-color: $formmap-control-bg-color;
+    margin-top: $formmap-padding-y;
+    height: $formmap-control-height;
+}
