@@ -1,0 +1,12 @@
+.daypicker{
+    width: 100%;
+    padding: $daypicker-padding-y $daypicker-padding-x;
+    background-clip: padding-box;
+    border: $daypicker-border-width solid $daypicker-border-color;
+    @include border-radius($daypicker-border-radius, 0);
+    @include box-shadow($daypicker-box-shadow);
+
+    thead > tr:first-child {
+        display:none;
+    }
+}

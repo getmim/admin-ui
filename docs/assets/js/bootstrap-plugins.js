@@ -12180,6 +12180,7 @@
       this._imageViewer(); // image viewer
 
       this._inputDatetimepicker(); // datetimepicker
+      this._inputDayPicker(); // daypicker
       this._inputFormCodeMirror(); // codemirror
       this._inputFormFiles(); // multiple files & multiple object
       this._inputFormGallery(); // multiple image
@@ -12306,6 +12307,26 @@
       // galleries
       document.querySelectorAll('.gallery-viewer').forEach(function (e) {
         $$1(e).data('viwerjs.admin-ui', new Viewer(e, options));
+      });
+    };
+    _proto._inputDayPicker = function _inputDayPicker() {
+      document.querySelectorAll('.daypicker').forEach(function (e) {
+        var input = $$1(e).children('input').get(0);
+        var control = $$1(e).children('.daypicker-control');
+        var cval = parseInt(input.value || 1);
+        if (!cval) {
+          cval = 1;
+        }
+        if (cval < 10) cval = "0" + cval;
+        $$1(control).datetimepicker({
+          minDate: '2026-03-01',
+          maxDate: '2026-03-31',
+          date: "2026-03-" + cval,
+          format: 'YYYY-MM-DD',
+          inline: true
+        }).on('dp.change', function (e) {
+          return input.value = e.date.date();
+        });
       });
     };
     _proto._inputDatetimepicker = function _inputDatetimepicker() {

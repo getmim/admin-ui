@@ -24,6 +24,42 @@ submenu: date
     <div class="row mt-4 mb-4">
         <div class="col-md-12">
             <div class="card">
+                <div class="card-header">Day</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 source-code" data-hl="html">
+                            <div class="form-group">
+                                <label for="input-date">Day</label>
+                                <div class="date daypicker">
+                                    <input type="hidden" id="input-day" value="03">
+                                    <div class="daypicker-control"></div>
+                                </div>
+                                <div class="invalid-feedback">This field is required</div>
+                            </div>
+                        </div>
+                        <div class="source-code hidden" data-hl="php">
+                            // config
+                            'date' => [
+                                'label' => 'Day',
+                                'type' => 'day',
+                                'rules' => [
+                                    'required' => true
+                                ]
+                            ]
+
+                            // view
+                            $form->field('date');
+                        </div>
+                        <div class="col-md-6 source"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-md-12">
+            <div class="card">
                 <div class="card-header">Date</div>
                 <div class="card-body">
                     <div class="row">

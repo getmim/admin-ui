@@ -53,6 +53,7 @@ class Admin {
         this._imageViewer()                 // image viewer
 
         this._inputDatetimepicker()         // datetimepicker
+        this._inputDayPicker()              // daypicker
         this._inputFormCodeMirror()         // codemirror
         this._inputFormFiles()              // multiple files & multiple object
         this._inputFormGallery()            // multiple image
@@ -198,6 +199,28 @@ class Admin {
         // galleries
         document.querySelectorAll('.gallery-viewer').forEach(e => {
             $(e).data('viwerjs.admin-ui', new Viewer(e, options))
+        })
+    }
+
+    _inputDayPicker() {
+        document.querySelectorAll('.daypicker').forEach(e => {
+            let input = $(e).children('input').get(0)
+            let control = $(e).children('.daypicker-control')
+            let cval = parseInt(input.value || 1)
+            if (!cval) {
+                cval = 1
+            }
+
+            if (cval < 10)
+                cval = `0${cval}`
+
+            $(control).datetimepicker({
+                minDate: '2026-03-01',
+                maxDate: '2026-03-31',
+                date: `2026-03-${cval}`,
+                format: 'YYYY-MM-DD',
+                inline: true
+            }).on('dp.change', e => input.value = e.date.date())
         })
     }
 
